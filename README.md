@@ -10,7 +10,7 @@ Este blog nasceu do desejo de compartilhar frases inspiradoras e artigos bíblic
 
 ---
 
-## ✨ Nosso Conteúdo
+## Nosso Conteúdo
 
 Aqui você encontrará uma variedade de materiais focados nas Escrituras:
 
@@ -44,7 +44,7 @@ Estamos construindo esta biblioteca digital e queremos que você faça parte!
 
 ## 📝 Contribuições
 
-No momento, o conteúdo é gerado por [Seu Nome ou Nome do Autor Principal]. Se você tiver sugestões de temas ou quiser entrar em contato, use o e-mail de contato acima.
+No momento, o conteúdo é gerado por Yuvi Matique. Se você tiver sugestões de temas ou quiser entrar em contato, use o e-mail de contato acima.
 
 ---
 
