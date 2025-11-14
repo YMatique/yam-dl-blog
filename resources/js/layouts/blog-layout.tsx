@@ -48,33 +48,29 @@ export default function BlogLayout({
                 <div className="sidebar-inner">
                     <div className="sidebar-widget widget_categories mt-30 mb-50">
                         <div className="widget-header-2 position-relative">
-                            <h5 className="mt-5 mb-15">Hot topics</h5>
+                            <h5 className="mt-5 mb-15">Mais Populares</h5>
                         </div>
                         <div className="widget_nav_menu">
                             <ul>
                                 <li className="cat-item cat-item-2">
-                                    <a href="#">Travel tips</a>{' '}
+                                    <a href="#">Dons Espirituais</a>{' '}
                                     <span className="post-count">30</span>
                                 </li>
                                 <li className="cat-item cat-item-3">
-                                    <a href="category-grid.html">Book review</a>{' '}
-                                    <span className="post-count">25</span>
+                                    <a href="#">Pensamentos Soltos</a>{' '}
+                                    <span className="post-count">30</span>
                                 </li>
                                 <li className="cat-item cat-item-4">
-                                    <a href="category-list.html">
-                                        Hotel review
-                                    </a>{' '}
-                                    <span className="post-count">16</span>
+                                    <a href="#">Profecia</a>{' '}
+                                    <span className="post-count">30</span>
                                 </li>
                                 <li className="cat-item cat-item-5">
-                                    <a href="category-masonry.html">
-                                        Destinations{' '}
-                                    </a>{' '}
-                                    <span className="post-count">22</span>
+                                    <a href="#">Ministros do Evangelho</a>{' '}
+                                    <span className="post-count">30</span>
                                 </li>
                                 <li className="cat-item cat-item-6">
-                                    <a href="category-big.html">Lifestyle</a>{' '}
-                                    <span className="post-count">25</span>
+                                    <a href="#">Seminários</a>{' '}
+                                    <span className="post-count">30</span>
                                 </li>
                             </ul>
                         </div>
@@ -82,26 +78,23 @@ export default function BlogLayout({
 
                     <div className="sidebar-widget widget-latest-posts mb-50">
                         <div className="widget-header-2 position-relative mb-30">
-                            <h5 className="mt-5 mb-30">Don't miss</h5>
+                            <h5 className="mt-5 mb-30">Não perca</h5>
                         </div>
                         <div className="post-block-list post-module-1 post-module-5">
                             <ul className="list-post">
                                 <li className="mb-30">
                                     <div className="d-flex hover-up-2 transition-normal">
                                         <div className="post-thumb post-thumb-80 d-flex border-radius-5 img-hover-scale mr-15 overflow-hidden">
-                                            <a
-                                                className="color-white"
-                                                href="single.html"
-                                            >
+                                            <a className="color-white" href="#">
                                                 <img
-                                                    src="assets/imgs/news/thumb-1.jpg"
+                                                    src="stories/assets/imgs/news/thumb-1.jpg"
                                                     alt=""
                                                 />
                                             </a>
                                         </div>
                                         <div className="post-content media-body">
                                             <h6 className="post-title text-limit-2-row mb-15 font-medium">
-                                                <a href="single.html">
+                                                <a href="#">
                                                     The Life of a Travel Writer
                                                     with David Farley
                                                 </a>
@@ -120,19 +113,16 @@ export default function BlogLayout({
                                 <li className="mb-30">
                                     <div className="d-flex hover-up-2 transition-normal">
                                         <div className="post-thumb post-thumb-80 d-flex border-radius-5 img-hover-scale mr-15 overflow-hidden">
-                                            <a
-                                                className="color-white"
-                                                href="single.html"
-                                            >
+                                            <a className="color-white" href="#">
                                                 <img
-                                                    src="assets/imgs/news/thumb-2.jpg"
+                                                    src="stories/assets/imgs/news/thumb-2.jpg"
                                                     alt=""
                                                 />
                                             </a>
                                         </div>
                                         <div className="post-content media-body">
                                             <h6 className="post-title text-limit-2-row mb-15 font-medium">
-                                                <a href="single.html">
+                                                <a href="#">
                                                     Why Don’t More Black
                                                     American Women Travel Solo?
                                                 </a>
@@ -151,19 +141,16 @@ export default function BlogLayout({
                                 <li className="mb-30">
                                     <div className="d-flex hover-up-2 transition-normal">
                                         <div className="post-thumb post-thumb-80 d-flex border-radius-5 img-hover-scale mr-15 overflow-hidden">
-                                            <a
-                                                className="color-white"
-                                                href="single.html"
-                                            >
+                                            <a className="color-white" href="#">
                                                 <img
-                                                    src="assets/imgs/news/thumb-3.jpg"
+                                                    src="stories/assets/imgs/news/thumb-3.jpg"
                                                     alt=""
                                                 />
                                             </a>
                                         </div>
                                         <div className="post-content media-body">
                                             <h6 className="post-title text-limit-2-row mb-15 font-medium">
-                                                <a href="single.html">
+                                                <a href="#">
                                                     The 22 Best Things to See
                                                     and Do in Bangkok
                                                 </a>
@@ -181,21 +168,6 @@ export default function BlogLayout({
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div className="sidebar-widget widget-ads">
-                        <div className="widget-header-2 position-relative mb-30">
-                            <h5 className="mt-5 mb-30">Advertise banner</h5>
-                        </div>
-                        <a
-                            href="https://themeforest.net/user/alithemes/portfolio"
-                            target="_blank"
-                        >
-                            <img
-                                className="advertise-img border-radius-5"
-                                src="assets/imgs/ads/ads-1.jpg"
-                                alt=""
-                            />
-                        </a>
                     </div>
                 </div>
             </aside>
@@ -232,7 +204,33 @@ export default function BlogLayout({
                         <div className="mobile_menu d-lg-none d-block"></div>
                         <div className="main-nav d-none d-lg-block float-left">
                             <nav>
+                                {/* DESKTOP MENU */}
                                 <ul className="main-menu d-none d-lg-inline font-small">
+                                    <li className="">
+                                        <a href="">
+                                            <i className="elegant-icon icon_house_alt mr-5"></i>{' '}
+                                            Página Inicial
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">Artigos</a>
+                                    </li>
+                                    <li className="">
+                                        <a href="">Categorias</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Séries</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Contacto</a>
+                                    </li>
+                                </ul>
+
+                                {/* MOBILE MENU */}
+                                <ul
+                                    id="mobile-menu"
+                                    className="d-block d-lg-none text-muted"
+                                >
                                     <li className="">
                                         <a href="">
                                             <i className="elegant-icon icon_house_alt mr-5"></i>{' '}
