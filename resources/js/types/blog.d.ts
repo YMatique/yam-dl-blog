@@ -204,6 +204,7 @@ export interface BlogIndexProps {
     featuredPosts: Article[];
     categories: Category[];
     popularTags: Tag[];
+    featuredSeries: Series[];
     filters?: {
         category?: number;
         tag?: number;

@@ -1,6 +1,7 @@
 import ArticleHighlight from '@/components/blog/article-highlight';
 import FeaturedSlider from '@/components/blog/featured-slider';
 import PostList from '@/components/blog/post-list';
+import SeriesHighlight from '@/components/blog/series-highlight';
 import BlogLayout from '@/layouts/blog-layout';
 import { BlogIndexProps } from '@/types/blog';
 import { Link } from '@inertiajs/react';
@@ -14,6 +15,7 @@ export default function Home({
     featuredPosts,
     categories,
     popularTags,
+    featuredSeries,
 }: BlogIndexProps) {
     return (
         <BlogLayout title="YAMDL - Yuvi Matique Digital Library">
@@ -58,18 +60,20 @@ export default function Home({
                         {/* ArticleHighlight - 2 Artigos em Destaque */}
                         <div className="col-lg-8">
                             <ArticleHighlight articles={featuredPosts} />
-                            <PostList
-                                articles={articles.data.slice(0, 1)}
-                                columns={1}
-                                showExcerpt={false}
-                                showSocial={true}
-                            />
+                            <div className="mt-40 mb-30">
+                                <PostList
+                                    articles={articles.data.slice(0, 2)}
+                                    columns={2}
+                                    showExcerpt={false}
+                                    showSocial={true}
+                                />
+                            </div>
                         </div>
 
                         {/* Cards Individuais (restantes) */}
                         <div className="col-lg-4">
                             <PostList
-                                articles={articles.data.slice(0, 3)}
+                                articles={articles.data.slice(0, 2)}
                                 columns={1}
                                 showExcerpt={false}
                                 showSocial={true}
@@ -79,7 +83,7 @@ export default function Home({
                 </div>
 
                 {/* ========== MAIS ARTIGOS (Grid 3 colunas) ========== */}
-                {articles.data.length > 3 && (
+                {/* {articles.data.length > 3 && (
                     <div className="mb-50">
                         <div className="widget-header-1 position-relative mb-30">
                             <h5 className="mt-5 mb-30">Mais Artigos</h5>
@@ -91,7 +95,7 @@ export default function Home({
                             showSocial={true}
                         />
                     </div>
-                )}
+                )} */}
 
                 {/* ========== SEÇÃO DE SÉRIES E SIDEBAR ========== */}
                 <div className="bg-grey pt-50 pb-50">
@@ -107,13 +111,10 @@ export default function Home({
                                     </div>
                                     <div className="loop-list loop-list-style-1">
                                         <div className="row">
-                                            {/* TODO: Adicionar componente de Séries */}
-                                            <div className="col-12 py-30 text-center">
-                                                <p className="text-muted">
-                                                    Séries bíblicas disponíveis
-                                                    em breve...
-                                                </p>
-                                            </div>
+                                            <SeriesHighlight
+                                                className="col-12"
+                                                series={featuredSeries}
+                                            />
                                         </div>
                                     </div>
                                 </div>

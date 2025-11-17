@@ -40,7 +40,10 @@ const ArticleHighlight: React.FC<ArticleHighlightProps> = ({
 
     return (
         <div className="">
-            <div className="carausel-post-1 hover-up border-radius-10 position-relative wow fadeInUp animated overflow-hidden transition-normal">
+            <div
+                id="avad"
+                className="carausel-post-1 hover-up border-radius-10 position-relative wow fadeInUp animated overflow-hidden transition-normal"
+            >
                 <div className="arrow-cover"></div>
                 <div className="slide-fade">
                     {displayArticles.map((article) => (

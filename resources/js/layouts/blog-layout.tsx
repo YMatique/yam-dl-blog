@@ -33,6 +33,7 @@ export default function BlogLayout({
                     rel="stylesheet"
                     href="/stories/assets/css/responsive.css"
                 />
+                <link rel="stylesheet" href="override.css" />
             </Head>
 
             <div className="scroll-progress primary-bg"></div>

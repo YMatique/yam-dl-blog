@@ -19,6 +19,7 @@ const scripts = [
     '/stories/assets/js/vendor/waypoints.min.js',
     '/stories/assets/js/vendor/jquery.theia.sticky.js',
     '/stories/assets/js/main.js',
+    'override.js',
 ];
 
 export default function TemplateScripts() {
