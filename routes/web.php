@@ -9,8 +9,11 @@ use Inertia\Inertia;
 // })->name('home');
 
 Route::get('/', HomeController::class)->name('blog.home');
-Route::get('/contact', fn() => Inertia::render('blog/contact'))->name('contact');
+Route::get('/contacto', fn() => Inertia::render('blog/contact'))->name('contact');
 Route::get('/about', fn() => Inertia::render('blog/about'))->name('about');
+Route::get('/artigos',fn()=>Inertia::render('blog/articles'))->name('');
+Route::get('/series',fn()=>Inertia::render('blog/series'))->name('');
+Route::get('/categorias',fn()=>Inertia::render('blog/category'))->name('');
 
 Route::get('/post', fn() => Inertia::render('blog/post'))->name('post');
 Route::middleware(['auth', 'verified'])->group(function () {
