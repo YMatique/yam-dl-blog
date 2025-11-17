@@ -33,7 +33,8 @@ export const generateArticleSEO = (article: Article): SEOProps => {
 
         // Twitter
         twitterCard: 'summary_large_image',
-        twitterCreator: article.author?.twitter_handle,
+        // twitterCreator: article.author?.twitter_handle,
+        twitterCreator: '',
 
         // Canonical
         canonical: `${SITE_URL}/blog/artigo/${article.slug}`,

@@ -15,7 +15,7 @@ Route::get('/about', fn() => Inertia::render('blog/about'))->name('about');
 Route::get('/artigos',fn()=>Inertia::render('blog/articles'))->name('');
 Route::get('/series',fn()=>Inertia::render('blog/series'))->name('');
 Route::get('/categorias',[CategoryController::class,'index'])->name('');
-Route::get('/categorias/{slug}',[CategoryController::class,'index'])->name('');
+Route::get('/categoria/{slug}',[CategoryController::class,'show'])->name('');
 
 Route::get('/post', fn() => Inertia::render('blog/post'))->name('post');
 Route::middleware(['auth', 'verified'])->group(function () {
