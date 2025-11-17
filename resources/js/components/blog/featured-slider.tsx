@@ -1,31 +1,33 @@
+import { Article } from '@/types/blog';
+import {
+    formatDate,
+    formatViews,
+    getArticleUrl,
+    getCategoryUrl,
+    getImageUrl,
+} from '@/utils/blog-helpers';
+import { Link } from '@inertiajs/react';
 import React from 'react';
 
-// 1. Interface para definir a estrutura de um post
-interface Post {
-    id: number;
-    title: string;
-    categories: { name: string; style: string; link: string }[];
-    date: string;
-    views: string;
-    imageUrl: string;
-    link: string;
-}
-
-// 2. Interface para definir as props do componente (Obrigatório)
+/**
+ * Props do componente FeaturedSlider
+ */
 interface FeaturedSliderProps {
-    posts: Post[]; // Agora posts é uma prop OBRIGATÓRIA
+    articles: Article[];
 }
 
 /**
- * Componente funcional para o slider de posts em destaque.
- * Apenas exibe o que recebe via props.
+ * Componente de Slider para artigos em destaque
+ * Usa Inertia.js para navegação e types do Laravel
  */
-const FeaturedSlider: React.FC<FeaturedSliderProps> = ({ posts }) => {
-    // Se a prop for um array vazio, não renderiza nada ou exibe uma mensagem.
-    if (!posts || posts.length === 0) {
+const FeaturedSlider: React.FC<FeaturedSliderProps> = ({ articles }) => {
+    // Validação
+    if (!articles || articles.length === 0) {
         return (
-            <div className="featured-slider-empty">
-                Nenhum destaque encontrado.
+            <div className="featured-slider-empty py-50 text-center">
+                <p className="text-muted">
+                    Nenhum artigo em destaque no momento.
+                </p>
             </div>
         );
     }
@@ -35,57 +37,68 @@ const FeaturedSlider: React.FC<FeaturedSliderProps> = ({ posts }) => {
             <div className="slider-3-arrow-cover"></div>
 
             <div className="featured-slider-3-items">
-                {posts.map((post) => (
+                {articles.map((article) => (
                     <div
-                        key={post.id}
+                        key={article.id}
                         className="slider-single border-radius-10 overflow-hidden"
                     >
                         <div className="post-thumb position-relative">
                             <div
                                 className="thumb-overlay position-relative"
                                 style={{
-                                    backgroundImage: `url(${post.imageUrl})`,
+                                    backgroundImage: `url(${getImageUrl(article.featured_image)})`,
                                 }}
                             >
                                 <div className="post-content-overlay">
                                     <div className="container">
-                                        {/* Metadados de Categoria */}
+                                        {/* Categoria */}
                                         <div className="entry-meta meta-0 font-small mb-20">
-                                            {post.categories.map(
-                                                (category, index) => (
-                                                    <a
-                                                        href={category.link}
-                                                        tabIndex={0}
-                                                        key={index}
-                                                    >
-                                                        <span
-                                                            className={`post-cat ${category.style} text-uppercase`}
-                                                        >
-                                                            {category.name}
-                                                        </span>
-                                                    </a>
-                                                ),
-                                            )}
-                                        </div>
-
-                                        {/* Título do Post */}
-                                        <h1 className="post-title font-weight-900 mb-20 text-white">
-                                            <a
-                                                className="text-white"
-                                                href={post.link}
+                                            <Link
+                                                href={getCategoryUrl(
+                                                    article.category.slug,
+                                                )}
                                                 tabIndex={0}
                                             >
-                                                {post.title}
-                                            </a>
+                                                <span
+                                                    className="post-cat text-info text-uppercase"
+                                                    style={{
+                                                        color:
+                                                            article.category
+                                                                .color ||
+                                                            '#17a2b8',
+                                                    }}
+                                                >
+                                                    {article.category.name}
+                                                </span>
+                                            </Link>
+                                        </div>
+
+                                        {/* Título do Artigo */}
+                                        <h1 className="post-title font-weight-900 mb-20 text-white">
+                                            <Link
+                                                href={getArticleUrl(
+                                                    article.slug,
+                                                )}
+                                                className="text-white"
+                                                tabIndex={0}
+                                            >
+                                                {article.title}
+                                            </Link>
                                         </h1>
 
-                                        {/* Data e Visualizações */}
+                                        {/* Metadados (Data e Views) */}
                                         <div className="entry-meta meta-1 font-small mt-10 pr-5 pl-5 text-white">
                                             <span className="post-on">
-                                                {post.date}
+                                                {article.published_at
+                                                    ? formatDate(
+                                                          article.published_at,
+                                                      )
+                                                    : 'Data não disponível'}
                                             </span>
                                             <span className="hit-count has-dot">
-                                                {post.views}
+                                                {formatViews(
+                                                    article.views_count,
+                                                )}
                                             </span>
                                         </div>
                                     </div>
@@ -100,6 +113,3 @@ const FeaturedSlider: React.FC<FeaturedSliderProps> = ({ posts }) => {
 };
 
 export default FeaturedSlider;
-
-// Exportamos a interface Post para que o componente Home possa importá-la
-export type { FeaturedSliderProps, Post };
