@@ -19,7 +19,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             <div className="category-card border-radius-10 hover-up wow fadeInUp animated h-100 overflow-hidden bg-white">
                 {/* Imagem de fundo (se houver) */}
                 {category.image ? (
-                    <Link href={`/blog/categoria/${category.slug}`}>
+                    <Link href={`/categoria/${category.slug}`}>
                         <div
                             className="category-card-image"
                             style={{
@@ -67,7 +67,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
                     </Link>
                 ) : (
                     // Se não tiver imagem, apenas cor de fundo
-                    <Link href={`/blog/categoria/${category.slug}`}>
+                    <Link href={`/categoria/${category.slug}`}>
                         <div
                             className="category-card-colored p-40 text-center"
                             style={{
@@ -96,7 +96,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
                 <div className="category-card-content p-30">
                     {/* Nome */}
                     <h5 className="category-card-title font-weight-900 mb-15">
-                        <Link href={`/blog/categoria/${category.slug}`}>
+                        <Link href={`/categoria/${category.slug}`}>
                             {category.name}
                         </Link>
                     </h5>
@@ -112,7 +112,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 
                     {/* Link "Ver Artigos" */}
                     <Link
-                        href={`/blog/categoria/${category.slug}`}
+                        href={`/categoria/${category.slug}`}
                         className="font-small font-weight-bold text-primary"
                     >
                         Ver artigos →

@@ -260,17 +260,15 @@ export default function BlogLayout({
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/blog/artigos">
-                                            Artigos
-                                        </Link>
+                                        <Link href="/artigos">Artigos</Link>
                                     </li>
                                     <li>
-                                        <Link href="/blog/categorias">
+                                        <Link href="/categorias">
                                             Categorias
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/blog/series">Séries</Link>
+                                        <Link href="/series">Séries</Link>
                                     </li>
                                     <li>
                                         <Link href="/contacto">Contacto</Link>
@@ -289,17 +287,15 @@ export default function BlogLayout({
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/blog/artigos">
-                                            Artigos
-                                        </Link>
+                                        <Link href="/artigos">Artigos</Link>
                                     </li>
                                     <li>
-                                        <Link href="/blog/categorias">
+                                        <Link href="/categorias">
                                             Categorias
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/blog/series">Séries</Link>
+                                        <Link href="/series">Séries</Link>
                                     </li>
                                     <li>
                                         <Link href="/contacto">Contacto</Link>
