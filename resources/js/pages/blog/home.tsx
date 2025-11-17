@@ -181,6 +181,44 @@ export default function Home({
                     </div>
                 </div>
             </div>
+            <div className="row bg-white">
+                <div className="container">
+                    {/* ========== ÚLTIMOS ARTIGOS - SEÇÃO FINAL (Grid 3x2) ========== */}
+                    <div className="container pt-50 pb-50">
+                        <div className="row">
+                            <div className="col-12">
+                                <div className="widget-header-1 position-relative mb-30">
+                                    <h5 className="mt-5 mb-30">
+                                        Artigos Recentes
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Grid 3 colunas x 2 linhas (6 artigos) */}
+                        <PostList
+                            articles={articles.data.slice(6, 12)}
+                            columns={3}
+                            showExcerpt={false}
+                            showSocial={true}
+                        />
+
+                        {/* Botão Ver Mais */}
+                        {articles.total > 12 && (
+                            <div className="row">
+                                <div className="col-12 mt-40 text-center">
+                                    <Link
+                                        href="/blog/artigos"
+                                        className="btn btn-lg btn-primary text-white"
+                                    >
+                                        Ver Todos os Artigos →
+                                    </Link>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
         </BlogLayout>
     );
 }
