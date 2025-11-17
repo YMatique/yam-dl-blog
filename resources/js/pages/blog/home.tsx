@@ -1,3 +1,4 @@
+import ArticleHighlight from '@/components/blog/article-highlight';
 import FeaturedSlider from '@/components/blog/featured-slider';
 import PostList from '@/components/blog/post-list';
 import BlogLayout from '@/layouts/blog-layout';
@@ -53,13 +54,44 @@ export default function Home({
 
                 {/* ========== GRID DE ARTIGOS RECENTES ========== */}
                 <div className="loop-grid mb-30">
-                    <PostList
-                        articles={articles.data}
-                        columns={3}
-                        showExcerpt={false}
-                        showSocial={true}
-                    />
+                    <div className="row">
+                        {/* ArticleHighlight - 2 Artigos em Destaque */}
+                        <div className="col-lg-8">
+                            <ArticleHighlight articles={featuredPosts} />
+                            <PostList
+                                articles={articles.data.slice(0, 1)}
+                                columns={1}
+                                showExcerpt={false}
+                                showSocial={true}
+                            />
+                        </div>
+
+                        {/* Cards Individuais (restantes) */}
+                        <div className="col-lg-4">
+                            <PostList
+                                articles={articles.data.slice(0, 3)}
+                                columns={1}
+                                showExcerpt={false}
+                                showSocial={true}
+                            />
+                        </div>
+                    </div>
                 </div>
+
+                {/* ========== MAIS ARTIGOS (Grid 3 colunas) ========== */}
+                {articles.data.length > 3 && (
+                    <div className="mb-50">
+                        <div className="widget-header-1 position-relative mb-30">
+                            <h5 className="mt-5 mb-30">Mais Artigos</h5>
+                        </div>
+                        <PostList
+                            articles={articles.data.slice(3)}
+                            columns={3}
+                            showExcerpt={false}
+                            showSocial={true}
+                        />
+                    </div>
+                )}
 
                 {/* ========== SEÇÃO DE SÉRIES E SIDEBAR ========== */}
                 <div className="bg-grey pt-50 pb-50">
