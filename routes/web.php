@@ -10,7 +10,7 @@ use Inertia\Inertia;
 
 Route::get('/', HomeController::class)->name('blog.home');
 Route::get('/contact', fn() => Inertia::render('blog/contact'))->name('contact');
-Route::get('/about', fn() => Inertiqa::render('blog/about'))->name('about');
+Route::get('/about', fn() => Inertia::render('blog/about'))->name('about');
 
 Route::get('/post', fn() => Inertia::render('blog/post'))->name('post');
 Route::middleware(['auth', 'verified'])->group(function () {
