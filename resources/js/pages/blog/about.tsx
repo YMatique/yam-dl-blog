@@ -16,7 +16,7 @@ export default function About() {
                     </div>
                 </div>
 
-                <div className="row">
+                <div className="row mb-30">
                     <div className="col-lg-7">
                         <p>
                             YAM DL (Yuvi Albino Matique - Digital Library) é uma
@@ -37,6 +37,36 @@ export default function About() {
                         />
                     </div>
                 </div>
+
+                <div className="row mb-30">
+                    <div className="col-md-4 col-sm-6 col-12">
+                        Missão DEVE SER UM CARD COM ICONE CENTRALIZADO, TITULO
+                        POR BAIXO DO ICONE, DESCRIÇÃO POR BAIXO.
+                    </div>
+                    <div className="col-md-4 col-sm-6 col-12">Visão</div>
+                    <div className="col-md-4 col-sm-6 col-12">Valores</div>
+                </div>
+
+                <div className="row mb-30">
+                    <div className="col-12">
+                        FUNDADOR <br />
+                    </div>
+                    <div className="col-md-5">
+                        <img
+                            src="stories/assets/imgs/authors/author.jpg"
+                            alt=""
+                        />
+                    </div>
+                    <div className="col-md-7">
+                        <h3>Yuvi Albino Matique</h3>
+                        <p>Descrição .....</p>
+                        <div>Links de redes sociais</div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="row mb-30">
+                testemunhos.... um carousel de testemunhos
             </div>
         </BlogLayout>
     );

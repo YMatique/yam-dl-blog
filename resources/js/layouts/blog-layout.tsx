@@ -1,40 +1,67 @@
+import SEOHead from '@/components/blog/seo-head';
 import TemplateScripts from '@/components/blog/template-scripts';
-import { Head } from '@inertiajs/react';
+import { SEOProps } from '@/types/seo';
+import { Link } from '@inertiajs/react';
 import { ReactNode } from 'react';
 
-interface BlogLayoutProps {
+interface BlogLayoutProps extends SEOProps {
     children: ReactNode;
-    title?: string;
 }
 
 export default function BlogLayout({
     children,
-    title = 'Stories - Single post default',
+    title = 'YAMDL - Biblioteca Digital',
+    description,
+    keywords,
+    ogType,
+    ogTitle,
+    ogDescription,
+    ogImage,
+    ogUrl,
+    twitterCard,
+    twitterTitle,
+    twitterDescription,
+    twitterImage,
+    twitterSite,
+    twitterCreator,
+    articlePublishedTime,
+    articleModifiedTime,
+    articleAuthor,
+    articleSection,
+    articleTags,
+    canonical,
+    robots,
+    locale,
+    alternateLocales,
 }: BlogLayoutProps) {
     return (
         <>
-            <Head>
-                <meta charSet="utf-8" />
-                <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-                <title>{title}</title>
-                <meta name="description" content="" />
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1"
-                />
-                <link
-                    rel="shortcut icon"
-                    type="image/x-icon"
-                    href="/stories/assets/imgs/theme/favicon.png"
-                />
-                <link rel="stylesheet" href="/stories/assets/css/style.css" />
-                <link rel="stylesheet" href="/stories/assets/css/widgets.css" />
-                <link
-                    rel="stylesheet"
-                    href="/stories/assets/css/responsive.css"
-                />
-                <link rel="stylesheet" href="override.css" />
-            </Head>
+            {/* SEO Head - Todas as meta tags otimizadas */}
+            <SEOHead
+                title={title}
+                description={description}
+                keywords={keywords}
+                ogType={ogType}
+                ogTitle={ogTitle}
+                ogDescription={ogDescription}
+                ogImage={ogImage}
+                ogUrl={ogUrl}
+                twitterCard={twitterCard}
+                twitterTitle={twitterTitle}
+                twitterDescription={twitterDescription}
+                twitterImage={twitterImage}
+                twitterSite={twitterSite}
+                twitterCreator={twitterCreator}
+                articlePublishedTime={articlePublishedTime}
+                articleModifiedTime={articleModifiedTime}
+                articleAuthor={articleAuthor}
+                articleSection={articleSection}
+                articleTags={articleTags}
+                canonical={canonical}
+                robots={robots}
+                locale={locale}
+                alternateLocales={alternateLocales}
+            />
 
             <div className="scroll-progress primary-bg"></div>
 
@@ -54,23 +81,33 @@ export default function BlogLayout({
                         <div className="widget_nav_menu">
                             <ul>
                                 <li className="cat-item cat-item-2">
-                                    <a href="#">Dons Espirituais</a>{' '}
+                                    <Link href="/blog/categoria/dons-espirituais">
+                                        Dons Espirituais
+                                    </Link>
                                     <span className="post-count">30</span>
                                 </li>
                                 <li className="cat-item cat-item-3">
-                                    <a href="#">Pensamentos Soltos</a>{' '}
+                                    <Link href="/blog/categoria/pensamentos">
+                                        Pensamentos Soltos
+                                    </Link>
                                     <span className="post-count">30</span>
                                 </li>
                                 <li className="cat-item cat-item-4">
-                                    <a href="#">Profecia</a>{' '}
+                                    <Link href="/blog/categoria/profecia">
+                                        Profecia
+                                    </Link>
                                     <span className="post-count">30</span>
                                 </li>
                                 <li className="cat-item cat-item-5">
-                                    <a href="#">Ministros do Evangelho</a>{' '}
+                                    <Link href="/blog/categoria/ministros">
+                                        Ministros do Evangelho
+                                    </Link>
                                     <span className="post-count">30</span>
                                 </li>
                                 <li className="cat-item cat-item-6">
-                                    <a href="#">Seminários</a>{' '}
+                                    <Link href="/blog/categoria/seminarios">
+                                        Seminários
+                                    </Link>
                                     <span className="post-count">30</span>
                                 </li>
                             </ul>
@@ -86,19 +123,22 @@ export default function BlogLayout({
                                 <li className="mb-30">
                                     <div className="d-flex hover-up-2 transition-normal">
                                         <div className="post-thumb post-thumb-80 d-flex border-radius-5 img-hover-scale mr-15 overflow-hidden">
-                                            <a className="color-white" href="#">
+                                            <Link
+                                                className="color-white"
+                                                href="#"
+                                            >
                                                 <img
                                                     src="stories/assets/imgs/news/thumb-1.jpg"
                                                     alt=""
                                                 />
-                                            </a>
+                                            </Link>
                                         </div>
                                         <div className="post-content media-body">
                                             <h6 className="post-title text-limit-2-row mb-15 font-medium">
-                                                <a href="#">
+                                                <Link href="#">
                                                     The Life of a Travel Writer
                                                     with David Farley
-                                                </a>
+                                                </Link>
                                             </h6>
                                             <div className="entry-meta meta-1 font-x-small text-uppercase float-left">
                                                 <span className="post-on">
@@ -114,19 +154,22 @@ export default function BlogLayout({
                                 <li className="mb-30">
                                     <div className="d-flex hover-up-2 transition-normal">
                                         <div className="post-thumb post-thumb-80 d-flex border-radius-5 img-hover-scale mr-15 overflow-hidden">
-                                            <a className="color-white" href="#">
+                                            <Link
+                                                className="color-white"
+                                                href="#"
+                                            >
                                                 <img
                                                     src="stories/assets/imgs/news/thumb-2.jpg"
                                                     alt=""
                                                 />
-                                            </a>
+                                            </Link>
                                         </div>
                                         <div className="post-content media-body">
                                             <h6 className="post-title text-limit-2-row mb-15 font-medium">
-                                                <a href="#">
-                                                    Why Don’t More Black
+                                                <Link href="#">
+                                                    Why Don't More Black
                                                     American Women Travel Solo?
-                                                </a>
+                                                </Link>
                                             </h6>
                                             <div className="entry-meta meta-1 font-x-small text-uppercase float-left">
                                                 <span className="post-on">
@@ -142,19 +185,22 @@ export default function BlogLayout({
                                 <li className="mb-30">
                                     <div className="d-flex hover-up-2 transition-normal">
                                         <div className="post-thumb post-thumb-80 d-flex border-radius-5 img-hover-scale mr-15 overflow-hidden">
-                                            <a className="color-white" href="#">
+                                            <Link
+                                                className="color-white"
+                                                href="#"
+                                            >
                                                 <img
                                                     src="stories/assets/imgs/news/thumb-3.jpg"
                                                     alt=""
                                                 />
-                                            </a>
+                                            </Link>
                                         </div>
                                         <div className="post-content media-body">
                                             <h6 className="post-title text-limit-2-row mb-15 font-medium">
-                                                <a href="#">
+                                                <Link href="#">
                                                     The 22 Best Things to See
                                                     and Do in Bangkok
-                                                </a>
+                                                </Link>
                                             </h6>
                                             <div className="entry-meta meta-1 font-x-small text-uppercase float-left">
                                                 <span className="post-on">
@@ -179,13 +225,13 @@ export default function BlogLayout({
                     <div className="container">
                         <div className="row pt-20 pb-20">
                             <div className="col-md-3 col-xs-6">
-                                <a href="index.html">
+                                <Link href="/">
                                     <img
                                         className="logo"
                                         src="/stories/assets/imgs/theme/logo.png"
-                                        alt=""
+                                        alt="YAMDL Logo"
                                     />
-                                </a>
+                                </Link>
                             </div>
                             <div className="col-md-9 col-xs-6 header-top-right text-right">
                                 <span className="vertical-divider d-none d-md-inline mr-20 ml-20"></span>
@@ -207,23 +253,27 @@ export default function BlogLayout({
                             <nav>
                                 {/* DESKTOP MENU */}
                                 <ul className="main-menu d-none d-lg-inline font-small">
-                                    <li className="">
-                                        <a href="">
+                                    <li>
+                                        <Link href="/">
                                             <i className="elegant-icon icon_house_alt mr-5"></i>{' '}
                                             Página Inicial
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="">Artigos</a>
-                                    </li>
-                                    <li className="">
-                                        <a href="">Categorias</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Séries</a>
+                                        <Link href="/blog/artigos">
+                                            Artigos
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="">Contacto</a>
+                                        <Link href="/blog/categorias">
+                                            Categorias
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/blog/series">Séries</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/contacto">Contacto</Link>
                                     </li>
                                 </ul>
 
@@ -232,23 +282,27 @@ export default function BlogLayout({
                                     id="mobile-menu"
                                     className="d-block d-lg-none text-muted"
                                 >
-                                    <li className="">
-                                        <a href="">
+                                    <li>
+                                        <Link href="/">
                                             <i className="elegant-icon icon_house_alt mr-5"></i>{' '}
                                             Página Inicial
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="">Artigos</a>
-                                    </li>
-                                    <li className="">
-                                        <a href="">Categorias</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Séries</a>
+                                        <Link href="/blog/artigos">
+                                            Artigos
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="">Contacto</a>
+                                        <Link href="/blog/categorias">
+                                            Categorias
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/blog/series">Séries</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/contacto">Contacto</Link>
                                     </li>
                                 </ul>
                             </nav>
@@ -260,6 +314,7 @@ export default function BlogLayout({
                                         className="social-icon fb text-xs-center"
                                         target="_blank"
                                         href="#"
+                                        rel="noopener noreferrer"
                                     >
                                         <i className="elegant-icon social_facebook"></i>
                                     </a>
@@ -269,6 +324,7 @@ export default function BlogLayout({
                                         className="social-icon tw text-xs-center"
                                         target="_blank"
                                         href="#"
+                                        rel="noopener noreferrer"
                                     >
                                         <i className="elegant-icon social_twitter"></i>
                                     </a>
@@ -326,6 +382,7 @@ export default function BlogLayout({
                                                 className="fb"
                                                 href="#"
                                                 target="_blank"
+                                                rel="noopener noreferrer"
                                                 title="Facebook"
                                             >
                                                 <i className="elegant-icon social_facebook"></i>
@@ -336,6 +393,7 @@ export default function BlogLayout({
                                                 className="tw"
                                                 href="#"
                                                 target="_blank"
+                                                rel="noopener noreferrer"
                                                 title="Tweet now"
                                             >
                                                 <i className="elegant-icon social_twitter"></i>
@@ -346,7 +404,8 @@ export default function BlogLayout({
                                                 className="pt"
                                                 href="#"
                                                 target="_blank"
-                                                title="Pin it"
+                                                rel="noopener noreferrer"
+                                                title="YouTube"
                                             >
                                                 <i className="elegant-icon social_youtube"></i>
                                             </a>
@@ -355,7 +414,6 @@ export default function BlogLayout({
                                 </div>
                             </div>
                         </div>
-                        {/* Outros blocos do footer (Quick link, Tagcloud, Newsletter) */}
                         <div className="col-lg-2 col-md-6">
                             <div className="sidebar-widget widget_categories wow fadeInUp animated mb-30">
                                 <div className="widget-header-2 position-relative mb-30">
@@ -364,23 +422,27 @@ export default function BlogLayout({
                                     </h5>
                                 </div>
                                 <ul className="font-small">
-                                    <li className="cat-item cat-item-2">
-                                        <a href="#">Página Inicial</a>
+                                    <li className="cat-item">
+                                        <Link href="/">Página Inicial</Link>
                                     </li>
-                                    <li className="cat-item cat-item-4">
-                                        <a href="#">Sobre</a>
+                                    <li className="cat-item">
+                                        <Link href="/sobre">Sobre</Link>
                                     </li>
-                                    <li className="cat-item cat-item-5">
-                                        <a href="#">Artigos</a>
+                                    <li className="cat-item">
+                                        <Link href="/blog/artigos">
+                                            Artigos
+                                        </Link>
                                     </li>
-                                    <li className="cat-item cat-item-6">
-                                        <a href="#">Séries</a>
+                                    <li className="cat-item">
+                                        <Link href="/blog/series">Séries</Link>
                                     </li>
-                                    <li className="cat-item cat-item-7">
-                                        <a href="#">Categorias</a>
+                                    <li className="cat-item">
+                                        <Link href="/blog/categorias">
+                                            Categorias
+                                        </Link>
                                     </li>
-                                    <li className="cat-item cat-item-7">
-                                        <a href="#">Contacto</a>
+                                    <li className="cat-item">
+                                        <Link href="/contacto">Contacto</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -391,18 +453,30 @@ export default function BlogLayout({
                                     <h5 className="mt-5 mb-30">Tags</h5>
                                 </div>
                                 <div className="tagcloud mt-50">
-                                    <a className="tag-cloud-link" href="">
+                                    <Link
+                                        className="tag-cloud-link"
+                                        href="/blog/tag/fe"
+                                    >
                                         Fé e Amor
-                                    </a>
-                                    <a className="tag-cloud-link" href="">
+                                    </Link>
+                                    <Link
+                                        className="tag-cloud-link"
+                                        href="/blog/tag/salvacao"
+                                    >
                                         Salvação
-                                    </a>
-                                    <a className="tag-cloud-link" href="">
+                                    </Link>
+                                    <Link
+                                        className="tag-cloud-link"
+                                        href="/blog/tag/esperanca"
+                                    >
                                         Esperança
-                                    </a>
-                                    <a className="tag-cloud-link" href="">
+                                    </Link>
+                                    <Link
+                                        className="tag-cloud-link"
+                                        href="/blog/tag/igreja"
+                                    >
                                         Igreja
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -432,7 +506,7 @@ export default function BlogLayout({
                                         <label className="mt-20">
                                             <input
                                                 className="mr-5"
-                                                name="name"
+                                                name="terms"
                                                 type="checkbox"
                                                 value="1"
                                                 required
@@ -451,7 +525,11 @@ export default function BlogLayout({
                         </p>
                         <p className="float-md-right font-small text-muted">
                             Desenvolvido com amor por{' '}
-                            <a href="#" target="_blank">
+                            <a
+                                href="#"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 Yuvi Matique
                             </a>
                         </p>
