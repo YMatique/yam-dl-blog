@@ -1,3 +1,4 @@
+import ArticleHighlight from '@/components/blog/article-highlight';
 import DefaultPageHeader from '@/components/blog/breadcrumb';
 import FilterSidebar from '@/components/blog/filter-sidebar';
 import Pagination from '@/components/blog/pagination';
@@ -15,6 +16,7 @@ interface ArticleIndexProps {
     articles: PaginatedData<Article>;
     categories: Category[];
     popularTags: Tag[];
+    articlesHighlight: Article[];
     filters?: {
         category?: string;
         tag?: string;
@@ -31,6 +33,7 @@ export default function ArticleIndex({
     articles,
     categories,
     popularTags,
+    articlesHighlight,
     filters = {},
 }: ArticleIndexProps) {
     // Handler para ordenação
@@ -204,7 +207,16 @@ export default function ArticleIndex({
                                 </div>
                             </div>
                         </div>
-
+                        {articlesHighlight.length > 0 ? (
+                            <>
+                                <ArticleHighlight
+                                    articles={articlesHighlight}
+                                />
+                                <div className="mb-30"></div>
+                            </>
+                        ) : (
+                            <></>
+                        )}
                         {/* Lista de Artigos */}
                         {articles.data.length > 0 ? (
                             <>

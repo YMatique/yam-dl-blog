@@ -82,8 +82,11 @@ class ArticleController extends Controller
             ->take(15)
             ->get();
 
+        $articleHighlight = Article::with('category')->take(2)->get();
+
         return Inertia::render('blog/articles', [
             'articles' => $articles,
+            'articlesHighlight'=>$articleHighlight,
             'categories' => $categories,
             'popularTags' => $popularTags,
             'filters' => [
