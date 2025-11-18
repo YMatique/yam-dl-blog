@@ -152,7 +152,7 @@ export default function ArticleIndex({
                                             {/* View Toggle */}
                                             <div className="view-mode d-inline-block mr-15">
                                                 <button
-                                                    className={`btn btn-sm ${
+                                                    className={`btn btn-sm mr-1 ml-1 ${
                                                         viewMode === 'grid'
                                                             ? 'btn-primary'
                                                             : 'btn-outline-secondary'

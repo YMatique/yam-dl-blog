@@ -84,7 +84,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </div>
 
             {/* Newsletter */}
-            <div className="sidebar-widget widget_newsletter wow fadeInUp animated">
+            {/* <div className="sidebar-widget widget_newsletter wow fadeInUp animated">
                 <div className="widget-header-2 position-relative mb-30">
                     <h5 className="mt-5 mb-30">Newsletter</h5>
                 </div>
@@ -106,7 +106,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         </button>
                     </form>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

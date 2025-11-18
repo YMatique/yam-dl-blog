@@ -18,7 +18,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        router.visit('/blog/artigos', {
+        router.visit('/artigos', {
             data: { search },
             preserveState: true,
             preserveScroll: true,
@@ -30,13 +30,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <div className="input-group input-group-lg">
                 <input
                     type="text"
-                    className="form-control bg-white"
+                    className="form-control yam-input bg-white"
                     placeholder={placeholder}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 <div className="input-group-append">
-                    <button className="btn btn-primary" type="submit">
+                    <button className="btn btn-primary yam-btn" type="submit">
                         <i className="elegant-icon icon_search"></i>
                     </button>
                 </div>

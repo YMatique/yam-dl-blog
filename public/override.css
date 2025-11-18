@@ -32,3 +32,17 @@
     color: white;
     font-size: 22px
 }
+
+.form-control {
+    height: auto;
+}
+
+.form-control.yam-input,
+.btn.yam-btn {
+    font-size: 0.85rem;
+}
+
+.input-group-lg>.input-group-append>.btn {
+    font-size: 0.85rem;
+    height: auto;
+}
