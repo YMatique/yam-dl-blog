@@ -423,18 +423,16 @@ export default function BlogLayout({
                                         <Link href="/">Página Inicial</Link>
                                     </li>
                                     <li className="cat-item">
-                                        <Link href="/sobre">Sobre</Link>
+                                        <Link href="/sobre-nos">Sobre</Link>
                                     </li>
                                     <li className="cat-item">
-                                        <Link href="/blog/artigos">
-                                            Artigos
-                                        </Link>
+                                        <Link href="/artigos">Artigos</Link>
                                     </li>
                                     <li className="cat-item">
-                                        <Link href="/blog/series">Séries</Link>
+                                        <Link href="/series">Séries</Link>
                                     </li>
                                     <li className="cat-item">
-                                        <Link href="/blog/categorias">
+                                        <Link href="/categorias">
                                             Categorias
                                         </Link>
                                     </li>
