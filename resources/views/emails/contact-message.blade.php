@@ -177,9 +177,9 @@
             </h2> -->
 
             <div class="button-container">
-                <a href="mailto:{{ $email }}?subject=Re: {{ urlencode($subject) }}" class="button">
+                {{-- <a href="mailto:{{ $email }}?subject=Re: {{ urlencode($subject) }}" class="button">
                     📧 Responder Email
-                </a>
+                </a> --}}
             </div>
 
             <div class="email-link">
