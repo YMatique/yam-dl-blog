@@ -2,6 +2,7 @@ import ArticleContent from '@/components/blog/article-content';
 import ArticleNavigation from '@/components/blog/article-navigation';
 import AuthorBox from '@/components/blog/author-box';
 import PostCard from '@/components/blog/post-card';
+import SeriesNavigation from '@/components/blog/serie-navigation';
 import BlogLayout from '@/layouts/blog-layout';
 import { Article } from '@/types/blog';
 
@@ -34,6 +35,12 @@ export default function ArticleShow({
                 <div className="row">
                     {/* Conteúdo Principal */}
                     <div className="col-lg-8">
+                        {article.series && (
+                            <SeriesNavigation
+                                series={article.series}
+                                currentArticle={article}
+                            />
+                        )}
                         {/* Conteúdo do Artigo */}
                         <ArticleContent article={article} />
 

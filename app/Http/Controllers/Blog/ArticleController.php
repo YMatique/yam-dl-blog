@@ -107,6 +107,14 @@ class ArticleController extends Controller
         
         // Incrementar views
         $article->increment('views_count');
+        // Registra a view
+        if (class_exists(\App\Models\ArticleView::class)) {
+            \App\Models\ArticleView::create([
+                'article_id' => $article->id,
+                'ip_address' => request()->ip(),
+                'user_agent' => request()->userAgent(),
+            ]);
+        }
 
         // Artigos relacionados (mesma categoria)
         $relatedArticles = Article::with(['author', 'category'])
