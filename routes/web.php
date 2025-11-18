@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Blog\ArticleController;
 use App\Http\Controllers\Blog\CategoryController;
+use App\Http\Controllers\Blog\ContactController;
 use App\Http\Controllers\Blog\HomeController;
 use App\Http\Controllers\Blog\SerieController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,7 @@ use Inertia\Inertia;
 
 Route::get('/', HomeController::class)->name('blog.home');
 Route::get('/contacto', fn() => Inertia::render('blog/contact'))->name('contact');
+Route::post('/contacto',[ContactController::class,'store'])->name('');
 Route::get('/sobre-nos', fn() => Inertia::render('blog/about'))->name('about');
 Route::get('/artigos',[ArticleController::class,'index'])->name('');
 Route::get('/artigos/{slug}',[ArticleController::class,'show'])->name('');

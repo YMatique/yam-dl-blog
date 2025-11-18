@@ -29,7 +29,7 @@ const ArticleNavigation: React.FC<ArticleNavigationProps> = ({
                                 ← Artigo Anterior
                             </span>
                             <Link
-                                href={`/blog/artigo/${previousArticle.slug}`}
+                                href={`/artigos/${previousArticle.slug}`}
                                 className="d-block"
                             >
                                 <h6 className="font-weight-700 hover-primary">
@@ -48,7 +48,7 @@ const ArticleNavigation: React.FC<ArticleNavigationProps> = ({
                                 Próximo Artigo →
                             </span>
                             <Link
-                                href={`/blog/artigo/${nextArticle.slug}`}
+                                href={`/artigos/${nextArticle.slug}`}
                                 className="d-block"
                             >
                                 <h6 className="font-weight-700 hover-primary">
