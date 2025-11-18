@@ -10,7 +10,7 @@ const SITE_CONFIG = {
     fullName: 'Yuvi Matique Digital Library',
     description:
         'Biblioteca digital de estudos bíblicos, artigos e recursos cristãos',
-    url: 'https://yamdl.com', // Altere para sua URL
+    url: 'https://yamdl.com',
     logo: '/images/logo.png',
     twitterHandle: '@yamdl',
     locale: 'pt_BR',
@@ -18,8 +18,7 @@ const SITE_CONFIG = {
 };
 
 /**
- * Componente SEO Head otimizado
- * Gera todas as meta tags necessárias automaticamente
+ * Componente SEO Head otimizado e seguro
  */
 interface SEOHeadProps extends SEOProps {}
 
@@ -48,8 +47,19 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     locale = SITE_CONFIG.locale,
     alternateLocales = [],
 }) => {
+    // Garantir que keywords é um array
+    const safeKeywords = Array.isArray(keywords) ? keywords : [];
+
+    // Garantir que articleTags é um array
+    const safeArticleTags = Array.isArray(articleTags) ? articleTags : [];
+
+    // Garantir que alternateLocales é um array
+    const safeAlternateLocales = Array.isArray(alternateLocales)
+        ? alternateLocales
+        : [];
+
     // Título completo
-    const fullTitle = title.includes(SITE_CONFIG.name)
+    const fullTitle = title?.includes(SITE_CONFIG.name)
         ? title
         : `${title} | ${SITE_CONFIG.name}`;
 
@@ -75,6 +85,17 @@ const SEOHead: React.FC<SEOHeadProps> = ({
 
     return (
         <Head>
+            {/* ========== CSS e JS do Template ========== */}
+            <link
+                rel="shortcut icon"
+                type="image/x-icon"
+                href="/stories/assets/imgs/theme/favicon.png"
+            />
+            <link rel="stylesheet" href="/stories/assets/css/style.css" />
+            <link rel="stylesheet" href="/stories/assets/css/widgets.css" />
+            <link rel="stylesheet" href="/stories/assets/css/responsive.css" />
+            <link rel="stylesheet" href="/override.css" />
+
             {/* Básico */}
             <meta charSet="utf-8" />
             <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -85,11 +106,11 @@ const SEOHead: React.FC<SEOHeadProps> = ({
 
             {/* Título e Descrição */}
             <title>{fullTitle}</title>
-            <meta name="description" content={description} />
+            {description && <meta name="description" content={description} />}
 
             {/* Keywords */}
-            {keywords.length > 0 && (
-                <meta name="keywords" content={keywords.join(', ')} />
+            {safeKeywords.length > 0 && (
+                <meta name="keywords" content={safeKeywords.join(', ')} />
             )}
 
             {/* Robots */}
@@ -100,7 +121,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
 
             {/* Idioma */}
             <meta property="og:locale" content={locale} />
-            {alternateLocales.map((altLocale) => (
+            {safeAlternateLocales.map((altLocale) => (
                 <meta
                     key={altLocale}
                     property="og:locale:alternate"
@@ -148,7 +169,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
                             content={articleSection}
                         />
                     )}
-                    {articleTags.map((tag) => (
+                    {safeArticleTags.map((tag) => (
                         <meta key={tag} property="article:tag" content={tag} />
                     ))}
                 </>
@@ -180,17 +201,6 @@ const SEOHead: React.FC<SEOHeadProps> = ({
                 name="apple-mobile-web-app-title"
                 content={SITE_CONFIG.name}
             />
-
-            {/* Estilos */}
-            <link
-                rel="shortcut icon"
-                type="image/x-icon"
-                href="/stories/assets/imgs/theme/favicon.png"
-            />
-            <link rel="stylesheet" href="/stories/assets/css/style.css" />
-            <link rel="stylesheet" href="/stories/assets/css/widgets.css" />
-            <link rel="stylesheet" href="/stories/assets/css/responsive.css" />
-            <link rel="stylesheet" href="override.css" />
         </Head>
     );
 };

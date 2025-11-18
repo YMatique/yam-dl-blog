@@ -8,16 +8,23 @@ const SITE_URL = 'https://yamdl.com';
 
 /**
  * Gera SEO props para um artigo
+ * 100% seguro contra erros de Symbol/Iterator
  */
 export const generateArticleSEO = (article: Article): SEOProps => {
+    // Garantir que tags é um array válido
+    const tagsArray = Array.isArray(article.tags) ? article.tags : [];
+    const tagNames = tagsArray
+        .map((tag) => tag?.name)
+        .filter(Boolean) as string[];
+
     return {
-        title: article.title,
+        title: article.title || 'Artigo',
         description: article.excerpt || article.meta_description || '',
-        keywords: article.tags?.map((tag) => tag.name) || [],
+        keywords: tagNames,
 
         // Open Graph
         ogType: 'article',
-        ogTitle: article.title,
+        ogTitle: article.title || 'Artigo',
         ogDescription: article.excerpt || '',
         ogImage: article.featured_image
             ? `${SITE_URL}${article.featured_image}`
@@ -27,13 +34,12 @@ export const generateArticleSEO = (article: Article): SEOProps => {
         // Article
         articlePublishedTime: article.published_at,
         articleModifiedTime: article.updated_at,
-        articleAuthor: article.author?.name,
-        articleSection: article.category?.name,
-        articleTags: article.tags?.map((tag) => tag.name) || [],
+        articleAuthor: article.author?.name || '',
+        articleSection: article.category?.name || '',
+        articleTags: tagNames,
 
         // Twitter
         twitterCard: 'summary_large_image',
-        // twitterCreator: article.author?.twitter_handle,
         twitterCreator: '',
 
         // Canonical
@@ -118,6 +124,7 @@ export const generateHomeSEO = (): SEOProps => {
  * Trunca texto para meta description (máximo 160 caracteres)
  */
 export const truncateForMeta = (text: string, maxLength = 160): string => {
+    if (!text) return '';
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength - 3) + '...';
 };

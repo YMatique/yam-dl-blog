@@ -14,6 +14,7 @@ Route::get('/', HomeController::class)->name('blog.home');
 Route::get('/contacto', fn() => Inertia::render('blog/contact'))->name('contact');
 Route::get('/about', fn() => Inertia::render('blog/about'))->name('about');
 Route::get('/artigos',[ArticleController::class,'index'])->name('');
+Route::get('/artigos/{slug}',[ArticleController::class,'show'])->name('');
 Route::get('/series',fn()=>Inertia::render('blog/series'))->name('');
 Route::get('/categorias',[CategoryController::class,'index'])->name('');
 Route::get('/categoria/{slug}',[CategoryController::class,'show'])->name('');

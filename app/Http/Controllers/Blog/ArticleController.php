@@ -95,8 +95,48 @@ class ArticleController extends Controller
         ]);
 
     }
-    public function show($slug)
+    public function show(string $slug)
     {
+        $article = Article::with(['author', 'category', 'tags', 'series'])
+            ->where('slug', $slug)
+            ->published()
+            ->firstOrFail();
+        
+        // Incrementar views
+        $article->increment('views_count');
 
+        // Artigos relacionados (mesma categoria)
+        $relatedArticles = Article::with(['author', 'category'])
+            ->where('category_id', $article->category_id)
+            ->where('id', '!=', $article->id)
+            ->published()
+            ->latest('published_at')
+            ->take(5)
+            ->get();
+
+        // Artigo anterior (mesmo se for da série)
+        $previousArticle = Article::where('id', '<', $article->id)
+            ->when($article->series_id, function ($query) use ($article) {
+                $query->where('series_id', $article->series_id);
+            })
+            ->published()
+            ->orderBy('id', 'desc')
+            ->first();
+
+        // Próximo artigo
+        $nextArticle = Article::where('id', '>', $article->id)
+            ->when($article->series_id, function ($query) use ($article) {
+                $query->where('series_id', $article->series_id);
+            })
+            ->published()
+            ->orderBy('id', 'asc')
+            ->first();
+
+        return Inertia::render('blog/article-show', [
+            'article' => $article,
+            'relatedArticles' => $relatedArticles,
+            'previousArticle' => $previousArticle,
+            'nextArticle' => $nextArticle,
+        ]);
     }
 }
