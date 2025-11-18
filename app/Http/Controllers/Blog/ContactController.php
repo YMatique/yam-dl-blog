@@ -29,6 +29,7 @@ class ContactController extends Controller
         // Opção 1: Enviar email
         try {
             // 1️⃣ Envia email para o ADMIN (notificação de nova mensagem)
+            // dd($validated);
             Mail::to(config('mail.from.address'))
                 ->send(new ContactMessage($validated));
 

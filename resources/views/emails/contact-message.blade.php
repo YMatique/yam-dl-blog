@@ -166,7 +166,7 @@
             <!-- Message Section -->
             <div class="message-section">
                 <h2>💬 Mensagem:</h2>
-                <div class="message-content">{{ $message }}</div>
+                <div class="message-content">{{ $messageContent }}</div>
             </div>
 
             <div class="divider"></div>

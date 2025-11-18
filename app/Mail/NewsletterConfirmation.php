@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -9,15 +10,15 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMessage extends Mailable
+class NewsletterConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-      public function __construct(
-        public array $contactData
+    public function __construct(
+        public Subscriber $subscriber
     ) {}
 
     /**
@@ -26,8 +27,7 @@ class ContactMessage extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-  subject: 'Nova Mensagem de Contato - ' . $this->contactData['subject'],
-            replyTo: $this->contactData['email'],
+ subject: 'Confirme sua subscrição - YAM DL',
         );
     }
 
@@ -37,12 +37,9 @@ class ContactMessage extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contact-message',
+view: 'emails.newsletter-confirmation',
             with: [
-                'name' => (string)$this->contactData['name'] ??'',
-                'email' => (string) $this->contactData['email']??'',
-                'subject' => (string) $this->contactData['subject']??'',
-                'messageContent' => (string) $this->contactData['message']??'',
+                'confirmUrl' => $this->subscriber->getConfirmationUrl(),
             ],
         );
     }

@@ -226,7 +226,7 @@
 
                 <div class="summary-item">
                     <strong>Mensagem:</strong>
-                    <p>{{ $message }}</p>
+                    <p>{{ $messageContent }}</p>
                 </div>
             </div>
 

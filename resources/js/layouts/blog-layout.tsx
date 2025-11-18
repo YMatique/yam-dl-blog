@@ -1,3 +1,4 @@
+import NewsletterWidget from '@/components/blog/newsletter-widget';
 import SEOHead from '@/components/blog/seo-head';
 import TemplateScripts from '@/components/blog/template-scripts';
 import { SEOProps } from '@/types/seo';
@@ -477,7 +478,7 @@ export default function BlogLayout({
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-6">
-                            <div className="sidebar-widget widget_newsletter wow fadeInUp animated mb-30">
+                            {/* <div className="sidebar-widget widget_newsletter wow fadeInUp animated mb-30">
                                 <div className="widget-header-2 position-relative mb-30">
                                     <h5 className="mt-5 mb-30">Newsletter</h5>
                                 </div>
@@ -512,7 +513,8 @@ export default function BlogLayout({
                                         </label>
                                     </form>
                                 </div>
-                            </div>
+                            </div> */}
+                            <NewsletterWidget />
                         </div>
                     </div>
                     <div className="footer-copy-right wow fadeInUp animated mt-20 pt-30">

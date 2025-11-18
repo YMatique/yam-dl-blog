@@ -4,6 +4,7 @@ use App\Http\Controllers\Blog\ArticleController;
 use App\Http\Controllers\Blog\CategoryController;
 use App\Http\Controllers\Blog\ContactController;
 use App\Http\Controllers\Blog\HomeController;
+use App\Http\Controllers\Blog\NewsletterController;
 use App\Http\Controllers\Blog\SerieController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,6 +23,20 @@ Route::get('/series',[SerieController::class,'index'])->name('');
 Route::get('/series/{slug}',[SerieController::class,'show'])->name('');
 Route::get('/categorias',[CategoryController::class,'index'])->name('');
 Route::get('/categoria/{slug}',[CategoryController::class,'show'])->name('');
+
+
+
+// Subscrever ao newsletter
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])
+    ->name('newsletter.subscribe');
+
+// Confirmar subscrição
+Route::get('/newsletter/confirm/{token}', [NewsletterController::class, 'confirm'])
+    ->name('newsletter.confirm');
+
+// Cancelar subscrição
+Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'unsubscribe'])
+    ->name('newsletter.unsubscribe');
 
 // Route::get('/post', fn() => Inertia::render('blog/post'))->name('post');
 Route::middleware(['auth', 'verified'])->group(function () {

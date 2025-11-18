@@ -41,7 +41,7 @@ class ContactConfirmation extends Mailable
             with: [
                 'name' => $this->contactData['name'],
                 'subject' => $this->contactData['subject'],
-                'message' => $this->contactData['message'],
+                'messageContent' => $this->contactData['message'],
             ],
         );
     }
