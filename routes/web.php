@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Blog\ArticleController;
 use App\Http\Controllers\Blog\CategoryController;
 use App\Http\Controllers\Blog\ContactController;
@@ -49,6 +50,8 @@ Route::prefix('admin')
         Route::get('/', function () {
             return Inertia::render('admin/dashboard');
         })->name('admin.dashboard');
+
+        Route::resource('articles', AdminArticleController::class);
     });
 
 require __DIR__.'/upload-routes.php';
