@@ -52,7 +52,7 @@ class HandleInertiaRequests extends Middleware
 {
     // Se a rota começa com /admin, usa admin.blade.php
     if ($request->is('admin') || $request->is('admin/*')) {
-        return 'admin';
+        return 'app-admin';
     }
 
     // Caso contrário, usa app.blade.php (blog público)

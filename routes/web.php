@@ -39,11 +39,16 @@ Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'uns
     ->name('newsletter.unsubscribe');
 
 // Route::get('/post', fn() => Inertia::render('blog/post'))->name('post');
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
-});
-
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('dashboard', function () {
+//         return Inertia::render('dashboard');
+//     })->name('dashboard');
+// });
+Route::prefix('admin')
+    ->group(function () {
+        Route::get('/', function () {
+            return Inertia::render('admin/dashboard');
+        })->name('admin.dashboard');
+    });
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
