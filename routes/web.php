@@ -54,6 +54,17 @@ Route::prefix('admin')
 
         Route::resource('articles', AdminArticleController::class);
         Route::resource('series',SeriesController::class);
+        Route::get('series/{series}/articles', [SeriesController::class, 'getArticles'])
+            ->name('series.articles');
+        
+        Route::post('series/{series}/articles', [SeriesController::class, 'addArticle'])
+            ->name('series.articles.add');
+        
+        Route::delete('series/{series}/articles/{article}', [SeriesController::class, 'removeArticle'])
+            ->name('series.articles.remove');
+        
+        Route::put('series/{series}/articles/order', [SeriesController::class, 'updateArticlesOrder'])
+            ->name('series.articles.order');
     });
 
 require __DIR__.'/upload-routes.php';

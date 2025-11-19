@@ -1,3 +1,4 @@
+import SeriesArticlesManager from '@/components/admin/series-articles-manager';
 import ImageUpload from '@/components/image-upload';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -241,23 +242,20 @@ export default function Edit({ series }: Props) {
                                 </CardContent>
                             </Card>
 
-                            {/* Info dos Artigos */}
-                            {series.articles_count !== undefined && (
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle>Artigos</CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <p className="text-sm text-muted-foreground">
-                                            Esta série possui{' '}
-                                            <strong>
-                                                {series.articles_count}
-                                            </strong>{' '}
-                                            artigo(s)
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                            )}
+                            {/* Gerenciamento de Artigos */}
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Artigos da Série</CardTitle>
+                                    <p className="text-sm text-muted-foreground">
+                                        Arraste para reordenar os artigos
+                                    </p>
+                                </CardHeader>
+                                <CardContent>
+                                    <SeriesArticlesManager
+                                        seriesId={series.id}
+                                    />
+                                </CardContent>
+                            </Card>
                         </div>
 
                         {/* Sidebar */}

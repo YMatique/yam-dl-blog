@@ -120,11 +120,13 @@ class ArticleController extends Controller
         
         $categories = Category::orderBy('name')->get();
           $tags = Tag::orderBy('name')->get();
+          $series = Series::orderBy('title')->get();
         
         return Inertia::render('admin/articles/edit', [
             'article' => $article,
             'categories' => $categories,
-            'tags'=>$tags
+            'tags'=>$tags,
+            'series'=>$series
         ]);
     }
 
