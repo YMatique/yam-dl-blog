@@ -6,6 +6,7 @@
     <title inertia>Admin - {{ config('app.name') }}</title>
 
     <!-- CSS do Admin -->
+            @viteReactRefresh
     @vite(['resources/css/admin.css', 'resources/js/app.tsx'])
     @inertiaHead
 </head>

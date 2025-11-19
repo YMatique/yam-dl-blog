@@ -1,6 +1,7 @@
 import AdminBreadcrumb from '@/components/admin/admin-breadcrumb';
 import AdminSidebar from '@/components/admin/admin-sidebar';
 import AdminTopbar from '@/components/admin/admin-topbar';
+import { ThemeProvider } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';
 import { Head } from '@inertiajs/react';
 import { ReactNode, useState } from 'react';
@@ -24,8 +25,7 @@ export default function AdminLayout({
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
     return (
-        // <ThemeProvider defaultTheme="system" storageKey="admin-theme">
-        <>
+        <ThemeProvider defaultTheme="system" storageKey="admin-theme">
             <Head title={`${title} - Admin YAM DL`} />
 
             <div className="min-h-screen bg-background">
@@ -59,7 +59,6 @@ export default function AdminLayout({
                     </main>
                 </div>
             </div>
-            {/* </ThemeProvider> */}
-        </>
+        </ThemeProvider>
     );
 }
