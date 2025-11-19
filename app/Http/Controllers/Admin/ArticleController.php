@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Series;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -65,9 +66,11 @@ class ArticleController extends Controller
     {
         $categories = Category::orderBy('name')->get();
             $tags = Tag::orderBy('name')->get(); 
+        $series = Series::orderBy('title')->get();
         return Inertia::render('admin/articles/create', [
             'categories' => $categories,
-            'tags'=>$tags
+            'tags'=>$tags,
+            'series'=>$series
         ]);
     }
 

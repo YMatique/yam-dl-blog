@@ -525,7 +525,7 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
                                                             </SelectTrigger>
                                                         </FormControl>
                                                         <SelectContent>
-                                                            <SelectItem value="">
+                                                            <SelectItem value="-">
                                                                 Nenhuma
                                                             </SelectItem>
                                                             {series.map((s) => (
@@ -533,7 +533,7 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
                                                                     key={s.id}
                                                                     value={s.id.toString()}
                                                                 >
-                                                                    {s.name}
+                                                                    {s.title}
                                                                 </SelectItem>
                                                             ))}
                                                         </SelectContent>

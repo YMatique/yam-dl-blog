@@ -81,7 +81,7 @@ class SeriesController extends Controller
     {
         $series->loadCount('articles');
         
-        return Inertia::render('admin/series/Edit', [
+        return Inertia::render('admin/series/edit', [
             'series' => $series,
         ]);
     }
