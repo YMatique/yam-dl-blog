@@ -19,11 +19,23 @@ export const articleFormSchema = z.object({
 
     excerpt: z.string().max(500, 'Resumo muito longo').optional(),
 
+    // featured_image: z
+    //     .string()
+    //     .url('URL de imagem inválida')
+    //     .optional()
+    //     .or(z.literal('')),
     featured_image: z
         .string()
-        .url('URL de imagem inválida')
         .optional()
-        .or(z.literal('')),
+        .refine(
+            (val) =>
+                !val ||
+                val === '' ||
+                val.startsWith('http://') ||
+                val.startsWith('https://') ||
+                val.startsWith('/'),
+            'URL de imagem inválida',
+        ),
 
     category_id: z.string().min(1, 'Selecione uma categoria').or(z.number()),
 

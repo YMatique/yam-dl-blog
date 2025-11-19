@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -63,9 +64,10 @@ class ArticleController extends Controller
     public function create(): Response
     {
         $categories = Category::orderBy('name')->get();
-        
+            $tags = Tag::orderBy('name')->get(); 
         return Inertia::render('admin/articles/create', [
             'categories' => $categories,
+            'tags'=>$tags
         ]);
     }
 
@@ -114,10 +116,12 @@ class ArticleController extends Controller
         $article->load(['category', 'series', 'tags']);
         
         $categories = Category::orderBy('name')->get();
+          $tags = Tag::orderBy('name')->get();
         
-        return Inertia::render('admin/articles/Edit', [
+        return Inertia::render('admin/articles/edit', [
             'article' => $article,
             'categories' => $categories,
+            'tags'=>$tags
         ]);
     }
 
@@ -142,6 +146,15 @@ class ArticleController extends Controller
             'meta_keywords' => 'nullable|string',
         ]);
 
+          // ✅ Deletar imagem antiga se houver nova
+        if ($validated['featured_image'] && $validated['featured_image'] !== $article->featured_image) {
+            $this->deleteOldImage($article->featured_image);
+        }
+
+        // ✅ Se removeu a imagem (campo vazio)
+        if (empty($validated['featured_image']) && $article->featured_image) {
+            $this->deleteOldImage($article->featured_image);
+        }
         $article->update($validated);
 
         // Sync tags if provided
@@ -150,7 +163,7 @@ class ArticleController extends Controller
         }
 
         return redirect()
-            ->route('admin.articles.index')
+            ->route('admin.articles')
             ->with('success', 'Artigo atualizado com sucesso!');
     }
 
@@ -172,5 +185,28 @@ class ArticleController extends Controller
         return redirect()
             ->route('admin.articles.index')
             ->with('success', 'Artigo deletado com sucesso!');
+    }
+        /**
+     * Helper para deletar imagem do storage
+     */
+    private function deleteOldImage(?string $imageUrl): void
+    {
+        if (!$imageUrl) return;
+
+        try {
+            // Extrair path da URL
+            // Ex: http://localhost/storage/images/articles/2025/11/file.jpg
+            // -> images/articles/2025/11/file.jpg
+            
+            $path = str_replace('/storage/', '', parse_url($imageUrl, PHP_URL_PATH));
+            
+            // Deletar do storage
+            if (Storage::disk('public')->exists($path)) {
+                Storage::disk('public')->delete($path);
+                \Log::info('Imagem deletada: ' . $path);
+            }
+        } catch (\Exception $e) {
+            \Log::error('Erro ao deletar imagem: ' . $e->getMessage());
+        }
     }
 }

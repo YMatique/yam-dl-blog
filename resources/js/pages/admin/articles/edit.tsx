@@ -4,6 +4,14 @@ import TiptapEditor from '@/components/tiptap-editor';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
+import {
     Form,
     FormControl,
     FormDescription,
@@ -22,13 +30,11 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import AdminLayout from '@/layouts/admin-layout';
-// import { ArticleFormData, articleFormSchema } from '@/lib/article-form-schema';
 import { ArticleFormData, articleFormSchema } from '@/lib/article-form-schema';
-// import { generateSlug } from '@/lib/slug-utils';
 import { generateSlug } from '@/utils/slug-utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Head, router } from '@inertiajs/react';
-import { Eye, Save } from 'lucide-react';
+import { Eye, Save, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -47,32 +53,56 @@ interface Tag {
     name: string;
 }
 
+interface Article {
+    id: number;
+    title: string;
+    slug: string;
+    content: string;
+    excerpt?: string;
+    featured_image?: string;
+    category_id: number;
+    series_id?: number;
+    status: 'draft' | 'published' | 'scheduled';
+    published_at?: string;
+    meta_title?: string;
+    meta_description?: string;
+    meta_keywords?: string;
+    tags?: Tag[];
+}
+
 interface Props {
+    article: Article;
     categories: Category[];
     series?: Series[];
     tags?: Tag[];
 }
 
-export default function Create({ categories, series = [], tags = [] }: Props) {
+export default function Edit({
+    article,
+    categories,
+    series = [],
+    tags = [],
+}: Props) {
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
+    const [deleteDialog, setDeleteDialog] = useState(false);
 
     const form = useForm<ArticleFormData>({
         resolver: zodResolver(articleFormSchema),
         defaultValues: {
-            title: '',
-            slug: '',
-            content: '',
-            excerpt: '',
-            featured_image: '',
-            category_id: '',
-            series_id: '',
-            status: 'draft',
-            published_at: '',
-            meta_title: '',
-            meta_description: '',
-            meta_keywords: '',
-            tags: [],
+            title: article.title || '',
+            slug: article.slug || '',
+            content: article.content || '',
+            excerpt: article.excerpt || '',
+            featured_image: article.featured_image || '',
+            category_id: article.category_id?.toString() || '',
+            series_id: article.series_id?.toString() || '',
+            status: article.status || 'draft',
+            published_at: article.published_at || '',
+            meta_title: article.meta_title || '',
+            meta_description: article.meta_description || '',
+            meta_keywords: article.meta_keywords || '',
+            tags: article.tags?.map((t) => t.id) || [],
         },
     });
 
@@ -85,6 +115,7 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
             form.setValue('slug', generateSlug(value));
         }
     };
+
     // Quando seleciona imagem
     const handleImageSelect = (file: File | null) => {
         setImageFile(file);
@@ -94,48 +125,10 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
             form.setValue('featured_image', '');
         }
     };
-    // Upload de imagem
-    const handleImageUpload = async () => {
-        if (!imageFile) return;
-
-        setUploading(true);
-
-        try {
-            const formData = new FormData();
-            formData.append('image', imageFile);
-
-            const response = await fetch('/admin/upload/image', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRF-TOKEN':
-                        document
-                            .querySelector('meta[name="csrf-token"]')
-                            ?.getAttribute('content') || '',
-                },
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                form.setValue('featured_image', result.url);
-                setImageFile(null);
-            } else {
-                console.log(result);
-            }
-        } catch (error) {
-            console.error('Erro no upload:', error);
-        } finally {
-            setUploading(false);
-        }
-    };
 
     // Submit
     const onSubmit = async (data: ArticleFormData) => {
-        // Upload imagem se houver
-        // if (imageFile) {
-        //     await handleImageUpload();
-        // }
+        // Upload imagem se houver nova
         if (imageFile) {
             setUploading(true);
 
@@ -157,11 +150,11 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
                 const result = await response.json();
 
                 if (result.success) {
-                    data.featured_image = result.url; // ← Atualiza com URL real
+                    data.featured_image = result.url;
                 } else {
                     alert('Erro ao fazer upload da imagem');
                     setUploading(false);
-                    return; // Não salva se upload falhou
+                    return;
                 }
             } catch (error) {
                 console.error('Erro no upload:', error);
@@ -173,9 +166,9 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
             }
         }
 
-        router.post('/admin/articles', data, {
+        // Atualizar artigo
+        router.put(`/admin/articles/${article.id}`, data, {
             onSuccess: () => {
-                form.reset();
                 setImageFile(null);
             },
         });
@@ -187,21 +180,30 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
         form.handleSubmit(onSubmit)();
     };
 
-    // Publicar
+    // Publicar/Atualizar
     const publish = () => {
         form.setValue('status', 'published');
         form.handleSubmit(onSubmit)();
     };
 
+    // Deletar artigo
+    const handleDelete = () => {
+        router.delete(`/admin/articles/${article.id}`, {
+            onSuccess: () => {
+                setDeleteDialog(false);
+            },
+        });
+    };
+
     return (
         <AdminLayout
-            title="Novo Artigo"
+            title={`Editar: ${article.title}`}
             breadcrumbs={[
                 { label: 'Artigos', href: '/admin/articles' },
-                { label: 'Novo' },
+                { label: 'Editar' },
             ]}
         >
-            <Head title="Novo Artigo - Admin" />
+            <Head title={`Editar: ${article.title} - Admin`} />
 
             <Form {...form}>
                 <form
@@ -211,12 +213,22 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
                     {/* Header com botões */}
                     <div className="flex items-center justify-between">
                         <div>
-                            <h1 className="text-3xl font-bold">Novo Artigo</h1>
+                            <h1 className="text-3xl font-bold">
+                                Editar Artigo
+                            </h1>
                             <p className="text-muted-foreground">
-                                Crie um novo artigo para o blog
+                                Atualize as informações do artigo
                             </p>
                         </div>
                         <div className="flex gap-2">
+                            <Button
+                                type="button"
+                                variant="destructive"
+                                onClick={() => setDeleteDialog(true)}
+                            >
+                                <Trash2 className="mr-2 h-4 w-4" />
+                                Deletar
+                            </Button>
                             <Button
                                 type="button"
                                 variant="outline"
@@ -232,7 +244,9 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
                                 disabled={uploading}
                             >
                                 <Eye className="mr-2 h-4 w-4" />
-                                Publicar
+                                {article.status === 'published'
+                                    ? 'Atualizar'
+                                    : 'Publicar'}
                             </Button>
                         </div>
                     </div>
@@ -432,19 +446,11 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
                                         render={({ field }) => (
                                             <FormItem>
                                                 <FormControl>
-                                                    {/* <ImageUpload
-                                                        value={field.value}
-                                                        onChange={setImageFile}
-                                                        onUrlChange={
-                                                            field.onChange
-                                                        }
-                                                        disabled={uploading}
-                                                    /> */}
                                                     <ImageUpload
-                                                        value={field.value} // URL da imagem (vazia inicialmente)
+                                                        value={field.value}
                                                         onChange={
                                                             handleImageSelect
-                                                        } // Recebe File
+                                                        }
                                                         disabled={uploading}
                                                     />
                                                 </FormControl>
@@ -586,6 +592,7 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
                                     />
                                 </CardContent>
                             </Card>
+
                             {/* Tags */}
                             <Card>
                                 <CardHeader>
@@ -623,6 +630,30 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
                     </div>
                 </form>
             </Form>
+
+            {/* Dialog de Confirmação de Delete */}
+            <Dialog open={deleteDialog} onOpenChange={setDeleteDialog}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Deletar Artigo</DialogTitle>
+                        <DialogDescription>
+                            Tem certeza que deseja deletar o artigo "
+                            {article.title}"? Esta ação não pode ser desfeita.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button
+                            variant="outline"
+                            onClick={() => setDeleteDialog(false)}
+                        >
+                            Cancelar
+                        </Button>
+                        <Button variant="destructive" onClick={handleDelete}>
+                            Deletar
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </AdminLayout>
     );
 }

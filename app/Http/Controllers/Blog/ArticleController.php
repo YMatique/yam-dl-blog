@@ -100,6 +100,7 @@ class ArticleController extends Controller
     }
     public function show(string $slug)
     {
+        // dd($slug);
         $article = Article::with(['author', 'category', 'tags', 'series'])
             ->where('slug', $slug)
             ->published()
