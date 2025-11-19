@@ -48,4 +48,14 @@ class HandleInertiaRequests extends Middleware
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }
+    public function rootView(Request $request): string
+{
+    // Se a rota começa com /admin, usa admin.blade.php
+    if ($request->is('admin') || $request->is('admin/*')) {
+        return 'admin';
+    }
+
+    // Caso contrário, usa app.blade.php (blog público)
+    return 'app';
+}
 }
