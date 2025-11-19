@@ -41,18 +41,20 @@ export default function ImageUpload({
             }
 
             // Criar preview
-            const reader = new FileReader();
-            reader.onload = () => {
-                const url = reader.result as string;
-                setPreview(url);
-                onUrlChange?.(url);
-            };
-            reader.readAsDataURL(file);
+            // const reader = new FileReader();
+            // reader.onload = () => {
+            //     const url = reader.result as string;
+            //     setPreview(url);
+            //     onUrlChange?.(url);
+            // };
+            // reader.readAsDataURL(file);
 
+            setPreview(URL.createObjectURL(file));
             // Chamar onChange com o arquivo
             onChange?.(file);
         },
-        [maxSize, onChange, onUrlChange],
+        [maxSize, onChange],
+        // [maxSize, onChange, onUrlChange],
     );
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({

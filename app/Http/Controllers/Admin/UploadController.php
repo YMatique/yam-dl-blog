@@ -18,11 +18,11 @@ class UploadController extends Controller
      */
     public function uploadImage(Request $request): JsonResponse
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB
-        ]);
+       try {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB
+            ]);
 
-        try {
             $file = $request->file('image');
             
             // Gerar nome único
@@ -31,37 +31,31 @@ class UploadController extends Controller
             // Path para salvar
             $path = 'images/articles/' . date('Y/m');
             
-            // Redimensionar imagem se muito grande
-            $image = Image::make($file);
+            // Salvar no storage/public
+            $filePath = $file->storeAs($path, $filename, 'public');
             
-            // Redimensiona mantendo proporção (max 1920px de largura)
-            if ($image->width() > 1920) {
-                $image->resize(1920, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                });
-            }
-            
-            // Salvar no storage
-            Storage::disk('public')->put(
-                $path . '/' . $filename,
-                (string) $image->encode()
-            );
-            
-            $url = Storage::disk('public')->url($path . '/' . $filename);
+            // URL pública
+            $url = Storage::disk('public')->url($filePath);
             
             return response()->json([
                 'success' => true,
                 'url' => $url,
-                'path' => $path . '/' . $filename,
+                'path' => $filePath,
             ]);
             
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Arquivo inválido',
+                'errors' => $e->errors(),
+            ], 422);
+            
         } catch (\Exception $e) {
-            \Log::error('Erro ao fazer upload de imagem: ' . $e->getMessage());
+            \Log::error('Erro no upload: ' . $e->getMessage());
             
             return response()->json([
                 'success' => false,
-                'message' => 'Erro ao fazer upload da imagem',
+                'message' => $e->getMessage(),
             ], 500);
         }
     }

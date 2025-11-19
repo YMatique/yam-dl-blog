@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\UploadController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
-    ->middleware(['auth'])
+    // ->middleware(['auth'])
     ->group(function () {
         
         // Upload de imagem

@@ -64,7 +64,7 @@ class ArticleController extends Controller
     {
         $categories = Category::orderBy('name')->get();
         
-        return Inertia::render('admin/articles/Create', [
+        return Inertia::render('admin/articles/create', [
             'categories' => $categories,
         ]);
     }
@@ -90,7 +90,8 @@ class ArticleController extends Controller
             'meta_keywords' => 'nullable|string',
         ]);
 
-        $validated['author_id'] = auth()->id();
+        $validated['author_id'] = 1;//auth()->id();
+        // dd($validated);
 
         $article = Article::create($validated);
 
@@ -100,7 +101,7 @@ class ArticleController extends Controller
         }
 
         return redirect()
-            ->route('admin.articles.index')
+            ->route('admin.articles')
             ->with('success', 'Artigo criado com sucesso!');
     }
 
