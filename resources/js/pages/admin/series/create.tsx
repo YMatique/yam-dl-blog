@@ -33,6 +33,7 @@ export default function Create() {
             slug: '',
             description: '',
             cover_image: '',
+            total_articles: 0,
             is_complete: false,
         },
     });
@@ -237,9 +238,46 @@ export default function Create() {
                             {/* Status */}
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>Status</CardTitle>
+                                    <CardTitle>Configurações</CardTitle>
                                 </CardHeader>
-                                <CardContent>
+
+                                <CardContent className="space-y-8">
+                                    <FormField
+                                        control={form.control}
+                                        name="total_articles"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>
+                                                    Total de Artigos Planejados
+                                                </FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        type="number"
+                                                        min="0"
+                                                        max="100"
+                                                        placeholder="Ex: 10"
+                                                        {...field}
+                                                        onChange={(e) =>
+                                                            field.onChange(
+                                                                e.target.value
+                                                                    ? parseInt(
+                                                                          e
+                                                                              .target
+                                                                              .value,
+                                                                      )
+                                                                    : 0,
+                                                            )
+                                                        }
+                                                    />
+                                                </FormControl>
+                                                <FormDescription>
+                                                    Quantos artigos você planeja
+                                                    ter nesta série?
+                                                </FormDescription>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
                                     <FormField
                                         control={form.control}
                                         name="is_complete"

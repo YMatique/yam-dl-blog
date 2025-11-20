@@ -73,7 +73,7 @@ class SeriesController extends Controller
         Series::create($validated);
 
         return redirect()
-            ->route('admin.series')
+            ->route('admin.series.index')
             ->with('success', 'Série criada com sucesso!');
     }
 

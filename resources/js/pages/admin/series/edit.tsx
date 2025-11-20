@@ -37,6 +37,7 @@ interface Series {
     slug: string;
     description?: string;
     cover_image?: string;
+    total_articles?: number;
     is_complete: boolean;
     articles_count?: number;
 }
@@ -57,6 +58,7 @@ export default function Edit({ series }: Props) {
             slug: series.slug || '',
             description: series.description || '',
             cover_image: series.cover_image || '',
+            total_articles: series.total_articles || 0,
             is_complete: series.is_complete || false,
         },
     });
@@ -292,9 +294,79 @@ export default function Edit({ series }: Props) {
                             {/* Status */}
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>Status</CardTitle>
+                                    <CardTitle>Configurações</CardTitle>
                                 </CardHeader>
-                                <CardContent>
+                                <CardContent className="space-y-4">
+                                    <FormField
+                                        control={form.control}
+                                        name="total_articles"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>
+                                                    Total de Artigos Planejados
+                                                </FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        type="number"
+                                                        min="0"
+                                                        max="100"
+                                                        placeholder="Ex: 10"
+                                                        {...field}
+                                                        onChange={(e) =>
+                                                            field.onChange(
+                                                                e.target.value
+                                                                    ? parseInt(
+                                                                          e
+                                                                              .target
+                                                                              .value,
+                                                                      )
+                                                                    : 0,
+                                                            )
+                                                        }
+                                                    />
+                                                </FormControl>
+                                                <FormDescription>
+                                                    Quantos artigos você planeja
+                                                    ter nesta série?
+                                                </FormDescription>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    {/* Progresso Visual */}
+                                    {series.total_articles &&
+                                        series.total_articles > 0 && (
+                                            <div className="rounded-lg border bg-muted/50 p-3">
+                                                <div className="mb-2 flex items-center justify-between text-sm">
+                                                    <span className="font-medium">
+                                                        Progresso
+                                                    </span>
+                                                    <span className="text-muted-foreground">
+                                                        {series.articles_count ||
+                                                            0}{' '}
+                                                        /{' '}
+                                                        {series.total_articles}{' '}
+                                                        artigos
+                                                    </span>
+                                                </div>
+                                                <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
+                                                    <div
+                                                        className="h-full bg-primary transition-all"
+                                                        style={{
+                                                            width: `${Math.min(
+                                                                ((series.articles_count ||
+                                                                    0) /
+                                                                    series.total_articles) *
+                                                                    100,
+                                                                100,
+                                                            )}%`,
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        )}
+
                                     <FormField
                                         control={form.control}
                                         name="is_complete"

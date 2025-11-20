@@ -18,6 +18,13 @@ export const seriesFormSchema = z.object({
     description: z.string().optional().or(z.literal('')),
 
     cover_image: z.string().optional().nullable().or(z.literal('')),
+    total_articles: z
+        .number()
+        .int()
+        .min(1, 'Deve ter pelo menos 1 artigo')
+        .max(100, 'Máximo de 100 artigos')
+        .optional()
+        .or(z.literal(0)),
 
     is_complete: z.boolean().default(false),
 });

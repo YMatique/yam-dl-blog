@@ -46,11 +46,11 @@ Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'uns
 //         return Inertia::render('dashboard');
 //     })->name('dashboard');
 // });
-Route::prefix('admin')
+Route::prefix('admin')->name('admin.')
     ->group(function () {
         Route::get('/', function () {
             return Inertia::render('admin/dashboard');
-        })->name('admin.dashboard');
+        })->name('dashboard');
 
         Route::resource('articles', AdminArticleController::class);
         Route::resource('series',SeriesController::class);
