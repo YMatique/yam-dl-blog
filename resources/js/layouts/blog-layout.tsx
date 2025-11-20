@@ -67,7 +67,7 @@ export default function BlogLayout({
             <div className="scroll-progress primary-bg"></div>
 
             {/* OFFCANVAS SIDEBAR */}
-            <aside
+            {/* <aside
                 id="sidebar-wrapper"
                 className="custom-scrollbar offcanvas-sidebar"
             >
@@ -218,7 +218,7 @@ export default function BlogLayout({
                         </div>
                     </div>
                 </div>
-            </aside>
+            </aside> */}
 
             {/* HEADER */}
             <header className="main-header header-style-1 font-heading">
@@ -327,14 +327,14 @@ export default function BlogLayout({
                                     </a>
                                 </li>
                             </ul>
-                            <div className="off-canvas-toggle-cover d-inline-block">
+                            {/* <div className="off-canvas-toggle-cover d-inline-block">
                                 <div
                                     className="off-canvas-toggle d-inline-block hidden"
                                     id="off-canvas-toggle"
                                 >
                                     <span></span>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="clearfix"></div>
                     </div>
