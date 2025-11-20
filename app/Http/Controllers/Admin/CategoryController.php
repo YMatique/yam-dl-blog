@@ -38,7 +38,7 @@ class CategoryController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('admin/categories/Create');
+        return Inertia::render('admin/category/create');
     }
 
     /**
@@ -74,7 +74,7 @@ class CategoryController extends Controller
     {
         $category->loadCount('articles');
         
-        return Inertia::render('admin/categories/Edit', [
+        return Inertia::render('admin/category/edit', [
             'category' => $category,
         ]);
     }
