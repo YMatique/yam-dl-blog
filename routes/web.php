@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SeriesController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Blog\ArticleController;
@@ -66,7 +67,9 @@ Route::prefix('admin')->name('admin.')
         
         Route::delete('subscribers/{subscriber}', [SubscriberController::class, 'destroy'])
             ->name('subscribers.destroy');
-        
+        Route::get('settings',[SettingsController::class,'index'])->name('settings');
+        Route::post('/admin/settings', [SettingsController::class, 'update'])
+    ->name('settings.update');
         Route::get('subscribers/export', [SubscriberController::class, 'export'])
             ->name('subscribers.export');
         Route::get('series/{series}/articles', [SeriesController::class, 'getArticles'])
