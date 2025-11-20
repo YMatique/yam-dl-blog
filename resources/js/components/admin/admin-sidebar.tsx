@@ -25,7 +25,7 @@ const menuItems = [
     { icon: FolderTree, label: 'Categorias', href: '/admin/categories' },
     { icon: Tags, label: 'Tags', href: '/admin/tags' },
     { icon: MessageSquare, label: 'Comentários', href: '/admin/comments' },
-    { icon: Mail, label: 'Newsletter', href: '/admin/newsletter' },
+    { icon: Mail, label: 'Newsletter', href: '/admin/subscribers' },
     { icon: Users, label: 'Usuários', href: '/admin/users' },
     { icon: Settings, label: 'Configurações', href: '/admin/settings' },
 ];

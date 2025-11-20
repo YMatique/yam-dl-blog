@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SeriesController;
+use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Blog\ArticleController;
 use App\Http\Controllers\Blog\CategoryController;
@@ -50,14 +52,25 @@ Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'uns
 // });
 Route::prefix('admin')->name('admin.')
     ->group(function () {
-        Route::get('/', function () {
-            return Inertia::render('admin/dashboard');
-        })->name('dashboard');
+        // Route::get('/', function () {
+        //     return Inertia::render('admin/dashboard');
+        // })->name('dashboard');
+        Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
         Route::resource('articles', AdminArticleController::class);
         Route::resource('series',SeriesController::class);
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('tags', TagController::class);
+        // Route::resource('newsletter', SubscriberController::class);
+               // Subscribers
+        Route::get('subscribers', [SubscriberController::class, 'index'])
+            ->name('subscribers.index');
+        
+        Route::delete('subscribers/{subscriber}', [SubscriberController::class, 'destroy'])
+            ->name('subscribers.destroy');
+        
+        Route::get('subscribers/export', [SubscriberController::class, 'export'])
+            ->name('subscribers.export');
         Route::get('series/{series}/articles', [SeriesController::class, 'getArticles'])
             ->name('series.articles');
         
