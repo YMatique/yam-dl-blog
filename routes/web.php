@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\SeriesController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Blog\ArticleController;
 use App\Http\Controllers\Blog\CategoryController;
 use App\Http\Controllers\Blog\ContactController;
@@ -56,6 +57,7 @@ Route::prefix('admin')->name('admin.')
         Route::resource('articles', AdminArticleController::class);
         Route::resource('series',SeriesController::class);
         Route::resource('categories', AdminCategoryController::class);
+        Route::resource('tags', TagController::class);
         Route::get('series/{series}/articles', [SeriesController::class, 'getArticles'])
             ->name('series.articles');
         
