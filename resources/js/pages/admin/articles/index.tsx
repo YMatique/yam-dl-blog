@@ -57,7 +57,7 @@ interface Article {
         id: number;
         name: string;
     };
-    views: number;
+    views_count: number;
     created_at: string;
     updated_at: string;
 }
@@ -326,8 +326,8 @@ export default function Index({ articles, categories, filters }: Props) {
                                         </TableCell>
                                         <TableCell className="text-muted-foreground">
                                             {/* {article.views.toLocaleString()} */}
-                                            {article.views
-                                                ? article.views.toLocaleString()
+                                            {article.views_count
+                                                ? article.views_count.toLocaleString()
                                                 : '0'}
                                         </TableCell>
                                         <TableCell className="text-muted-foreground">

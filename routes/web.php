@@ -61,8 +61,6 @@ Route::prefix('admin')->name('admin.')
         Route::resource('series',SeriesController::class);
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('tags', TagController::class);
-        // Route::resource('newsletter', SubscriberController::class);
-               // Subscribers
         Route::get('subscribers', [SubscriberController::class, 'index'])
             ->name('subscribers.index');
         
