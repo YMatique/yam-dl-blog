@@ -19,71 +19,74 @@ export default function Home({
 }: BlogIndexProps) {
     return (
         <BlogLayout title="YAMDL - Yuvi Matique Digital Library">
-            <div className="blog-home container pt-30">
-                {/* ========== SLIDER DE ARTIGOS EM DESTAQUE ========== */}
-                <FeaturedSlider articles={featuredPosts} />
+            <div className="bg-white">
+                <div className="container pt-30">
+                    {/* ========== SLIDER DE ARTIGOS EM DESTAQUE ========== */}
+                    <FeaturedSlider articles={featuredPosts} />
 
-                {/* ========== TAGS POPULARES ========== */}
-                <div className="hot-tags font-small align-self-center pt-30 pb-30">
-                    <div className="widget-header-3">
-                        <div className="row align-self-center">
-                            <div className="col-md-4 align-self-center">
-                                <h5 className="widget-title">
-                                    Últimos Lançamentos e Estudos
-                                </h5>
-                            </div>
-                            <div className="col-md-8 text-md-right font-small align-self-center">
-                                <p className="d-inline-block mr-5 mb-0">
-                                    <i className="elegant-icon icon_tag_alt mr-5 text-muted"></i>
-                                    Tags Populares:
-                                </p>
-                                <ul className="list-inline d-inline-block tags">
-                                    {popularTags?.slice(0, 5).map((tag) => (
-                                        <li
-                                            key={tag.id}
-                                            className="list-inline-item"
-                                        >
-                                            <Link href={`/tags/${tag.slug}`}>
-                                                # {tag.name}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
+                    {/* ========== TAGS POPULARES ========== */}
+                    <div className="hot-tags font-small align-self-center pt-30 pb-30">
+                        <div className="widget-header-3">
+                            <div className="row align-self-center">
+                                <div className="col-md-4 align-self-center">
+                                    <h5 className="widget-title">
+                                        Últimos Lançamentos e Estudos
+                                    </h5>
+                                </div>
+                                <div className="col-md-8 text-md-right font-small align-self-center">
+                                    <p className="d-inline-block mr-5 mb-0">
+                                        <i className="elegant-icon icon_tag_alt mr-5 text-muted"></i>
+                                        Tags Populares:
+                                    </p>
+                                    <ul className="list-inline d-inline-block tags">
+                                        {popularTags?.slice(0, 5).map((tag) => (
+                                            <li
+                                                key={tag.id}
+                                                className="list-inline-item"
+                                            >
+                                                <Link
+                                                    href={`/tags/${tag.slug}`}
+                                                >
+                                                    # {tag.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* ========== GRID DE ARTIGOS RECENTES ========== */}
-                <div className="loop-grid mb-30">
-                    <div className="row">
-                        {/* ArticleHighlight - 2 Artigos em Destaque */}
-                        <div className="col-lg-8">
-                            <ArticleHighlight articles={featuredPosts} />
-                            <div className="mt-40 mb-30">
+                    {/* ========== GRID DE ARTIGOS RECENTES ========== */}
+                    <div className="loop-grid mb-30">
+                        <div className="row">
+                            {/* ArticleHighlight - 2 Artigos em Destaque */}
+                            <div className="col-lg-8">
+                                <ArticleHighlight articles={featuredPosts} />
+                                <div className="mt-40 mb-30">
+                                    <PostList
+                                        articles={articles.data.slice(0, 2)}
+                                        columns={2}
+                                        showExcerpt={false}
+                                        showSocial={true}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Cards Individuais (restantes) */}
+                            <div className="col-lg-4">
                                 <PostList
                                     articles={articles.data.slice(0, 2)}
-                                    columns={2}
+                                    columns={1}
                                     showExcerpt={false}
                                     showSocial={true}
                                 />
                             </div>
                         </div>
-
-                        {/* Cards Individuais (restantes) */}
-                        <div className="col-lg-4">
-                            <PostList
-                                articles={articles.data.slice(0, 2)}
-                                columns={1}
-                                showExcerpt={false}
-                                showSocial={true}
-                            />
-                        </div>
                     </div>
-                </div>
 
-                {/* ========== MAIS ARTIGOS (Grid 3 colunas) ========== */}
-                {/* {articles.data.length > 3 && (
+                    {/* ========== MAIS ARTIGOS (Grid 3 colunas) ========== */}
+                    {/* {articles.data.length > 3 && (
                     <div className="mb-50">
                         <div className="widget-header-1 position-relative mb-30">
                             <h5 className="mt-5 mb-30">Mais Artigos</h5>
@@ -96,7 +99,9 @@ export default function Home({
                         />
                     </div>
                 )} */}
-
+                </div>
+            </div>
+            <div className="container">
                 {/* ========== SEÇÃO DE SÉRIES E SIDEBAR ========== */}
                 <div className="bg-grey pt-50 pb-50">
                     <div className="container">
