@@ -118,7 +118,7 @@ export default function ArticleShow({
                                             </p>
                                         )}
                                         <a
-                                            href={`/serie/${article.series.slug}`}
+                                            href={`/series/${article.series.slug}`}
                                             className="btn btn-sm btn-primary w-100"
                                         >
                                             Ver Série Completa →
