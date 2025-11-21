@@ -36,7 +36,7 @@ class CategoryController extends Controller
             ->where('category_id', $category->id)
             ->published()
             ->latest('published_at')
-            ->paginate(12);
+            ->paginate(10);
 
         // Categorias relacionadas (mesma parent ou similares)
         $relatedCategories = Category::where('id', '!=', $category->id)

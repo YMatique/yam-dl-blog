@@ -1,3 +1,4 @@
+import DefaultPageHeader from '@/components/blog/breadcrumb';
 import CategoryHeader from '@/components/blog/category-header';
 import Pagination from '@/components/blog/pagination';
 import PostCard from '@/components/blog/post-card';
@@ -22,6 +23,7 @@ export default function CategoryShow({
 
     return (
         <BlogLayout {...seoProps}>
+            <DefaultPageHeader title={`Categoria - ${category.name}`} />
             {/* Header da Categoria */}
             <CategoryHeader category={category} />
 

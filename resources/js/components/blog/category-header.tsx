@@ -41,7 +41,7 @@ const CategoryHeader: React.FC<CategoryHeaderProps> = ({ category }) => {
             <div className="container">
                 <div
                     className={`category-header-content text-center ${
-                        category.image ? 'position-absolute' : 'pt-50'
+                        category.image ? 'position-absolute' : 'pt-20'
                     }`}
                     style={
                         category.image
