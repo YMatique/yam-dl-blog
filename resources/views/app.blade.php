@@ -48,7 +48,7 @@
 
 
     <!-- ✅ APENAS VENDORS (bibliotecas base) -->
-    {{-- <script src="{{ asset('stories/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('stories/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('stories/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('stories/assets/js/vendor/popper.min.js') }}"></script>
     <script src="{{ asset('stories/assets/js/vendor/bootstrap.min.js') }}"></script>
@@ -65,6 +65,6 @@
     <script src="{{ asset('stories/assets/js/vendor/waypoints.min.js') }}"></script>
     <script src="{{ asset('stories/assets/js/vendor/jquery.theia.sticky.js') }}"></script>
     <script src="{{ asset('stories/assets/js/main.js') }}"></script>
-        <script src="{{ asset('override.js') }}"></script> --}}
+        <script src="{{ asset('override.js') }}"></script>
     </body>
 </html>

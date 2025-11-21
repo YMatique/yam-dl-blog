@@ -13,7 +13,9 @@ class CategoryController extends Controller
     //
     public function index()
     {
-        $category = Category::get();
+        $category = Category::withCount(['articles' => function ($query) {
+                $query->published();
+            }])->having('articles_count', '>=', 1)->get();
 
         return Inertia::render('blog/category',[
             'categories'=>$category

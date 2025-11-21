@@ -58,7 +58,7 @@ export default function CategoryIndexAdvanced({
 
                         {/* Busca e Filtros */}
                         <div className="row justify-content-center">
-                            <div className="col-lg-6">
+                            <div className="col-md-6">
                                 <div className="input-group mb-20">
                                     <input
                                         type="text"
@@ -79,21 +79,31 @@ export default function CategoryIndexAdvanced({
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Ordenação */}
-                        <div className="d-inline-block">
-                            <select
-                                className="form-control"
-                                value={sortBy}
-                                onChange={(e) =>
-                                    setSortBy(e.target.value as typeof sortBy)
-                                }
-                            >
-                                <option value="name">Ordenar: A-Z</option>
-                                <option value="articles">Mais Artigos</option>
-                                <option value="popular">Mais Populares</option>
-                            </select>
+                            <div className="col-md-6">
+                                {/* Ordenação */}
+                                <div className="d-flex justify-content-end w-100">
+                                    <select
+                                        className="form-control"
+                                        style={{ maxWidth: '200px' }}
+                                        value={sortBy}
+                                        onChange={(e) =>
+                                            setSortBy(
+                                                e.target.value as typeof sortBy,
+                                            )
+                                        }
+                                    >
+                                        <option value="name">
+                                            Ordenar: A-Z
+                                        </option>
+                                        <option value="articles">
+                                            Mais Artigos
+                                        </option>
+                                        <option value="popular">
+                                            Mais Populares
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -142,8 +152,8 @@ export default function CategoryIndexAdvanced({
                 {/* Call to Action */}
                 <div className="row mt-50">
                     <div className="col-12">
-                        <div className="border-radius-10 bg-primary p-40 text-center">
-                            <h3 className="font-weight-900 mb-20 text-white">
+                        <div className="border-radius-10 bg-primary p-30 text-center">
+                            <h3 className="font-weight-700 mb-20 text-white">
                                 Não encontrou o que procurava?
                             </h3>
                             <p className="mb-30 text-white">
@@ -151,7 +161,7 @@ export default function CategoryIndexAdvanced({
                             </p>
                             <a
                                 href="/contacto"
-                                className="btn btn-lg btn-light font-weight-bold text-primary"
+                                className="btn btn-sm btn-light font-weight-500 text-primary"
                             >
                                 Enviar Sugestão →
                             </a>

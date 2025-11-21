@@ -69,7 +69,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
                     // Se não tiver imagem, apenas cor de fundo
                     <Link href={`/categoria/${category.slug}`}>
                         <div
-                            className="category-card-colored p-40 text-center"
+                            className="category-card-colored p-10 text-center"
                             style={{
                                 backgroundColor: category.color || '#007bff',
                                 height: '200px',
