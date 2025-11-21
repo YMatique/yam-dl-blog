@@ -72,12 +72,14 @@ class ArticleController extends Controller
         $categories = Category::withCount(['articles' => function ($q) {
                 $q->published();
             }])
+            ->having('articles_count', '>=', 1)
             ->orderBy('order')
             ->get();
 
         $popularTags = Tag::withCount(['articles' => function ($q) {
                 $q->published();
             }])
+            ->having('articles_count', '>=', 1)
             ->orderBy('articles_count', 'desc')
             ->take(15)
             ->get();
@@ -123,6 +125,7 @@ class ArticleController extends Controller
             ->where('id', '!=', $article->id)
             ->published()
             ->latest('published_at')
+            
             ->take(5)
             ->get();
 

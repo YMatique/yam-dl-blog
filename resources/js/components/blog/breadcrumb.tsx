@@ -6,6 +6,7 @@ interface ContactPageHeaderProps {
     title: string;
     // Opcional: URL da imagem de fundo
     imageUrl?: string;
+    className?: string;
 }
 
 /**
@@ -14,16 +15,17 @@ interface ContactPageHeaderProps {
 const DefaultPageHeader: React.FC<ContactPageHeaderProps> = ({
     title,
     imageUrl = '/imgs/default-breadcrumb.jpg',
+    className = 'mb-50',
 }) => {
     // Define o estilo da imagem de fundo
     const headerStyle = {
         backgroundImage: `url(${imageUrl})`,
-        backgroundColor: 'white',
+        // backgroundColor: 'white',
     };
 
     return (
         <div
-            className="entry-header entry-header-style-2 mb-50 bg-white pt-80 pb-80 text-white"
+            className={`entry-header entry-header-style-2 pt-80 pb-80 text-white ${className}`}
             style={headerStyle}
         >
             <div className="entry-header-content container">

@@ -40,7 +40,7 @@ const CategoryHeader: React.FC<CategoryHeaderProps> = ({ category }) => {
             {/* Content */}
             <div className="container">
                 <div
-                    className={`category-header-content text-center ${
+                    className={`category-header-content ${
                         category.image ? 'position-absolute' : 'pt-20'
                     }`}
                     style={
@@ -97,7 +97,7 @@ const CategoryHeader: React.FC<CategoryHeaderProps> = ({ category }) => {
                     )}
 
                     {/* Contador de Artigos */}
-                    <p
+                    {/* <p
                         className="category-count font-medium"
                         style={
                             category.image
@@ -109,7 +109,7 @@ const CategoryHeader: React.FC<CategoryHeaderProps> = ({ category }) => {
                         {category.articles_count || 0} artigo
                         {(category.articles_count || 0) !== 1 ? 's' : ''} nesta
                         categoria
-                    </p>
+                    </p> */}
                 </div>
             </div>
         </div>

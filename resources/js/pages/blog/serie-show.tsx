@@ -1,7 +1,8 @@
+import DefaultPageHeader from '@/components/blog/breadcrumb';
 import BlogLayout from '@/layouts/blog-layout';
 import { Article, Series } from '@/types/blog';
 import { formatDate, formatReadingTime } from '@/utils/blog-helpers';
-import { Head, Link } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 
 interface SeriesShowProps {
     series: Series;
@@ -36,12 +37,15 @@ export default function Show({ series, relatedSeries = [] }: SeriesShowProps) {
 
     return (
         <BlogLayout title={`${series.title} - Série de Estudos - YMDL Blog`}>
-            <Head title={`${series.title} - Série de Estudos - YMDL Blog`} />
-
-            <main className="bg-grey pb-30">
+            {/* <Head title={`${series.title} - Série de Estudos - YMDL Blog`} /> */}
+            <DefaultPageHeader
+                className="bg-grey"
+                title="Todas as Categorias"
+            />
+            <main className="bg-grey pt-50 pb-30">
                 <div className="container">
                     {/* Breadcrumb */}
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-12">
                             <div className="breadcrumb mt-30 mb-30">
                                 <Link href="/">Home</Link>
@@ -53,7 +57,7 @@ export default function Show({ series, relatedSeries = [] }: SeriesShowProps) {
                                 </span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="row">
                         {/* Conteúdo Principal */}
@@ -174,16 +178,16 @@ export default function Show({ series, relatedSeries = [] }: SeriesShowProps) {
                                                                 }}
                                                             >
                                                                 <div
-                                                                    className="img-hover-slide border-radius-5 position-relative h-100"
+                                                                    className="img-hover-slide border-radius-5 position-relative p-10"
                                                                     style={{
                                                                         backgroundImage: `url(${
                                                                             article.featured_image ||
-                                                                            '/stories/assets/imgs/news/default.jpg'
+                                                                            '/imgs/article-default.jpg'
                                                                         })`,
-                                                                        backgroundSize:
-                                                                            'cover',
-                                                                        backgroundPosition:
-                                                                            'center',
+                                                                        // backgroundSize:
+                                                                        //     'cover',
+                                                                        // backgroundPosition:
+                                                                        //     'center',
                                                                     }}
                                                                 >
                                                                     <Link
@@ -199,7 +203,7 @@ export default function Show({ series, relatedSeries = [] }: SeriesShowProps) {
                                                             <div className="post-content">
                                                                 <h5 className="post-title font-weight-900 mb-15">
                                                                     <Link
-                                                                        href={`/artigo/${article.slug}`}
+                                                                        href={`/artigos/${article.slug}`}
                                                                     >
                                                                         {
                                                                             article.title
@@ -294,7 +298,7 @@ export default function Show({ series, relatedSeries = [] }: SeriesShowProps) {
                                                                         <img
                                                                             src={
                                                                                 related.cover_image ||
-                                                                                '/stories/assets/imgs/series/default.jpg'
+                                                                                '/imgs/serie-default.jpg'
                                                                             }
                                                                             alt={
                                                                                 related.title

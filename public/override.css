@@ -47,7 +47,19 @@
     height: auto;
 }
 
-.entry-header,
-.entry-header-style-2 {
-    background-color: #fff !important;
+.entry-header {
+    /* background-color: #fff !important; */
+}
+
+.entry-header-style-2.bg-white {
+    background-color: #fff;
+}
+
+.entry-header-style-2.bg-grey,
+.entry-header.bg-grey {
+    background-color: #f7f8f9 !important;
+}
+
+.img-hover-slide {
+    min-height: 100px;
 }

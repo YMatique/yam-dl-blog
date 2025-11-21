@@ -29,6 +29,7 @@ class CategoryController extends Controller
             ->withCount(['articles' => function ($query) {
                 $query->published();
             }])
+            
             ->firstOrFail();
 
         // Artigos da categoria com paginação
@@ -43,6 +44,7 @@ class CategoryController extends Controller
             ->withCount(['articles' => function ($query) {
                 $query->published();
             }])
+            ->having('articles_count', '>=', 1)
             ->orderBy('articles_count', 'desc')
             ->take(5)
             ->get();

@@ -27,6 +27,7 @@ class SerieController extends Controller
             })
             ->orderByDesc('is_complete')
             ->orderByDesc('articles_count')
+            ->having('articles_count', '>=', 1)
             ->take(2)
             ->get();
 
@@ -38,6 +39,7 @@ class SerieController extends Controller
             ->withCount(['articles' => function ($query) {
                 $query->where('status', 'published');
             }])
+            ->having('articles_count', '>=', 1)
             ->orderByDesc('created_at')
             ->get();
 
@@ -70,6 +72,7 @@ class SerieController extends Controller
                 $query->where('status', 'published');
             }])
             ->orderByDesc('articles_count')
+            ->having('articles_count', '>=', 1)
             ->take(4)
             ->get();
 
