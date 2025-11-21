@@ -52,7 +52,7 @@ export default function Index({ featuredSeries, series }: SeriesIndexProps) {
             <DefaultPageHeader title="Séries de Artigos" />
             <Head title="Séries de Estudos - YMDL Blog" />
 
-            <main className="bg-grey pb-30">
+            <main className="bg-white pb-30">
                 <div className="container">
                     {/* Breadcrumb */}
                     {/* <div className="row">

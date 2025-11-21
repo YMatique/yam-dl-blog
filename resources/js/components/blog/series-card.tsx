@@ -34,7 +34,7 @@ const SeriesCard: React.FC<SeriesCardProps> = ({ series }) => {
     const publishedCount = series.articles?.length || 0;
 
     return (
-        <article className="border-radius-10 hover-up-2 overflow-hidden bg-white transition-normal">
+        <article className="border-radius-10 post-card-1 hover-up bg-white transition-normal">
             {/* Imagem de Capa */}
             <div
                 className="post-thumb position-relative"
