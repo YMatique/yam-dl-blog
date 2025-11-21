@@ -1,6 +1,5 @@
 import DefaultPageHeader from '@/components/blog/breadcrumb';
 import InfoCard from '@/components/blog/info-card';
-import TestimonialCarousel from '@/components/blog/testimonial-carousel';
 import BlogLayout from '@/layouts/blog-layout';
 
 // Mock de testemunhos (depois virá do backend)
@@ -274,7 +273,7 @@ export default function About() {
                 </div>
             </div>
             {/* Testemunhos */}
-            <TestimonialCarousel testimonials={testimonials} />
+            {/* <TestimonialCarousel testimonials={testimonials} /> */}
         </BlogLayout>
     );
 }

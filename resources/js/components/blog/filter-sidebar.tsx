@@ -30,7 +30,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     <li
                         className={`cat-item mb-10 ${!activeCategory ? 'active' : ''}`}
                     >
-                        <Link href="/blog/artigos">
+                        <Link href="/artigos">
                             <span className="mr-10">📚</span>
                             Todas as Categorias
                         </Link>
@@ -44,9 +44,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                                 activeCategory === category.slug ? 'active' : ''
                             }`}
                         >
-                            <Link
-                                href={`/blog/artigos?category=${category.slug}`}
-                            >
+                            <Link href={`/categoria/${category.slug}`}>
                                 {category.icon && (
                                     <i
                                         className={`elegant-icon ${category.icon} mr-10`}

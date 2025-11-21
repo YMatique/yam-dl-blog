@@ -18,11 +18,12 @@ const DefaultPageHeader: React.FC<ContactPageHeaderProps> = ({
     // Define o estilo da imagem de fundo
     const headerStyle = {
         backgroundImage: `url(${imageUrl})`,
+        backgroundColor: 'white',
     };
 
     return (
         <div
-            className="entry-header entry-header-style-2 mb-50 pt-80 pb-80 text-white"
+            className="entry-header entry-header-style-2 mb-50 bg-white pt-80 pb-80 text-white"
             style={headerStyle}
         >
             <div className="entry-header-content container">

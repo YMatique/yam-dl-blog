@@ -342,7 +342,7 @@ export default function BlogLayout({
             </header>
 
             {/* MAIN CONTENT */}
-            <main className="bg-grey pb-30">{children}</main>
+            <main className="pb-30">{children}</main>
 
             {/* FOOTER */}
             <footer className="bg-grey pt-50 pb-20">

@@ -46,3 +46,8 @@
     font-size: 0.85rem;
     height: auto;
 }
+
+.entry-header,
+.entry-header-style-2 {
+    background-color: #fff !important;
+}
