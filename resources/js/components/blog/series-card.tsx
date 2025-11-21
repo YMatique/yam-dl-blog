@@ -44,8 +44,7 @@ const SeriesCard: React.FC<SeriesCardProps> = ({ series }) => {
                     className="img-hover-slide border-radius-top-10 position-relative h-100"
                     style={{
                         backgroundImage: `url(${
-                            series.cover_image ||
-                            '/stories/assets/imgs/series/default.jpg'
+                            series.cover_image || '/imgs/serie-default.jpg'
                         })`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
@@ -73,10 +72,10 @@ const SeriesCard: React.FC<SeriesCardProps> = ({ series }) => {
             </div>
 
             {/* Conteúdo */}
-            <div className="post-content p-30">
+            <div className="post-content mt-10 p-30">
                 {/* Meta */}
                 <div className="entry-meta meta-0 font-small mb-15">
-                    <span className="post-cat text-primary">📚 Série</span>
+                    {/* <span className="post-cat text-primary">📚 Série</span> */}
                     {series.is_complete && (
                         <span className="post-cat text-success ml-2">
                             ✓ Completa

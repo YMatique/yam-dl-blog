@@ -125,11 +125,16 @@ export const timeAgo = (dateString: string): string => {
  */
 export const getImageUrl = (
     imagePath?: string | null,
-    defaultImage: string = '/stories/assets/imgs/news/default.jpg',
+    defaultImage: string = '/imgs/serie-default.jpg',
 ): string => {
     return imagePath || defaultImage;
 };
-
+export const getImageArticleUrl = (
+    imagePath?: string | null,
+    defaultImage: string = '/imgs/article-default.jpg',
+): string => {
+    return imagePath || defaultImage;
+};
 /**
  * Gera cor aleatória para categorias sem cor
  */

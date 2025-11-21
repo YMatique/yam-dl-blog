@@ -5,7 +5,7 @@ import {
     formatViews,
     getArticleUrl,
     getCategoryUrl,
-    getImageUrl,
+    getImageArticleUrl,
 } from '@/utils/blog-helpers';
 import { Link } from '@inertiajs/react';
 import React from 'react';
@@ -31,7 +31,7 @@ const PostCard: React.FC<PostCardProps> = ({
     showSocial = true,
 }) => {
     const backgroundStyle = {
-        backgroundImage: `url("${getImageUrl(article.featured_image)}")`,
+        backgroundImage: `url("${getImageArticleUrl(article.featured_image)}")`,
     };
 
     return (

@@ -4,7 +4,7 @@ import {
     formatViews,
     getArticleUrl,
     getCategoryUrl,
-    getImageUrl,
+    getImageArticleUrl,
 } from '@/utils/blog-helpers';
 import { Link } from '@inertiajs/react';
 import React from 'react';
@@ -54,7 +54,7 @@ const ArticleHighlight: React.FC<ArticleHighlightProps> = ({
                             <div
                                 className="thumb-overlay img-hover-slide position-relative"
                                 style={{
-                                    backgroundImage: `url(${getImageUrl(article.featured_image)})`,
+                                    backgroundImage: `url(${getImageArticleUrl(article.featured_image)})`,
                                 }}
                             >
                                 <Link

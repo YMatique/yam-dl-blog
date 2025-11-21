@@ -74,7 +74,7 @@ const SeriesHighlight: React.FC<SeriesHighlightProps> = ({
                                     style={{
                                         backgroundImage: `url(${getImageUrl(
                                             serie.cover_image,
-                                            '/stories/assets/imgs/series/default.jpg',
+                                            '/imgs/serie-default.jpg',
                                         )})`,
                                     }}
                                 >
