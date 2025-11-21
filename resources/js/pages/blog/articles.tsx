@@ -82,7 +82,7 @@ export default function ArticleIndex({
                                     </span>
 
                                     {filters.search && (
-                                        <span className="badge badge-primary mr-10 mb-10">
+                                        <span className="badge badge-primary mr-10">
                                             Busca: "{filters.search}"
                                             <a
                                                 href="/artigos"

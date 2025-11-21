@@ -66,7 +66,7 @@ class ArticleController extends Controller
         }
 
         // Paginação
-        $articles = $query->paginate(12)->withQueryString();
+        $articles = $query->paginate(10)->withQueryString();
 
         // Dados da sidebar
         $categories = Category::withCount(['articles' => function ($q) {

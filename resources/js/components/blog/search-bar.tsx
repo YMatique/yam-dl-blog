@@ -27,7 +27,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
     return (
         <form onSubmit={handleSubmit} className="search-form mb-30">
-            <div className="input-group input-group-lg">
+            <div className="input-group input-group-md">
                 <input
                     type="text"
                     className="form-control yam-input bg-white"
