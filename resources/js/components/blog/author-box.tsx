@@ -11,9 +11,9 @@ interface AuthorBoxProps {
  */
 const AuthorBox: React.FC<AuthorBoxProps> = ({ author }) => {
     return (
-        <div className="author-bio border-radius-10 wow fadeIn animated mt-50 bg-white p-30">
+        <div className="author-bio border-radius-10 wow fadeIn animated mt-50 bg-white pt-30 pb-30">
             <div className="author-image mb-30">
-                <Link href={`/autor/${author.id}`}>
+                <div>
                     {author.avatar ? (
                         <img
                             src={author.avatar}
@@ -22,12 +22,12 @@ const AuthorBox: React.FC<AuthorBoxProps> = ({ author }) => {
                         />
                     ) : (
                         <img
-                            src="/assets/imgs/authors/default.jpg"
+                            src="/imgs/author.jpg"
                             alt={author.name}
                             className="avatar"
                         />
                     )}
-                </Link>
+                </div>
             </div>
             <div className="author-info">
                 <h4 className="font-weight-bold mb-20">

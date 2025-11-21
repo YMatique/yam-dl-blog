@@ -3,6 +3,7 @@ import {
     formatDate,
     formatReadingTime,
     formatViews,
+    getImageArticleUrl,
 } from '@/utils/blog-helpers';
 import { Link } from '@inertiajs/react';
 import React from 'react';
@@ -96,14 +97,26 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article }) => {
             {/* End Entry Header */}
 
             {/* Featured Image */}
-            {article.featured_image && (
-                <figure className="image border-radius-10 m-auto mb-30 text-center">
-                    <img
-                        className="border-radius-10"
-                        src={article.featured_image}
-                        alt={article.title}
-                    />
-                </figure>
+            {article.featured_image ? (
+                <>
+                    <figure className="image border-radius-10 m-auto mb-30 text-center">
+                        <img
+                            className="border-radius-10"
+                            src={article.featured_image}
+                            alt={article.title}
+                        />
+                    </figure>
+                </>
+            ) : (
+                <>
+                    <figure className="image border-radius-10 m-auto mb-30 text-center">
+                        <img
+                            className="border-radius-10"
+                            src={getImageArticleUrl(article.featured_image)}
+                            alt={article.title}
+                        />
+                    </figure>
+                </>
             )}
             {/* End Featured Image */}
 
@@ -143,14 +156,14 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article }) => {
                 {/* Social Share */}
                 <div className="single-social-share clearfix wow fadeIn animated">
                     <div className="entry-meta meta-1 font-small color-grey float-left mt-10">
-                        <span className="hit-count mr-15">
+                        {/* <span className="hit-count mr-15">
                             <i className="elegant-icon icon_comment_alt mr-5"></i>
                             {article.comments_count || 0} comentários
-                        </span>
-                        <span className="hit-count mr-15">
+                        </span> */}
+                        {/* <span className="hit-count mr-15">
                             <i className="elegant-icon icon_like mr-5"></i>
                             {article.likes_count || 0} likes
-                        </span>
+                        </span> */}
                         <span className="hit-count">
                             <i className="elegant-icon icon_star-half_alt mr-5"></i>
                             {formatViews(article.views_count)}
