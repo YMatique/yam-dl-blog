@@ -1,3 +1,4 @@
+import DefaultPageHeader from '@/components/blog/breadcrumb';
 import SeriesCard from '@/components/blog/series-card';
 import SeriesHighlight from '@/components/blog/series-highlight';
 import BlogLayout from '@/layouts/blog-layout';
@@ -48,12 +49,13 @@ export default function Index({ featuredSeries, series }: SeriesIndexProps) {
 
     return (
         <BlogLayout title="Séries de Estudos - YMDL Blog">
+            <DefaultPageHeader title="Séries de Artigos" />
             <Head title="Séries de Estudos - YMDL Blog" />
 
             <main className="bg-grey pb-30">
                 <div className="container">
                     {/* Breadcrumb */}
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-12">
                             <div className="breadcrumb mt-30 mb-30">
                                 <Link href="/">Home</Link>
@@ -61,7 +63,7 @@ export default function Index({ featuredSeries, series }: SeriesIndexProps) {
                                 <span className="text-muted">Séries</span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Header */}
                     <div className="row mb-30">

@@ -13,7 +13,7 @@ interface ContactPageHeaderProps {
  */
 const DefaultPageHeader: React.FC<ContactPageHeaderProps> = ({
     title,
-    imageUrl = '/stories/assets/imgs/news/news-17.jpg',
+    imageUrl = '/imgs/default-breadcrumb.jpg',
 }) => {
     // Define o estilo da imagem de fundo
     const headerStyle = {
