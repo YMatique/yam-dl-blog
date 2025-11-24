@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('featured_items', function (Blueprint $table) {
             $table->id();
+            $table->morphs('featuredable'); // featuredable_id + featuredable_type
+            $table->enum('type', ['hero_article', 'featured_article', 'featured_series']);
+            $table->unsignedInteger('position')->default(0);
             $table->timestamps();
         });
     }

@@ -36,7 +36,7 @@ class DashboardController extends Controller
         $recentArticles = Article::with(['author', 'category'])
             ->latest()
             ->take(5)
-            ->get(['id', 'title', 'status', 'views_count', 'author_id', 'category_id', 'created_at']);
+            ->get(['id', 'title', 'status', 'views_count', 'category_id', 'created_at']);
 
         // Artigos mais vistos (últimos 30 dias)
         $popularArticles = Article::with('category')

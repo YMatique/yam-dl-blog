@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
+use App\Models\FeaturedItem;
 
 
 class Series extends Model
@@ -62,6 +63,12 @@ class Series extends Model
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class)->orderBy('series_order');
+    }
+
+    // Featured items relationship
+    public function featuredItems(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(FeaturedItem::class, 'featuredable');
     }
 
     // Scopes

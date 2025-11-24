@@ -78,12 +78,15 @@ class Article extends Model
         
     }
 
-    // Relationships
-    public function author(): BelongsTo
+    // Featured items relationship
+    public function featuredItems(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(FeaturedItem::class, 'featuredable');
+    }
+ public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
     }
-
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
