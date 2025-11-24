@@ -63,6 +63,19 @@ class Article extends Model
                 $article->meta_description = $article->excerpt;
             }
         });
+
+        static::updating(function ($article) {
+            // Recalcular tempo de leitura se o conteúdo mudou
+            if ($article->isDirty('content')) {
+                $article->reading_time = ceil(str_word_count($article->content) / 200);
+            }
+
+            // Atualizar excerpt se estiver vazio ou se o conteúdo mudou
+            if (empty($article->excerpt) || $article->isDirty('content')) {
+                $article->excerpt = Str::limit(strip_tags($article->content), 160);
+            }
+        });
+        
     }
 
     // Relationships
