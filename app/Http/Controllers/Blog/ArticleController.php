@@ -109,15 +109,12 @@ class ArticleController extends Controller
             ->firstOrFail();
         
         // Incrementar views
-        $article->increment('views_count');
-        // Registra a view
-        if (class_exists(\App\Models\ArticleView::class)) {
-            \App\Models\ArticleView::create([
-                'article_id' => $article->id,
-                'ip_address' => request()->ip(),
-                'user_agent' => request()->userAgent(),
-            ]);
-        }
+        // Incrementar visualizações usando o método recordView do modelo
+$article->recordView(
+    request()->ip(),
+    request()->userAgent(),
+    auth()->id()
+);
 
         // Artigos relacionados (mesma categoria)
         $relatedArticles = Article::with(['author', 'category'])
