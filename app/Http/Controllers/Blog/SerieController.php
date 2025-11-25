@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Series;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\FeaturedItem;
 
 class SerieController extends Controller
 {
@@ -13,7 +14,14 @@ class SerieController extends Controller
     public function index()
     {
         // Séries em destaque (2 mais recentes completas ou com mais artigos)
-        $featuredSeries = Series::with(['articles' => function ($query) {
+        $featuredSeries =  FeaturedItem::where('type', 'featured_series')
+        ->orderBy('position')
+        ->with('featuredable.articles')
+        ->take(2)
+        ->get()
+        ->map->featuredable;
+        
+        /*Series::with(['articles' => function ($query) {
                 $query->where('status', 'published')
                       ->orderBy('series_order', 'asc');
             }])
@@ -29,7 +37,7 @@ class SerieController extends Controller
             ->orderByDesc('articles_count')
             ->having('articles_count', '>=', 1)
             ->take(2)
-            ->get();
+            ->get();*/
 
         // Todas as séries (para o grid)
         $allSeries = Series::with(['articles' => function ($query) {
