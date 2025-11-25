@@ -88,3 +88,50 @@ Route::prefix('admin')->name('admin.')
 require __DIR__.'/upload-routes.php';
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
+
+Route::get('/test-newsletter', function () {
+    try {
+        // Create dummy subscriber if not exists
+        $subscriber = \App\Models\Subscriber::firstOrCreate(
+            ['email' => 'test-newsletter@example.com'],
+            [
+                'name' => 'Test User',
+                'status' => 'active',
+                'verified_at' => now(),
+            ]
+        );
+
+        // Create dummy article
+        $article = \App\Models\Article::create([
+            'title' => 'Test Article ' . rand(1000, 9999),
+            'slug' => 'test-article-' . rand(1000, 9999),
+            'content' => 'This is a test article content.',
+            'excerpt' => 'Test excerpt',
+            'status' => 'draft',
+            'author_id' => \App\Models\User::first()->id,
+            'category_id' => \App\Models\Category::first()->id,
+        ]);
+
+        // Update to published to trigger event
+        $article->update([
+            'status' => 'published',
+            'published_at' => now(),
+        ]);
+        
+        // Wait a bit if queue is async (though usually sync in dev unless configured otherwise)
+        // sleep(1);
+
+        // Reload article
+        $article->refresh();
+
+        return [
+            'message' => 'Test executed',
+            'article_id' => $article->id,
+            'newsletter_sent_at' => $article->newsletter_sent_at,
+            'subscriber_count' => \App\Models\Subscriber::active()->verified()->count(),
+            'queue_connection' => config('queue.default'),
+        ];
+    } catch (\Exception $e) {
+        return ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()];
+    }
+});

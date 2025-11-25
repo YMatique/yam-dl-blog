@@ -31,11 +31,13 @@ class Article extends Model
         'likes_count',
         'meta_title',
         'meta_description',
-        'meta_keywords'
+        'meta_keywords',
+        'newsletter_sent_at'
     ];
 
     protected $casts = [
         'published_at' => 'datetime',
+        'newsletter_sent_at' => 'datetime',
         'series_order' => 'integer',
         'reading_time' => 'integer',
         'views_count' => 'integer',
@@ -76,6 +78,16 @@ class Article extends Model
             }
         });
         
+
+        
+        static::saved(function ($article) {
+            if ($article->status === 'published' 
+                && $article->published_at <= now() 
+                && is_null($article->newsletter_sent_at)) {
+                
+                \App\Jobs\SendArticleNewsletter::dispatch($article);
+            }
+        });
     }
 
     // Featured items relationship
