@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Head, Link, router } from '@inertiajs/react';
+import { Head, router } from '@inertiajs/react';
 import AdminLayout from '@/layouts/admin-layout';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableHead } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
 import { Plus, Edit, Trash2, GripHorizontal } from 'lucide-react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
@@ -17,14 +16,26 @@ interface FeaturedItem {
   featuredable: { id: number; title: string; __typename: string } | null;
 }
 
-interface Props {
-  items: FeaturedItem[];
+interface ArticleOption {
+  id: number;
+  title: string;
 }
 
-export default function FeaturedItems({ items }: Props) {
+interface SeriesOption {
+  id: number;
+  title: string;
+}
+
+interface Props {
+  items: FeaturedItem[];
+  articles: ArticleOption[];
+  series: SeriesOption[];
+}
+
+export default function FeaturedItems({ items, articles, series }: Props) {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<FeaturedItem | null>(null);
-  const [type, setType] = useState('hero_article');
+  const [type, setType] = useState<'hero_article' | 'featured_article' | 'featured_series'>('hero_article');
   const [featuredableId, setFeaturedableId] = useState('');
   const [position, setPosition] = useState(0);
 
@@ -51,7 +62,9 @@ export default function FeaturedItems({ items }: Props) {
   const handleSubmit = () => {
     const payload = {
       type,
-      featuredable_type: editing?.featuredable?.__typename || (type.includes('article') ? 'App\\Models\\Article' : 'App\\Models\\Series'),
+      featuredable_type:
+        editing?.featuredable?.__typename ||
+        (type.includes('article') ? 'App\\Models\\Article' : 'App\\Models\\Series'),
       featuredable_id: Number(featuredableId),
       position,
     };
@@ -73,13 +86,42 @@ export default function FeaturedItems({ items }: Props) {
     const reordered = Array.from(items);
     const [removed] = reordered.splice(result.source.index, 1);
     reordered.splice(result.destination.index, 0, removed);
-    // send new positions to backend
     const payload = reordered.map((it, idx) => ({ id: it.id, position: idx }));
     router.post('/admin/featured-items/reorder', { items: payload });
   };
 
+  const renderFeaturedableSelect = () => {
+    if (type.includes('article')) {
+      return (
+        <Select value={featuredableId} onValueChange={setFeaturedableId}>
+          <SelectTrigger className="col-span-2">
+            <SelectValue placeholder="Selecione o artigo" />
+          </SelectTrigger>
+          <SelectContent>
+            {articles.map((a) => (
+              <SelectItem key={a.id} value={a.id.toString()}>{a.title}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      );
+    }
+    // series
+    return (
+      <Select value={featuredableId} onValueChange={setFeaturedableId}>
+        <SelectTrigger className="col-span-2">
+          <SelectValue placeholder="Selecione a série" />
+        </SelectTrigger>
+        <SelectContent>
+          {series.map((s) => (
+            <SelectItem key={s.id} value={s.id.toString()}>{s.title}</SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    );
+  };
+
   return (
-    <AdminLayout title="Itens em Destaque" breadcrumbs={[{ label: 'Itens em Destaque' }]}>
+    <AdminLayout title="Itens em Destaque" breadcrumbs={[{ label: 'Itens em Destaque' }]}> 
       <Head title="Itens em Destaque - Admin" />
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Itens em Destaque</h1>
@@ -89,7 +131,7 @@ export default function FeaturedItems({ items }: Props) {
       </div>
 
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="featured-items">
+        <Droppable droppableId="featured-items" isDropDisabled={false}>
           {(provided) => (
             <Table {...provided.droppableProps} ref={provided.innerRef}>
               <TableHeader>
@@ -150,8 +192,8 @@ export default function FeaturedItems({ items }: Props) {
               </Select>
             </div>
             <div className="grid grid-cols-3 items-center gap-4">
-              <label className="text-right">ID do Item</label>
-              <Input className="col-span-2" value={featuredableId} onChange={e => setFeaturedableId(e.target.value)} placeholder="ID do artigo ou série" />
+              <label className="text-right">Item</label>
+              {renderFeaturedableSelect()}
             </div>
             <div className="grid grid-cols-3 items-center gap-4">
               <label className="text-right">Posição</label>

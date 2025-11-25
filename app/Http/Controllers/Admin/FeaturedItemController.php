@@ -15,10 +15,16 @@ class FeaturedItemController extends Controller
     public function index()
     {
         $items = FeaturedItem::with('featuredable')->orderBy('type')->orderBy('position')->get();
+        // Load articles and series for autocomplete
+        $articles = \App\Models\Article::where('status', 'published')->select('id', 'title')->orderBy('title')->get();
+        $series = \App\Models\Series::select('id', 'title')->orderBy('title')->get();
         return Inertia::render('admin/featured-items', [
             'items' => $items,
+            'articles' => $articles,
+            'series' => $series,
         ]);
     }
+
 
     /**
      * Store a newly created featured item.
