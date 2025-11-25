@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SeriesController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\FeaturedItemController;
 use App\Http\Controllers\Blog\ArticleController;
 use App\Http\Controllers\Blog\CategoryController;
 use App\Http\Controllers\Blog\ContactController;
@@ -61,9 +62,8 @@ Route::prefix('admin')->name('admin.')
         Route::resource('articles', AdminArticleController::class);
         Route::resource('series',SeriesController::class);
         Route::resource('categories', AdminCategoryController::class);
-        Route::resource('tags', TagController::class);
-        Route::get('subscribers', [SubscriberController::class, 'index'])
-            ->name('subscribers.index');
+        Route::resource('featured-items', Admin\FeaturedItemController::class)->except(['show', 'edit', 'create']);
+        Route::post('featured-items/reorder', [Admin\FeaturedItemController::class, 'reorder'])->name('featured-items.reorder');
         
         Route::delete('subscribers/{subscriber}', [SubscriberController::class, 'destroy'])
             ->name('subscribers.destroy');
