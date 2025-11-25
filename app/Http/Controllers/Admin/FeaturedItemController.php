@@ -37,6 +37,7 @@ class FeaturedItemController extends Controller
             'featuredable_id' => 'required|integer',
             'position' => 'required|integer',
         ]);
+        // $validated['featuredable_type'] = $validated['type'] === 'hero_article' ? 'App\\Models\\Article' : 'App\\Models\\Series';
 
         FeaturedItem::create($validated);
         return redirect()->back();
@@ -53,6 +54,7 @@ class FeaturedItemController extends Controller
             'featuredable_id' => 'sometimes|integer',
             'position' => 'sometimes|integer',
         ]);
+        // $validated['featuredable_type'] = $validated['type'] === 'hero_article' ? 'App\\Models\\Article' : 'App\\Models\\Series';
 
         $featuredItem->update($validated);
         return redirect()->back();

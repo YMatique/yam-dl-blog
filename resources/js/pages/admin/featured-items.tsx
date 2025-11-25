@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableHead } from '@/components/ui/table';
 import { Plus, Edit, Trash2, GripHorizontal } from 'lucide-react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable, DroppableProvided, DraggableProvided } from 'react-beautiful-dnd';
 
 interface FeaturedItem {
   id: number;
@@ -180,7 +180,7 @@ export default function FeaturedItems({ items, articles, series }: Props) {
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-3 items-center gap-4">
               <label className="text-right">Tipo</label>
-              <Select value={type} onValueChange={setType}>
+              <Select value={type} onValueChange={(value) => setType(value as any)}>
                 <SelectTrigger className="col-span-2">
                   <SelectValue placeholder="Selecione o tipo" />
                 </SelectTrigger>

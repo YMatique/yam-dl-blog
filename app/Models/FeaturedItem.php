@@ -12,6 +12,8 @@ class FeaturedItem extends Model
 
     protected $fillable = [
         'type',
+        'featuredable_type',
+        'featuredable_id',
         'position',
     ];
 

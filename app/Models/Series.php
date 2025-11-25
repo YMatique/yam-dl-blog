@@ -83,14 +83,19 @@ class Series extends Model
     }
 
     // Accessors
+    // Ensure default values for attributes
+    protected $attributes = [
+        'total_articles' => 0,
+    ];
+
     public function getProgressAttribute(): int
     {
-        if ($this->total_articles === 0) {
+        // Guard against null or zero total_articles to avoid division by zero
+        if (empty($this->total_articles)) {
             return 0;
         }
-        
         $publishedCount = $this->articles()->published()->count();
-        return round(($publishedCount / $this->total_articles) * 100);
+        return (int) round(($publishedCount / $this->total_articles) * 100);
     }
        /**
      * Verifica se a série está completa
