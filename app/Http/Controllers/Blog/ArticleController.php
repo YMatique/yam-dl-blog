@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Models\FeaturedItem;
 use Inertia\Inertia;
 
 class ArticleController extends Controller
@@ -84,7 +85,12 @@ class ArticleController extends Controller
             ->take(15)
             ->get();
 
-        $articleHighlight = Article::with('category')->take(2)->get();
+        $articleHighlight = FeaturedItem::where('type', 'featured_article')
+        ->orderBy('position')
+        ->with('featuredable.category')
+        ->take(2)
+        ->get()
+        ->map->featuredable;
 
         return Inertia::render('blog/articles', [
             'articles' => $articles,
