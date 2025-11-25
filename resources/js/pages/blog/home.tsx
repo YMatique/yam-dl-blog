@@ -12,9 +12,12 @@ import { Link } from '@inertiajs/react';
  */
 export default function Home({
     articles,
-    featuredPosts,
+    // featuredPosts,
     categories,
     popularTags,
+    heroArticles,
+    featuredArticles,
+    // featuredSeriesItems,
     featuredSeries,
 }: BlogIndexProps) {
     return (
@@ -22,7 +25,7 @@ export default function Home({
             <div className="bg-white">
                 <div className="container pt-30">
                     {/* ========== SLIDER DE ARTIGOS EM DESTAQUE ========== */}
-                    <FeaturedSlider articles={featuredPosts} />
+                    <FeaturedSlider articles={heroArticles} />
 
                     {/* ========== TAGS POPULARES ========== */}
                     <div className="hot-tags font-small align-self-center pt-30 pb-30">
@@ -62,7 +65,7 @@ export default function Home({
                         <div className="row">
                             {/* ArticleHighlight - 2 Artigos em Destaque */}
                             <div className="col-lg-8">
-                                <ArticleHighlight articles={featuredPosts} />
+                                <ArticleHighlight articles={featuredArticles} />
                                 <div className="mt-40 mb-30">
                                     <PostList
                                         articles={articles.data.slice(0, 2)}
@@ -76,7 +79,7 @@ export default function Home({
                             {/* Cards Individuais (restantes) */}
                             <div className="col-lg-4">
                                 <PostList
-                                    articles={articles.data.slice(0, 2)}
+                                    articles={articles.data.slice(2, 4)}
                                     columns={1}
                                     showExcerpt={false}
                                     showSocial={true}
@@ -202,7 +205,7 @@ export default function Home({
 
                         {/* Grid 3 colunas x 2 linhas (6 artigos) */}
                         <PostList
-                            articles={articles.data.slice(6, 12)}
+                            articles={articles.data.slice(4, 10)}
                             columns={3}
                             showExcerpt={false}
                             showSocial={true}

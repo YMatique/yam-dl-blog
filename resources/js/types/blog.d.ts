@@ -201,10 +201,13 @@ export interface PaginatedData<T> {
  */
 export interface BlogIndexProps {
     articles: PaginatedData<Article>;
-    featuredPosts: Article[];
+    // featuredPosts: Article[];
     categories: Category[];
     popularTags: Tag[];
     featuredSeries: Series[];
+    heroArticles: Article[];
+    featuredArticles: Article[];
+    // featuredSeriesItems: Article[];
     filters?: {
         category?: number;
         tag?: number;
