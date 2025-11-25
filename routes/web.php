@@ -62,8 +62,8 @@ Route::prefix('admin')->name('admin.')
         Route::resource('articles', AdminArticleController::class);
         Route::resource('series',SeriesController::class);
         Route::resource('categories', AdminCategoryController::class);
-        Route::resource('featured-items', Admin\FeaturedItemController::class)->except(['show', 'edit', 'create']);
-        Route::post('featured-items/reorder', [Admin\FeaturedItemController::class, 'reorder'])->name('featured-items.reorder');
+        Route::resource('featured-items', FeaturedItemController::class)->except(['show', 'edit', 'create']);
+        Route::post('featured-items/reorder', [FeaturedItemController::class, 'reorder'])->name('featured-items.reorder');
         
         Route::delete('subscribers/{subscriber}', [SubscriberController::class, 'destroy'])
             ->name('subscribers.destroy');
