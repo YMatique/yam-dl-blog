@@ -11,6 +11,7 @@ import {
     Settings,
     Tags,
     Users,
+    Package
 } from 'lucide-react';
 
 interface AdminSidebarProps {
@@ -19,15 +20,16 @@ interface AdminSidebarProps {
 }
 
 const menuItems = [
-    { icon: Home, label: 'Dashboard', href: '/admin' },
-    { icon: FileText, label: 'Artigos', href: '/admin/articles' },
-    { icon: BookOpen, label: 'Séries', href: '/admin/series' },
-    { icon: FolderTree, label: 'Categorias', href: '/admin/categories' },
-    { icon: Tags, label: 'Tags', href: '/admin/tags' },
-    { icon: MessageSquare, label: 'Comentários', href: '/admin/comments' },
-    { icon: Mail, label: 'Newsletter', href: '/admin/subscribers' },
-    { icon: Users, label: 'Usuários', href: '/admin/users' },
-    { icon: Settings, label: 'Configurações', href: '/admin/settings' },
+    { icon: Home, label: 'Dashboard', href: '/scm/dashboard' },
+    { icon: FileText, label: 'Artigos', href: '/scm/articles' },
+    { icon: BookOpen, label: 'Séries', href: '/scm/series' },
+    { icon: Package, label: 'Destaques', href: '/scm/featured-items' },
+    { icon: FolderTree, label: 'Categorias', href: '/scm/categories' },
+    { icon: Tags, label: 'Tags', href: '/scm/tags' },
+    { icon: MessageSquare, label: 'Comentários', href: '/scm/comments' },
+    { icon: Mail, label: 'Newsletter', href: '/scm/subscribers' },
+    { icon: Users, label: 'Usuários', href: '/scm/users' },
+    { icon: Settings, label: 'Configurações', href: '/scm/settings' },
 ];
 
 export default function AdminSidebar({
