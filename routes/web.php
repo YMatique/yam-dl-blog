@@ -52,12 +52,12 @@ Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'uns
 //         return Inertia::render('dashboard');
 //     })->name('dashboard');
 // });
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')
+Route::middleware(['auth', 'verified'])->prefix('scm')->name('admin.')
     ->group(function () {
         // Route::get('/', function () {
         //     return Inertia::render('admin/dashboard');
         // })->name('dashboard');
-        Route::get('/',[DashboardController::class,'index'])->name('dashboard');
+        Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
         Route::resource('articles', AdminArticleController::class);
         Route::resource('series',SeriesController::class);

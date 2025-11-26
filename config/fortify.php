@@ -86,7 +86,7 @@ return [
     |
     */
 
-    'prefix' => '',
+    'prefix' => 'yamdl-auth',
 
     'domain' => null,
 
