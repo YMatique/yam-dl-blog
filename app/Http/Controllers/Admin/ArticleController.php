@@ -119,8 +119,9 @@ class ArticleController extends Controller
         $article->load(['category', 'series', 'tags']);
         
         $categories = Category::orderBy('name')->get();
-          $tags = Tag::orderBy('name')->get();
-          $series = Series::orderBy('title')->get();
+        $tags = Tag::orderBy('name')->get();
+        $series = Series::orderBy('title')->get();
+         
         
         return Inertia::render('admin/articles/edit', [
             'article' => $article,
