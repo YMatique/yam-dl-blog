@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\FeaturedItemController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Blog\ArticleController;
 use App\Http\Controllers\Blog\CategoryController;
 use App\Http\Controllers\Blog\ContactController;
@@ -64,6 +65,7 @@ Route::middleware(['auth', 'verified'])->prefix('scm')->name('admin.')
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('featured-items', FeaturedItemController::class)->except(['show', 'edit', 'create']);
         Route::post('featured-items/reorder', [FeaturedItemController::class, 'reorder'])->name('featured-items.reorder');
+        Route::resource('users', UserController::class)->except(['show', 'create', 'edit']);
         
         Route::delete('subscribers/{subscriber}', [SubscriberController::class, 'destroy'])
             ->name('subscribers.destroy');
