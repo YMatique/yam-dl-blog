@@ -52,7 +52,7 @@ Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'uns
 //         return Inertia::render('dashboard');
 //     })->name('dashboard');
 // });
-Route::prefix('admin')->name('admin.')
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')
     ->group(function () {
         // Route::get('/', function () {
         //     return Inertia::render('admin/dashboard');

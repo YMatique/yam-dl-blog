@@ -1,113 +1,158 @@
-import InputError from '@/components/input-error';
-import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
-import AuthLayout from '@/layouts/auth-layout';
-import { register } from '@/routes';
-import { store } from '@/routes/login';
+import { Head, Link, useForm } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
+import InputError from '@/components/input-error';
+import { login, register } from '@/routes';
 import { request } from '@/routes/password';
-import { Form, Head } from '@inertiajs/react';
 
-interface LoginProps {
-    status?: string;
-    canResetPassword: boolean;
-}
+export default function Login({ status, canResetPassword }: { status?: string; canResetPassword: boolean }) {
+    const { data, setData, post, processing, errors, reset } = useForm({
+        email: '',
+        password: '',
+        remember: false,
+    });
 
-export default function Login({ status, canResetPassword }: LoginProps) {
+    const submit: FormEventHandler = (e) => {
+        e.preventDefault();
+        post(login(), {
+            onFinish: () => reset('password'),
+        });
+    };
+
     return (
-        <AuthLayout
-            title="Log in to your account"
-            description="Enter your email and password below to log in"
-        >
+        <div className="flex min-h-screen w-full">
             <Head title="Log in" />
+            
+            {/* Left Side - Hero/Branding */}
+            <div className="hidden w-1/2 flex-col justify-between bg-zinc-900 p-10 text-white lg:flex">
+                <div className="flex items-center gap-2 font-medium">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-md bg-white/10 backdrop-blur-sm">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="h-5 w-5"
+                        >
+                            <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+                        </svg>
+                    </div>
+                    <span>Yam DL Blog</span>
+                </div>
+                
+                <div className="space-y-6">
+                    <h1 className="text-4xl font-bold tracking-tight">
+                        Welcome back to the community.
+                    </h1>
+                    <p className="text-lg text-zinc-400">
+                        Discover the latest articles, tutorials, and resources to level up your development skills.
+                    </p>
+                </div>
 
-            <Form
-                {...store.form()}
-                resetOnSuccess={['password']}
-                className="flex flex-col gap-6"
-            >
-                {({ processing, errors }) => (
-                    <>
-                        <div className="grid gap-6">
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
+                <div className="flex items-center gap-4 text-sm text-zinc-500">
+                    <span>© 2025 Yam DL Blog</span>
+                    <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
+                    <Link href="#" className="hover:text-white transition-colors">Terms</Link>
+                </div>
+            </div>
+
+            {/* Right Side - Login Form */}
+            <div className="flex w-full flex-col justify-center bg-background p-8 lg:w-1/2 lg:p-12">
+                <div className="mx-auto flex w-full max-w-[400px] flex-col justify-center space-y-6">
+                    <div className="flex flex-col space-y-2 text-center">
+                        <h1 className="text-2xl font-semibold tracking-tight">
+                            Sign in to your account
+                        </h1>
+                        <p className="text-sm text-muted-foreground">
+                            Enter your email below to access your dashboard
+                        </p>
+                    </div>
+
+                    {status && (
+                        <div className="rounded-md bg-green-50 p-4 text-sm font-medium text-green-600 dark:bg-green-900/30 dark:text-green-400">
+                            {status}
+                        </div>
+                    )}
+
+                    <form onSubmit={submit} className="space-y-6">
+                        <div className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="email">Email</Label>
                                 <Input
                                     id="email"
                                     type="email"
-                                    name="email"
+                                    placeholder="name@example.com"
+                                    value={data.email}
+                                    onChange={(e) => setData('email', e.target.value)}
                                     required
                                     autoFocus
-                                    tabIndex={1}
-                                    autoComplete="email"
-                                    placeholder="email@example.com"
+                                    autoComplete="username"
                                 />
                                 <InputError message={errors.email} />
                             </div>
-
-                            <div className="grid gap-2">
-                                <div className="flex items-center">
+                            
+                            <div className="space-y-2">
+                                <div className="flex items-center justify-between">
                                     <Label htmlFor="password">Password</Label>
                                     {canResetPassword && (
-                                        <TextLink
+                                        <Link
                                             href={request()}
-                                            className="ml-auto text-sm"
-                                            tabIndex={5}
+                                            className="text-sm font-medium text-primary hover:underline"
                                         >
                                             Forgot password?
-                                        </TextLink>
+                                        </Link>
                                     )}
                                 </div>
                                 <Input
                                     id="password"
                                     type="password"
-                                    name="password"
+                                    value={data.password}
+                                    onChange={(e) => setData('password', e.target.value)}
                                     required
-                                    tabIndex={2}
                                     autoComplete="current-password"
-                                    placeholder="Password"
                                 />
                                 <InputError message={errors.password} />
                             </div>
 
-                            <div className="flex items-center space-x-3">
+                            <div className="flex items-center space-x-2">
                                 <Checkbox
                                     id="remember"
-                                    name="remember"
-                                    tabIndex={3}
+                                    checked={data.remember}
+                                    onCheckedChange={(checked) => setData('remember', !!checked)}
                                 />
-                                <Label htmlFor="remember">Remember me</Label>
+                                <Label
+                                    htmlFor="remember"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Remember me
+                                </Label>
                             </div>
-
-                            <Button
-                                type="submit"
-                                className="mt-4 w-full"
-                                tabIndex={4}
-                                disabled={processing}
-                                data-test="login-button"
-                            >
-                                {processing && <Spinner />}
-                                Log in
-                            </Button>
                         </div>
 
-                        <div className="text-center text-sm text-muted-foreground">
-                            Don't have an account?{' '}
-                            <TextLink href={register()} tabIndex={5}>
-                                Sign up
-                            </TextLink>
-                        </div>
-                    </>
-                )}
-            </Form>
+                        <Button className="w-full" type="submit" disabled={processing}>
+                            {processing && <Spinner className="mr-2 h-4 w-4 animate-spin" />}
+                            Sign In
+                        </Button>
+                    </form>
 
-            {status && (
-                <div className="mb-4 text-center text-sm font-medium text-green-600">
-                    {status}
+                    <div className="text-center text-sm text-muted-foreground">
+                        Don&apos;t have an account?{' '}
+                        <Link
+                            href={register()}
+                            className="font-medium text-primary underline-offset-4 hover:underline"
+                        >
+                            Sign up
+                        </Link>
+                    </div>
                 </div>
-            )}
-        </AuthLayout>
+            </div>
+        </div>
     );
 }
