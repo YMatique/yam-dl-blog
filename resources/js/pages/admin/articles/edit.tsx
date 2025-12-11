@@ -96,7 +96,7 @@ export default function Edit({
             excerpt: article.excerpt || '',
             featured_image: article.featured_image || '',
             category_id: article.category_id?.toString() || '',
-            series_id: article.series_id?.toString() || '',
+            series_id: article.series_id?.toString() || '0',
             status: article.status || 'draft',
             published_at: article.published_at || '',
             meta_title: article.meta_title || '',
@@ -166,8 +166,14 @@ export default function Edit({
             }
         }
 
+        // Transformar "0" em null para series_id
+        const submitData = {
+            ...data,
+            series_id: data.series_id === '0' ? null : data.series_id,
+        };
+
         // Atualizar artigo
-        router.put(`/scm/articles/${article.id}`, data, {
+        router.put(`/scm/articles/${article.id}`, submitData, {
             onSuccess: () => {
                 setImageFile(null);
             },
@@ -508,7 +514,7 @@ export default function Edit({
                             </Card>
 
                             {/* Série (Opcional) */}
-                            {/* {series.length > 0 && (
+                            {series.length > 0 && (
                                 <Card>
                                     <CardHeader>
                                         <CardTitle>Série (Opcional)</CardTitle>
@@ -531,7 +537,7 @@ export default function Edit({
                                                             </SelectTrigger>
                                                         </FormControl>
                                                         <SelectContent>
-                                                            <SelectItem value="">
+                                                            <SelectItem value="0">
                                                                 Nenhuma
                                                             </SelectItem>
                                                             {series.map((s) => (
@@ -550,7 +556,7 @@ export default function Edit({
                                         />
                                     </CardContent>
                                 </Card>
-                            )} */}
+                            )} 
 
                             {/* Status */}
                             <Card>
