@@ -44,13 +44,30 @@ class HomeController extends Controller
 
     $featuredSeries = FeaturedItem::where('type', 'featured_series')
         ->orderBy('position')
-        ->with('featuredable.articles')
-        ->take(2)
+        ->with(['featuredable' => function ($query) {
+            $query->with(['articles' => function ($q) {
+                $q->published()->orderBy('series_order');
+            }])->withCount(['articles' => function ($q) {
+                $q->published();
+            }]);
+        }])
+        ->take(10)
         ->get()
-        ->map->featuredable;
+        ->map->featuredable
+        ->filter(function ($series) {
+            return $series && $series->articles_count > 0;
+        })
+        ->take(2)
+        ->values();
 
 
-    $categories = Category::orderBy('order')->take(3)->get();
+    $categories = Category::withCount(['articles' => function ($query) {
+            $query->published();
+        }])
+        ->having('articles_count', '>', 0)
+        ->orderBy('order')
+        ->take(3)
+        ->get();
     
     $popularTags = Tag::take(10)->get();
     // $series = Series::take(2)->get();
