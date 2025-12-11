@@ -82,7 +82,7 @@ export default function Index({ tags, filters }: Props) {
 
     const applyFilters = () => {
         router.get(
-            '/admin/tags',
+            '/scm/tags',
             { search: search || undefined },
             { preserveState: true, preserveScroll: true },
         );
@@ -90,7 +90,7 @@ export default function Index({ tags, filters }: Props) {
 
     const clearFilters = () => {
         setSearch('');
-        router.get('/admin/tags');
+        router.get('/scm/tags');
     };
 
     const openCreateDialog = () => {
@@ -112,8 +112,8 @@ export default function Index({ tags, filters }: Props) {
 
     const handleSubmit = async (data: TagFormData) => {
         const url = formDialog.tag
-            ? `/admin/tags/${formDialog.tag.id}`
-            : '/admin/tags';
+            ? `/scm/tags/${formDialog.tag.id}`
+            : '/scm/tags';
         const method = formDialog.tag ? 'put' : 'post';
 
         try {
@@ -147,7 +147,7 @@ export default function Index({ tags, filters }: Props) {
         if (!deleteDialog.tag) return;
 
         try {
-            const response = await fetch(`/admin/tags/${deleteDialog.tag.id}`, {
+            const response = await fetch(`/scm/tags/${deleteDialog.tag.id}`, {
                 method: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN':

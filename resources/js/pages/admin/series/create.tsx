@@ -91,7 +91,7 @@ export default function Create() {
             }
         }
 
-        router.post('/admin/series', data, {
+        router.post('/scm/series', data, {
             onSuccess: () => {
                 form.reset();
                 setImageFile(null);
@@ -103,7 +103,7 @@ export default function Create() {
         <AdminLayout
             title="Nova Série"
             breadcrumbs={[
-                { label: 'Séries', href: '/admin/series' },
+                { label: 'Séries', href: '/scm/series' },
                 { label: 'Nova' },
             ]}
         >

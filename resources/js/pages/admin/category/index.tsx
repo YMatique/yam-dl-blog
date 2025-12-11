@@ -69,7 +69,7 @@ export default function Index({ categories, filters }: Props) {
 
     const applyFilters = () => {
         router.get(
-            '/admin/categories',
+            '/scm/categories',
             { search: search || undefined },
             { preserveState: true, preserveScroll: true },
         );
@@ -77,13 +77,13 @@ export default function Index({ categories, filters }: Props) {
 
     const clearFilters = () => {
         setSearch('');
-        router.get('/admin/categories');
+        router.get('/scm/categories');
     };
 
     const handleDelete = () => {
         if (!deleteDialog.category) return;
 
-        router.delete(`/admin/categories/${deleteDialog.category.id}`, {
+        router.delete(`/scm/categories/${deleteDialog.category.id}`, {
             onSuccess: () => {
                 setDeleteDialog({ open: false, category: null });
             },
@@ -104,7 +104,7 @@ export default function Index({ categories, filters }: Props) {
                         </p>
                     </div>
                     <Button asChild>
-                        <Link href="/admin/categories/create">
+                        <Link href="/scm/categories/create">
                             <Plus className="mr-2 h-4 w-4" />
                             Nova Categoria
                         </Link>
@@ -229,7 +229,7 @@ export default function Index({ categories, filters }: Props) {
                                                 <DropdownMenuContent align="end">
                                                     <DropdownMenuItem asChild>
                                                         <Link
-                                                            href={`/category/${category.slug}`}
+                                                            href={`/categoria/${category.slug}`}
                                                             target="_blank"
                                                         >
                                                             <Eye className="mr-2 h-4 w-4" />
@@ -238,7 +238,7 @@ export default function Index({ categories, filters }: Props) {
                                                     </DropdownMenuItem>
                                                     <DropdownMenuItem asChild>
                                                         <Link
-                                                            href={`/admin/categories/${category.id}/edit`}
+                                                            href={`/scm/categories/${category.id}/edit`}
                                                         >
                                                             <Edit className="mr-2 h-4 w-4" />
                                                             Editar

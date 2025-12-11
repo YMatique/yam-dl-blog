@@ -87,7 +87,7 @@ export default function Index({ subscribers, stats, filters }: Props) {
 
     const applyFilters = () => {
         router.get(
-            '/admin/subscribers',
+            '/scm/subscribers',
             {
                 search: search || undefined,
                 status: status !== 'all' ? status : undefined,
@@ -99,7 +99,7 @@ export default function Index({ subscribers, stats, filters }: Props) {
     const clearFilters = () => {
         setSearch('');
         setStatus('all');
-        router.get('/admin/subscribers');
+        router.get('/scm/subscribers');
     };
 
     const handleDelete = async () => {
@@ -107,7 +107,7 @@ export default function Index({ subscribers, stats, filters }: Props) {
 
         try {
             const response = await fetch(
-                `/admin/subscribers/${deleteDialog.subscriber.id}`,
+                `/scm/subscribers/${deleteDialog.subscriber.id}`,
                 {
                     method: 'DELETE',
                     headers: {
@@ -135,7 +135,7 @@ export default function Index({ subscribers, stats, filters }: Props) {
         if (search) params.append('search', search);
         if (status !== 'all') params.append('status', status);
 
-        window.location.href = `/admin/subscribers/export?${params.toString()}`;
+        window.location.href = `/scm/subscribers/export?${params.toString()}`;
     };
 
     const getStatusBadge = (subscriber: Subscriber) => {

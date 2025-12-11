@@ -59,14 +59,14 @@ Route::middleware(['auth', 'verified'])->prefix('scm')->name('admin.')
         //     return Inertia::render('admin/dashboard');
         // })->name('dashboard');
         Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
-
+        Route::resource('tags', TagController::class);
         Route::resource('articles', AdminArticleController::class);
         Route::resource('series',SeriesController::class);
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('featured-items', FeaturedItemController::class)->except(['show', 'edit', 'create']);
         Route::post('featured-items/reorder', [FeaturedItemController::class, 'reorder'])->name('featured-items.reorder');
         Route::resource('users', UserController::class)->except(['show', 'create', 'edit']);
-        
+        Route::get('subscribers', [SubscriberController::class, 'index']);
         Route::delete('subscribers/{subscriber}', [SubscriberController::class, 'destroy'])
             ->name('subscribers.destroy');
         Route::get('settings',[SettingsController::class,'index'])->name('settings');
