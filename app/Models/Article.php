@@ -170,13 +170,21 @@ class Article extends Model
 
     public function recordView(string $ipAddress, ?string $userAgent = null, ?int $userId = null): void
     {
-        $this->views()->create([
-            'ip_address' => $ipAddress,
-            'user_agent' => $userAgent,
-            'user_id' => $userId
-        ]);
+        // Evitar duplicatas (mesmo IP/UserAgent no último dia, por exemplo)
+        // Ou apenas verificar se já existe para este IP neste artigo hoje
+        $exists = $this->views()
+            ->where('ip_address', $ipAddress)
+            ->where('created_at', '>=', now()->subHours(24))
+            ->exists();
 
-        $this->increment('views_count');
+        if (!$exists) {
+            $this->views()->create([
+                'ip_address' => $ipAddress,
+                'user_agent' => $userAgent,
+                'user_id' => $userId
+            ]);
+            // O Observer vai incrementar o views_count automaticamente
+        }
     }
 
     public function syncTags(array $tagIds): void
