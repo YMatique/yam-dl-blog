@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Upload, X } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 interface ImageUploadProps {
@@ -25,6 +25,10 @@ export default function ImageUpload({
 }: ImageUploadProps) {
     const [preview, setPreview] = useState<string | undefined>(value);
     const [error, setError] = useState<string>('');
+
+    useEffect(() => {
+        setPreview(value);
+    }, [value]);
 
     const onDrop = useCallback(
         (acceptedFiles: File[]) => {

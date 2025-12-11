@@ -2676,3 +2676,1291 @@ kutenga-erp/
 │ │ ├── Middleware/
 │ │ │ ├── InitializeTenancyByDomain.php
 │ │ │ ├── EnsureModuleIsActive.
+│   │   │   ├── CheckUserPermission.php
+│   │   │   └── AuditLog.php
+│   │   │
+│   │   └── Requests/
+│   │       ├── Customers/
+│   │       │   ├── StoreCustomerRequest.php
+│   │       │   └── UpdateCustomerRequest.php
+│   │       ├── Inventory/
+│   │       │   └── RegisterMovementRequest.php
+│   │       ├── Sales/
+│   │       │   └── CreateSaleRequest.php
+│   │       └── ...
+│   │
+│   ├── Jobs/
+│   │   ├── ProcessInventoryMovement.php
+│   │   ├── GenerateInvoicePdf.php
+│   │   ├── SendInvoiceEmail.php
+│   │   ├── SendPaymentReminder.php
+│   │   ├── CheckOverdueReceivables.php
+│   │   └── ...
+│   │
+│   ├── Listeners/
+│   │   ├── Sales/
+│   │   │   ├── UpdateInventoryOnSaleConfirmed.php
+│   │   │   ├── GenerateInvoiceOnSaleConfirmed.php
+│   │   │   ├── CreateReceivableOnSaleConfirmed.php
+│   │   │   └── ...
+│   │   ├── Inventory/
+│   │   │   ├── SendLowStockAlert.php
+│   │   │   └── ...
+│   │   └── Financial/
+│   │       ├── BlockCustomerOnOverdue.php
+│   │       └── ...
+│   │
+│   ├── Models/
+│   │   ├── Tenant.php
+│   │   ├── User.php
+│   │   ├── Customer.php
+│   │   ├── CustomerAddress.php
+│   │   ├── Item.php
+│   │   ├── Product.php
+│   │   ├── Service.php
+│   │   ├── Category.php
+│   │   ├── Warehouse.php
+│   │   ├── InventoryMovement.php
+│   │   ├── InventoryBalance.php
+│   │   ├── Lot.php
+│   │   ├── Sale.php
+│   │   ├── SaleItem.php
+│   │   ├── Payment.php
+│   │   ├── Invoice.php
+│   │   ├── InvoiceItem.php
+│   │   ├── AccountReceivable.php
+│   │   ├── AccountPayable.php
+│   │   ├── BankAccount.php
+│   │   └── ...
+│   │
+│   ├── Policies/
+│   │   ├── CustomerPolicy.php
+│   │   ├── SalePolicy.php
+│   │   ├── InvoicePolicy.php
+│   │   └── ...
+│   │
+│   ├── Providers/
+│   │   ├── AppServiceProvider.php
+│   │   ├── AuthServiceProvider.php
+│   │   ├── EventServiceProvider.php
+│   │   └── RouteServiceProvider.php
+│   │
+│   ├── Repositories/
+│   │   ├── Contracts/
+│   │   │   ├── CustomerRepositoryInterface.php
+│   │   │   ├── ProductRepositoryInterface.php
+│   │   │   ├── InventoryRepositoryInterface.php
+│   │   │   └── ...
+│   │   └── Eloquent/
+│   │       ├── CustomerRepository.php
+│   │       ├── ProductRepository.php
+│   │       ├── InventoryRepository.php
+│   │       └── ...
+│   │
+│   └── Services/
+│       ├── Customers/
+│       │   └── CustomerService.php
+│       ├── Catalog/
+│       │   └── CatalogService.php
+│       ├── Inventory/
+│       │   ├── InventoryService.php
+│       │   ├── MovementService.php
+│       │   ├── BalanceCalculator.php
+│       │   └── StockValidator.php
+│       ├── Sales/
+│       │   ├── SalesService.php
+│       │   ├── PricingEngine.php
+│       │   └── PaymentProcessor.php
+│       ├── Invoicing/
+│       │   ├── InvoicingService.php
+│       │   ├── DocumentNumbering.php
+│       │   └── PdfGenerator.php
+│       ├── Financial/
+│       │   ├── ReceivableService.php
+│       │   ├── PayableService.php
+│       │   └── CashFlowService.php
+│       └── Tenant/
+│           ├── TenantOnboardingService.php
+│           └── ModuleActivationService.php
+│
+├── bootstrap/
+│   └── app.php
+│
+├── config/
+│   ├── app.php
+│   ├── database.php
+│   ├── tenancy.php
+│   ├── modules.php
+│   ├── invoicing.php
+│   └── ...
+│
+├── database/
+│   ├── migrations/
+│   │   ├── landlord/
+│   │   │   ├── 2024_01_01_create_tenants_table.php
+│   │   │   ├── 2024_01_02_create_users_table.php
+│   │   │   └── ...
+│   │   └── tenant/
+│   │       ├── 2024_01_03_create_customers_table.php
+│   │       ├── 2024_01_04_create_items_table.php
+│   │       ├── 2024_01_05_create_warehouses_table.php
+│   │       ├── 2024_01_06_create_inventory_movements_table.php
+│   │       ├── 2024_01_07_create_sales_table.php
+│   │       └── ...
+│   │
+│   ├── seeders/
+│   │   ├── TenantSeeder.php
+│   │   ├── UserSeeder.php
+│   │   ├── DemoDataSeeder.php
+│   │   └── ...
+│   │
+│   └── factories/
+│       ├── CustomerFactory.php
+│       ├── ProductFactory.php
+│       ├── SaleFactory.php
+│       └── ...
+│
+├── resources/
+│   ├── js/
+│   │   ├── app.tsx
+│   │   ├── bootstrap.ts
+│   │   │
+│   │   ├── Components/
+│   │   │   ├── Common/
+│   │   │   │   ├── Button.tsx
+│   │   │   │   ├── Input.tsx
+│   │   │   │   ├── Select.tsx
+│   │   │   │   ├── Table.tsx
+│   │   │   │   ├── Modal.tsx
+│   │   │   │   ├── Alert.tsx
+│   │   │   │   └── ...
+│   │   │   │
+│   │   │   ├── Layout/
+│   │   │   │   ├── AppLayout.tsx
+│   │   │   │   ├── Sidebar.tsx
+│   │   │   │   ├── Header.tsx
+│   │   │   │   └── Footer.tsx
+│   │   │   │
+│   │   │   ├── Customers/
+│   │   │   │   ├── CustomerList.tsx
+│   │   │   │   ├── CustomerForm.tsx
+│   │   │   │   ├── CustomerDetails.tsx
+│   │   │   │   └── ...
+│   │   │   │
+│   │   │   ├── Catalog/
+│   │   │   │   ├── ItemList.tsx
+│   │   │   │   ├── ItemForm.tsx
+│   │   │   │   ├── CategoryTree.tsx
+│   │   │   │   └── ...
+│   │   │   │
+│   │   │   ├── Inventory/
+│   │   │   │   ├── WarehouseList.tsx
+│   │   │   │   ├── MovementForm.tsx
+│   │   │   │   ├── BalanceTable.tsx
+│   │   │   │   ├── PhysicalInventory.tsx
+│   │   │   │   ├── LowStockAlert.tsx
+│   │   │   │   └── ...
+│   │   │   │
+│   │   │   ├── Sales/
+│   │   │   │   ├── POSScreen.tsx
+│   │   │   │   ├── SalesList.tsx
+│   │   │   │   ├── QuoteForm.tsx
+│   │   │   │   ├── PaymentModal.tsx
+│   │   │   │   └── ...
+│   │   │   │
+│   │   │   ├── Invoicing/
+│   │   │   │   ├── InvoiceList.tsx
+│   │   │   │   ├── InvoicePreview.tsx
+│   │   │   │   ├── InvoiceTemplate.tsx
+│   │   │   │   └── ...
+│   │   │   │
+│   │   │   └── Financial/
+│   │   │       ├── ReceivableList.tsx
+│   │   │       ├── PayableList.tsx
+│   │   │       ├── CashFlowChart.tsx
+│   │   │       ├── DREReport.tsx
+│   │   │       └── ...
+│   │   │
+│   │   ├── Hooks/
+│   │   │   ├── useAuth.ts
+│   │   │   ├── useTenant.ts
+│   │   │   ├── usePermissions.ts
+│   │   │   ├── useModules.ts
+│   │   │   └── ...
+│   │   │
+│   │   ├── Pages/
+│   │   │   ├── Auth/
+│   │   │   │   ├── Login.tsx
+│   │   │   │   └── Register.tsx
+│   │   │   │
+│   │   │   ├── Dashboard/
+│   │   │   │   └── Index.tsx
+│   │   │   │
+│   │   │   ├── Customers/
+│   │   │   │   ├── Index.tsx
+│   │   │   │   ├── Create.tsx
+│   │   │   │   ├── Edit.tsx
+│   │   │   │   └── Show.tsx
+│   │   │   │
+│   │   │   ├── Inventory/
+│   │   │   │   ├── Dashboard.tsx
+│   │   │   │   ├── Movements.tsx
+│   │   │   │   ├── Balances.tsx
+│   │   │   │   └── Reports.tsx
+│   │   │   │
+│   │   │   ├── Sales/
+│   │   │   │   ├── POS.tsx
+│   │   │   │   ├── Index.tsx
+│   │   │   │   └── ...
+│   │   │   │
+│   │   │   └── ...
+│   │   │
+│   │   ├── Services/
+│   │   │   ├── api.ts
+│   │   │   ├── customerService.ts
+│   │   │   ├── inventoryService.ts
+│   │   │   ├── salesService.ts
+│   │   │   └── ...
+│   │   │
+│   │   ├── Store/
+│   │   │   ├── authStore.ts
+│   │   │   ├── cartStore.ts
+│   │   │   ├── settingsStore.ts
+│   │   │   └── ...
+│   │   │
+│   │   ├── Types/
+│   │   │   ├── customer.ts
+│   │   │   ├── product.ts
+│   │   │   ├── sale.ts
+│   │   │   ├── inventory.ts
+│   │   │   └── ...
+│   │   │
+│   │   └── Utils/
+│   │       ├── formatters.ts
+│   │       ├── validators.ts
+│   │       ├── currency.ts
+│   │       └── helpers.ts
+│   │
+│   └── css/
+│       └── app.css
+│
+├── routes/
+│   ├── api.php
+│   ├── web.php
+│   ├── tenant.php
+│   └── channels.php
+│
+├── storage/
+│   ├── app/
+│   ├── framework/
+│   └── logs/
+│
+├── tests/
+│   ├── Feature/
+│   │   ├── Auth/
+│   │   ├── Customers/
+│   │   ├── Inventory/
+│   │   │   ├── MovementTest.php
+│   │   │   ├── BalanceTest.php
+│   │   │   └── ...
+│   │   ├── Sales/
+│   │   │   ├── SaleTest.php
+│   │   │   ├── QuoteTest.php
+│   │   │   └── ...
+│   │   └── ...
+│   │
+│   └── Unit/
+│       ├── Services/
+│       │   ├── InventoryServiceTest.php
+│       │   ├── PricingEngineTest.php
+│       │   └── ...
+│       ├── Repositories/
+│       └── ...
+│
+├── .env.example
+├── .gitignore
+├── artisan
+├── composer.json
+├── package.json
+├── phpunit.xml
+├── README.md
+├── tsconfig.json
+└── vite.config.js
+
+---
+
+## 🔄 Integração entre Módulos
+
+### **Sistema de Eventos**
+
+KUTENGA usa **Event-Driven Architecture** para comunicação desacoplada.
+
+#### **Principais Eventos**
+```php
+// Eventos de Vendas
+SaleConfirmed         // Venda confirmada
+SaleCancelled         // Venda cancelada
+QuoteConverted        // Cotação convertida em venda
+
+// Eventos de Estoque
+StockLow              // Estoque baixo
+StockOut              // Ruptura de estoque
+MovementRegistered    // Movimentação registrada
+InventoryAdjusted     // Ajuste de estoque
+
+// Eventos de Faturação
+InvoiceGenerated      // Fatura gerada
+InvoiceCancelled      // Fatura cancelada
+InvoiceSent           // Fatura enviada
+
+// Eventos de Financeiro
+ReceivableOverdue     // Conta vencida
+PaymentReceived       // Pagamento recebido
+CustomerBlocked       // Cliente bloqueado
+```
+
+#### **Exemplo Completo: Fluxo de Venda**
+```php
+// 1. Controller confirma venda
+class SaleController extends Controller
+{
+    public function confirm(Sale $sale)
+    {
+        $sale->update(['status' => 'confirmed']);
+        
+        // Dispara evento
+        event(new SaleConfirmed($sale));
+        
+        return response()->json([
+            'message' => 'Venda confirmada com sucesso',
+            'sale' => new SaleResource($sale),
+        ]);
+    }
+}
+
+// 2. Listener: Atualiza Estoque
+class UpdateInventoryOnSaleConfirmed
+{
+    public function __construct(
+        private MovementService $movementService
+    ) {}
+    
+    public function handle(SaleConfirmed $event): void
+    {
+        // Verifica se módulo está ativo
+        if (!tenant()->hasModule('inventory')) {
+            return;
+        }
+        
+        $sale = $event->sale;
+        
+        foreach ($sale->items as $item) {
+            // Só processa produtos
+            if ($item->item_type !== 'product') {
+                continue;
+            }
+            
+            // Verifica se produto controla estoque
+            $product = $item->item;
+            if (!$product->controls_inventory) {
+                continue;
+            }
+            
+            // Registra movimentação de saída
+            $this->movementService->register([
+                'product_id' => $item->item_id,
+                'warehouse_id' => $sale->warehouse_id,
+                'type' => 'out',
+                'reason' => 'sale',
+                'quantity' => -$item->quantity,
+                'reference_type' => 'sale',
+                'reference_id' => $sale->id,
+                'lot_id' => $item->lot_id,
+                'serial_number' => $item->serial_number,
+                'performed_by' => $sale->created_by,
+            ]);
+        }
+    }
+}
+
+// 3. Listener: Gera Fatura
+class GenerateInvoiceOnSaleConfirmed
+{
+    public function __construct(
+        private InvoicingService $invoicingService
+    ) {}
+    
+    public function handle(SaleConfirmed $event): void
+    {
+        // Verifica se módulo está ativo
+        if (!tenant()->hasModule('invoicing')) {
+            return;
+        }
+        
+        $sale = $event->sale;
+        
+        // Gera fatura
+        $invoice = $this->invoicingService->generateFromSale($sale);
+        
+        // Atualiza venda com invoice_id
+        $sale->update(['invoice_id' => $invoice->id]);
+        
+        // Dispara evento de fatura gerada
+        event(new InvoiceGenerated($invoice));
+    }
+}
+
+// 4. Listener: Cria Conta a Receber
+class CreateReceivableOnSaleConfirmed
+{
+    public function __construct(
+        private ReceivableService $receivableService
+    ) {}
+    
+    public function handle(SaleConfirmed $event): void
+    {
+        // Verifica se módulo está ativo
+        if (!tenant()->hasModule('financial')) {
+            return;
+        }
+        
+        $sale = $event->sale;
+        
+        // Se venda à vista, não cria conta a receber
+        if ($sale->balance_due <= 0) {
+            return;
+        }
+        
+        // Cria conta a receber
+        $this->receivableService->create([
+            'customer_id' => $sale->customer_id,
+            'sale_id' => $sale->id,
+            'invoice_id' => $sale->invoice_id,
+            'original_amount' => $sale->balance_due,
+            'issue_date' => $sale->sale_date,
+            'due_date' => $sale->due_date,
+        ]);
+    }
+}
+
+// 5. Registro de Listeners
+// app/Providers/EventServiceProvider.php
+
+protected $listen = [
+    SaleConfirmed::class => [
+        UpdateInventoryOnSaleConfirmed::class,
+        GenerateInvoiceOnSaleConfirmed::class,
+        CreateReceivableOnSaleConfirmed::class,
+    ],
+];
+```
+
+#### **Diagrama de Fluxo**
+USER: Confirma venda no POS
+↓
+SALES: Atualiza status → "confirmed"
+↓
+EVENT: SaleConfirmed disparado
+↓
+├─→ LISTENER 1: UpdateInventoryOnSaleConfirmed
+│   ├─ hasModule('inventory')? → SIM
+│   ├─ Para cada produto na venda:
+│   │  ├─ Verifica controls_inventory
+│   │  ├─ Cria movimento de saída
+│   │  └─ Atualiza saldo
+│   └─ ✅ Estoque atualizado
+│
+├─→ LISTENER 2: GenerateInvoiceOnSaleConfirmed
+│   ├─ hasModule('invoicing')? → SIM
+│   ├─ Gera fatura
+│   ├─ Atribui numeração
+│   ├─ Calcula impostos
+│   ├─ Gera QR Code
+│   ├─ Cria PDF
+│   └─ ✅ Fatura gerada
+│
+└─→ LISTENER 3: CreateReceivableOnSaleConfirmed
+├─ hasModule('financial')? → SIM
+├─ balance_due > 0? → SIM (a prazo)
+├─ Cria conta a receber
+├─ Agenda cobrança
+└─ ✅ Financeiro atualizado
+RESULTADO FINAL:
+✅ Venda confirmada
+✅ Estoque atualizado
+✅ Fatura emitida
+✅ Conta a receber criada
+✅ Cliente notificado
+TEMPO TOTAL: < 3 segundos
+
+---
+
+## 📱 Dashboard e Interface
+
+### **Layout Principal**
+```typescript
+// AppLayout.tsx
+
+export default function AppLayout({ children }) {
+  const { tenant, modules } = usePage().props
+  
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* Sidebar */}
+      <Sidebar modules={modules} />
+      
+      {/* Main Area */}
+      <div className="md:pl-64">
+        {/* Header */}
+        <Header tenant={tenant} />
+        
+        {/* Content */}
+        <main className="py-6">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+            {children}
+          </div>
+        </main>
+      </div>
+    </div>
+  )
+}
+```
+
+### **Dashboard Principal**
+```typescript
+// Dashboard/Index.tsx
+
+interface DashboardProps {
+  stats: {
+    total_customers: number
+    total_products: number
+    total_sales_today: number
+    total_sales_month: number
+    inventory_value: number
+    pending_receivables: number
+    overdue_receivables: number
+  }
+  charts: {
+    sales_trend: { date: string, amount: number }[]
+    top_products: { name: string, quantity: number }[]
+  }
+  alerts: {
+    low_stock: Product[]
+    overdue_bills: AccountReceivable[]
+  }
+  recent_sales: Sale[]
+  active_modules: string[]
+}
+
+export default function Dashboard(props: DashboardProps) {
+  return (
+    <AppLayout title="Dashboard">
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <StatsCard
+          title="Clientes"
+          value={props.stats.total_customers}
+          icon={UsersIcon}
+        />
+        
+        <StatsCard
+          title="Vendas Hoje"
+          value={`${props.stats.total_sales_today.toLocaleString()} MT`}
+          icon={ShoppingCartIcon}
+          trend="+12%"
+        />
+        
+        {props.active_modules.includes('inventory') && (
+          <StatsCard
+            title="Valor em Estoque"
+            value={`${props.stats.inventory_value.toLocaleString()} MT`}
+            icon={CubeIcon}
+          />
+        )}
+        
+        {props.active_modules.includes('financial') && (
+          <StatsCard
+            title="A Receber"
+            value={`${props.stats.pending_receivables.toLocaleString()} MT`}
+            icon={BanknotesIcon}
+            subtitle={`${props.stats.overdue_receivables.toLocaleString()} MT vencido`}
+            alert={props.stats.overdue_receivables > 0}
+          />
+        )}
+      </div>
+
+      {/* Charts */}
+      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        {/* Sales Trend */}
+        <Card title="Vendas (Últimos 30 dias)">
+          <LineChart
+            data={props.charts.sales_trend}
+            xKey="date"
+            yKey="amount"
+          />
+        </Card>
+
+        {/* Top Products */}
+        <Card title="Produtos Mais Vendidos">
+          <BarChart
+            data={props.charts.top_products}
+            xKey="name"
+            yKey="quantity"
+          />
+        </Card>
+      </div>
+
+      {/* Alerts */}
+      {(props.alerts.low_stock.length > 0 || 
+        props.alerts.overdue_bills.length > 0) && (
+        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {/* Low Stock Alert */}
+          {props.active_modules.includes('inventory') && 
+           props.alerts.low_stock.length > 0 && (
+            <Alert variant="warning" title="Estoque Baixo">
+              <ul className="mt-2 space-y-1">
+                {props.alerts.low_stock.slice(0, 5).map(product => (
+                  <li key={product.id}>
+                    <strong>{product.name}</strong>: {product.available} unidades
+                  </li>
+                ))}
+              </ul>
+              <Link 
+                href="/inventory/balances?filter=low_stock"
+                className="mt-3 text-sm font-medium text-yellow-700"
+              >
+                Ver todos ({props.alerts.low_stock.length})
+              </Link>
+            </Alert>
+          )}
+
+          {/* Overdue Bills */}
+          {props.active_modules.includes('financial') && 
+           props.alerts.overdue_bills.length > 0 && (
+            <Alert variant="error" title="Contas Vencidas">
+              <ul className="mt-2 space-y-1">
+                {props.alerts.overdue_bills.slice(0, 5).map(bill => (
+                  <li key={bill.id}>
+                    <strong>{bill.customer.name}</strong>: {
+                      bill.balance_due.toLocaleString()
+                    } MT ({bill.days_past_due} dias)
+                  </li>
+                ))}
+              </ul>
+              <Link 
+                href="/financial/receivables?filter=overdue"
+                className="mt-3 text-sm font-medium text-red-700"
+              >
+                Ver todos ({props.alerts.overdue_bills.length})
+              </Link>
+            </Alert>
+          )}
+        </div>
+      )}
+
+      {/* Recent Sales */}
+      <div className="mt-6">
+        <Card title="Vendas Recentes">
+          <Table
+            columns={[
+              { key: 'sale_number', label: 'Número' },
+              { key: 'customer.name', label: 'Cliente' },
+              { key: 'total_amount', label: 'Valor', format: 'currency' },
+              { key: 'sale_date', label: 'Data', format: 'datetime' },
+              { key: 'status', label: 'Status', format: 'badge' },
+            ]}
+            data={props.recent_sales}
+            onRowClick={(sale) => router.visit(`/sales/${sale.id}`)}
+          />
+        </Card>
+      </div>
+    </AppLayout>
+  )
+}
+```
+
+### **Sidebar com Módulos**
+```typescript
+// Sidebar.tsx
+
+export default function Sidebar({ modules }: { modules: string[] }) {
+  const navigation = [
+    {
+      name: 'Dashboard',
+      href: '/dashboard',
+      icon: HomeIcon,
+      always: true,
+    },
+    
+    // Módulo Customers
+    {
+      name: 'Clientes',
+      icon: UsersIcon,
+      module: 'customers',
+      children: [
+        { name: 'Lista', href: '/customers' },
+        { name: 'Novo Cliente', href: '/customers/create' },
+        { name: 'Categorias', href: '/customers/categories' },
+      ],
+    },
+    
+    // Módulo Catalog
+    {
+      name: 'Catálogo',
+      icon: BookOpenIcon,
+      module: 'catalog',
+      children: [
+        { name: 'Produtos', href: '/items/products' },
+        { name: 'Serviços', href: '/items/services' },
+        { name: 'Categorias', href: '/categories' },
+        { name: 'Marcas', href: '/brands' },
+      ],
+    },
+    
+    // Módulo Inventory
+    {
+      name: 'Estoque',
+      icon: CubeIcon,
+      module: 'inventory',
+      badge: '3', // Alertas
+      children: [
+        { name: 'Dashboard', href: '/inventory/dashboard' },
+        { name: 'Saldos', href: '/inventory/balances' },
+        { name: 'Movimentações', href: '/inventory/movements' },
+        { name: 'Armazéns', href: '/inventory/warehouses' },
+        { name: 'Inventário Físico', href: '/inventory/physical' },
+        { name: 'Relatórios', href: '/inventory/reports' },
+      ],
+    },
+    
+    // Módulo Sales
+    {
+      name: 'Vendas',
+      icon: ShoppingCartIcon,
+      module: 'sales',
+      children: [
+        { name: 'POS', href: '/sales/pos', icon: ComputerDesktopIcon },
+        { name: 'Vendas', href: '/sales' },
+        { name: 'Cotações', href: '/sales/quotes' },
+        { name: 'Caixa', href: '/sales/cash-register' },
+      ],
+    },
+    
+    // Módulo Invoicing
+    {
+      name: 'Faturação',
+      icon: DocumentTextIcon,
+      module: 'invoicing',
+      children: [
+        { name: 'Documentos', href: '/invoices' },
+        { name: 'Séries', href: '/invoice-series' },
+        { name: 'Configurações Fiscais', href: '/invoices/tax-config' },
+        { name: 'Relatórios', href: '/invoices/reports' },
+      ],
+    },
+    
+    // Módulo Financial
+    {
+      name: 'Financeiro',
+      icon: BanknotesIcon,
+      module: 'financial',
+      badge: '8', // Contas vencidas
+      children: [
+        { name: 'Dashboard', href: '/financial/dashboard' },
+        { name: 'Contas a Receber', href: '/financial/receivables' },
+        { name: 'Contas a Pagar', href: '/financial/payables' },
+        { name: 'Fluxo de Caixa', href: '/financial/cash-flow' },
+        { name: 'Contas Bancárias', href: '/financial/bank-accounts' },
+        { name: 'Relatórios', href: '/financial/reports' },
+      ],
+    },
+  ]
+
+  return (
+    <div className="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900">
+      {/* Logo */}
+      <div className="flex h-16 items-center px-6">
+        <h1 className="text-xl font-bold text-white">KUTENGA ERP</h1>
+      </div>
+
+      {/* Navigation */}
+      <nav className="mt-6 px-3">
+        {navigation.map((item) => {
+          // Se módulo não está ativo, mostra bloqueado
+          if (item.module && !modules.includes(item.module)) {
+            return (
+              <div key={item.name} className="group mb-2">
+                <div className="flex items-center justify-between rounded-lg px-3 py-2 text-gray-400">
+                  <div className="flex items-center">
+                    <item.icon className="mr-3 h-5 w-5" />
+                    <span>{item.name}</span>
+                  </div>
+                  <LockClosedIcon className="h-4 w-4" />
+                </div>
+                <button 
+                  onClick={() => router.visit('/subscription/upgrade')}
+                  className="ml-11 mt-1 text-xs text-blue-400 hover:text-blue-300"
+                >
+                  Contratar Módulo
+                </button>
+              </div>
+            )
+          }
+
+          return (
+            <NavigationItem key={item.name} item={item} />
+          )
+        })}
+      </nav>
+
+      {/* Footer */}
+      <div className="absolute bottom-0 w-full border-t border-gray-800 p-4">
+        <Link
+          href="/settings"
+          className="flex items-center text-gray-300 hover:text-white"
+        >
+          <Cog6ToothIcon className="mr-3 h-5 w-5" />
+          Configurações
+        </Link>
+      </div>
+    </div>
+  )
+}
+```
+
+### **Tela de POS (Ponto de Venda)**
+```typescript
+// Sales/POS.tsx
+
+export default function POSScreen() {
+  const [cart, setCart] = useState<CartItem[]>([])
+  const [customer, setCustomer] = useState<Customer | null>(null)
+  const [showPayment, setShowPayment] = useState(false)
+
+  const handleAddToCart = (item: Item, quantity: number) => {
+    // Valida estoque se produto
+    if (item.type === 'product' && item.controls_inventory) {
+      if (item.available_quantity < quantity) {
+        toast.error(`Estoque insuficiente. Disponível: ${item.available_quantity}`)
+        return
+      }
+    }
+    
+    // Adiciona ao carrinho
+    setCart(prev => [...prev, { item, quantity }])
+  }
+
+  const cartTotal = cart.reduce((sum, item) => 
+    sum + (item.item.sale_price * item.quantity), 0
+  )
+
+  return (
+    <AppLayout title="Ponto de Venda">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {/* Left: Product Search - 2 columns */}
+        <div className="lg:col-span-2">
+          <ProductSearch onAdd={handleAddToCart} />
+        </div>
+
+        {/* Right: Cart - 1 column */}
+        <div>
+          <div className="sticky top-6">
+            <Cart
+              items={cart}
+              customer={customer}
+              onCustomerChange={setCustomer}
+              onCheckout={() => setShowPayment(true)}
+              onClear={() => setCart([])}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Payment Modal */}
+      {showPayment && (
+        <PaymentModal
+          cart={cart}
+          customer={customer}
+          total={cartTotal}
+          onClose={() => setShowPayment(false)}
+          onComplete={(sale) => {
+            toast.success('Venda confirmada!')
+            router.visit(`/sales/${sale.id}`)
+          }}
+        />
+      )}
+    </AppLayout>
+  )
+}
+```
+
+---
+
+## 🔐 Autenticação e Permissões
+
+### **Sistema de Permissões (Spatie)**
+```php
+// Roles
+'admin'      → Acesso total
+'manager'    → Gestão operacional
+'seller'     → Vendas apenas
+'warehouse'  → Estoque apenas
+'accountant' → Financeiro apenas
+
+// Permissions (formato: module.action)
+'customers.view'
+'customers.create'
+'customers.edit'
+'customers.delete'
+
+'inventory.view'
+'inventory.create_movement'
+'inventory.adjust'
+'inventory.physical_inventory'
+
+'sales.view'
+'sales.create'
+'sales.cancel'
+'sales.discount'
+
+'invoicing.view'
+'invoicing.generate'
+'invoicing.cancel'
+
+'financial.view'
+'financial.receivables.manage'
+'financial.payables.manage'
+'financial.reports'
+```
+
+### **Middleware**
+```php
+// routes/api.php
+
+Route::middleware(['auth:sanctum', 'tenant'])->group(function () {
+    
+    // Dashboard (todos autenticados)
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    
+    // Customers (com permissão)
+    Route::middleware('can:customers.view')->group(function () {
+        Route::get('/customers', [CustomerController::class, 'index']);
+        Route::get('/customers/{id}', [CustomerController::class, 'show']);
+    });
+    
+    Route::middleware('can:customers.create')->group(function () {
+        Route::post('/customers', [CustomerController::class, 'store']);
+    });
+    
+    // Inventory (módulo ativo + permissão)
+    Route::middleware(['module:inventory'])->group(function () {
+        Route::middleware('can:inventory.view')->group(function () {
+            Route::get('/inventory/balances', [BalanceController::class, 'index']);
+        });
+        
+        Route::middleware('can:inventory.create_movement')->group(function () {
+            Route::post('/inventory/movements', [MovementController::class, 'store']);
+        });
+    });
+    
+    // Sales (módulo ativo + permissão)
+    Route::middleware(['module:sales'])->group(function () {
+        Route::middleware('can:sales.create')->group(function () {
+            Route::post('/sales', [SaleController::class, 'store']);
+        });
+    });
+});
+```
+
+---
+
+## 📡 API e Endpoints
+
+### **Autenticação**
+```bash
+# Login
+POST /api/auth/login
+{
+  "email": "admin@empresa.com",
+  "password": "secret"
+}
+
+Response:
+{
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGc...",
+  "user": { ... },
+  "tenant": { ... },
+  "modules": ["customers", "inventory", "sales"]
+}
+
+# Logout
+POST /api/auth/logout
+```
+
+### **Principais Endpoints por Módulo**
+```bash
+# CUSTOMERS
+GET    /api/customers
+POST   /api/customers
+GET    /api/customers/{id}
+PUT    /api/customers/{id}
+DELETE /api/customers/{id}
+
+# CATALOG
+GET    /api/items
+POST   /api/items
+GET    /api/items/{id}
+PUT    /api/items/{id}
+DELETE /api/items/{id}
+
+# INVENTORY
+GET    /api/inventory/warehouses
+POST   /api/inventory/warehouses
+GET    /api/inventory/movements
+POST   /api/inventory/movements
+GET    /api/inventory/balances
+GET    /api/inventory/balances/product/{id}
+
+# SALES
+GET    /api/sales
+POST   /api/sales
+GET    /api/sales/{id}
+POST   /api/sales/{id}/confirm
+POST   /api/sales/{id}/cancel
+POST   /api/sales/{id}/payments
+
+# INVOICING
+GET    /api/invoices
+POST   /api/invoices
+GET    /api/invoices/{id}
+GET    /api/invoices/{id}/pdf
+POST   /api/invoices/{id}/send-email
+
+# FINANCIAL
+GET    /api/financial/receivables
+POST   /api/financial/receivables
+POST   /api/financial/receivables/{id}/pay
+GET    /api/financial/cash-flow
+GET    /api/financial/reports/dre
+```
+
+---
+
+## 🚀 Instalação e Configuração
+
+### **Requisitos**
+
+PHP 8.3+
+PostgreSQL 16+
+Redis 7+
+Node.js 20+
+Composer 2+
+npm ou yarn
+
+
+### **Instalação**
+```bash
+# 1. Clone o repositório
+git clone https://github.com/seu-usuario/kutenga-erp.git
+cd kutenga-erp
+
+# 2. Instale dependências PHP
+composer install
+
+# 3. Instale dependências Node
+npm install
+
+# 4. Configure .env
+cp .env.example .env
+php artisan key:generate
+
+# 5. Configure banco de dados no .env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=kutenga_erp
+DB_USERNAME=postgres
+DB_PASSWORD=sua_senha
+
+# 6. Configure Redis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+# 7. Rode migrations (landlord)
+php artisan migrate
+
+# 8. Seed de dados iniciais
+php artisan db:seed
+
+# 9. Compile assets
+npm run build
+
+# 10. Inicie o servidor
+php artisan serve
+
+# 11. Queue worker (novo terminal)
+php artisan queue:work
+
+# 12. Horizon (monitoramento)
+php artisan horizon
+```
+
+### **Criar Tenant de Demonstração**
+```bash
+# Via Artisan
+php artisan tenant:create \
+  --subdomain=demo \
+  --company="Empresa Demo Lda" \
+  --nuit=123456789 \
+  --email=admin@demo.com \
+  --password=secret123
+
+# Acesse:
+http://demo.kutenga.test
+```
+
+---
+
+## 🧪 Testes
+
+### **Rodar Testes**
+```bash
+# Todos os testes
+php artisan test
+
+# Com coverage
+php artisan test --coverage
+
+# Apenas um módulo
+php artisan test --filter=InventoryTest
+
+# Parallelo (mais rápido)
+php artisan test --parallel
+```
+
+### **Exemplo de Teste**
+```php
+// tests/Feature/Inventory/MovementTest.php
+
+use function Pest\Laravel\{actingAs, postJson};
+
+it('registers a stock movement successfully', function () {
+    $tenant = Tenant::factory()->create();
+    
+    $tenant->run(function () {
+        $user = User::factory()->create();
+        $product = Product::factory()->create([
+            'controls_inventory' => true
+        ]);
+        $warehouse = Warehouse::factory()->create();
+        
+        actingAs($user)
+            ->postJson('/api/inventory/movements', [
+                'product_id' => $product->id,
+                'warehouse_id' => $warehouse->id,
+                'type' => 'in',
+                'reason' => 'purchase',
+                'quantity' => 100,
+                'unit_cost' => 50.00,
+            ])
+            ->assertStatus(201);
+        
+        // Verifica saldo
+        $balance = InventoryBalance::where('product_id', $product->id)
+            ->where('warehouse_id', $warehouse->id)
+            ->first();
+        
+        expect($balance->quantity_available)->toBe(100.0);
+    });
+});
+```
+
+---
+
+## 📦 Deploy
+
+### **Laravel Forge + DigitalOcean**
+```bash
+# 1. Criar servidor no Forge
+# 2. Configurar domínio wildcard (*.kutenga.co.mz)
+# 3. Conectar repositório Git
+# 4. Deploy script:
+
+cd /home/forge/kutenga.co.mz
+git pull origin main
+composer install --no-dev --optimize-autoloader
+npm ci && npm run build
+php artisan migrate --force
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+php artisan queue:restart
+php artisan horizon:terminate
+
+# 5. Configurar SSL (Let's Encrypt)
+# 6. Configurar Queue Worker (Supervisor)
+# 7. Configurar Scheduler (Cron)
+```
+
+---
+
+## 🗺️ Roadmap
+
+### **Fase 1: MVP (Concluída)**
+- [x] Arquitetura multi-tenant
+- [x] Módulo Customers
+- [x] Módulo Catalog
+- [x] Módulo Inventory (básico)
+- [x] Módulo Sales (POS básico)
+
+### **Fase 2: Core Features (Em Andamento)**
+- [ ] Módulo Invoicing completo
+- [ ] Módulo Financial completo
+- [ ] Relatórios avançados
+- [ ] Dashboard interativo
+- [ ] Notificações (email/SMS)
+
+### **Fase 3: Otimização (Q1 2025)**
+- [ ] Performance tuning
+- [ ] Cache avançado
+- [ ] Testes E2E
+- [ ] Documentação API
+- [ ] Mobile app (beta)
+
+### **Fase 4: Expansão (Q2 2025)**
+- [ ] Integração M-Pesa/E-Mola
+- [ ] Integração AT (automática)
+- [ ] Multi-moeda
+- [ ] Multi-idioma
+- [ ] BI e Analytics
+
+---
+
+## 📄 Licença
+
+Proprietary - © 2024 KUTENGA ERP
+
+Todos os direitos reservados.
+
+---
+
+## 👥 Equipe
+
+**Desenvolvedor Principal:** [Seu Nome]  
+**Email:** contato@kutenga.co.mz  
+**Website:** https://kutenga.co.mz  
+**WhatsApp:** +258 84 XXX XXXX
+
+---
+
+## 🇲🇿 Feito em Moçambique
+
+KUTENGA ERP é desenvolvido em Moçambique, por moçambicanos, para empresas moçambicanas.
+
+> **"Kutenga"** - Do xiChangana, significa "comprar" ou "adquirir". Representa o ato de investir no crescimento do seu negócio através de tecnologia.
+
+---
+
+**KUTENGA ERP** - Gestão completa para o seu negócio  
+*Construído com ❤️ em Moçambique usando Laravel e React*

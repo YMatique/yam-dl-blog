@@ -52,7 +52,7 @@ class UploadController extends Controller
             ], 422);
             
         } catch (\Exception $e) {
-            \Log::error('Erro no upload: ' . $e->getMessage());
+            // \Log::error('Erro no upload: ' . $e->getMessage());
             
             return response()->json([
                 'success' => false,
