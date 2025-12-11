@@ -87,7 +87,7 @@ export default function Index({ series, filters }: Props) {
 
     const applyFilters = () => {
         router.get(
-            '/admin/series',
+            '/scm/series',
             {
                 search: search || undefined,
                 status: status !== 'all' ? status : undefined,
@@ -102,13 +102,13 @@ export default function Index({ series, filters }: Props) {
     const clearFilters = () => {
         setSearch('');
         setStatus('all');
-        router.get('/admin/series');
+        router.get('/scm/series');
     };
 
     const handleDelete = () => {
         if (!deleteDialog.series) return;
 
-        router.delete(`/admin/series/${deleteDialog.series.id}`, {
+        router.delete(`/scm/series/${deleteDialog.series.id}`, {
             onSuccess: () => {
                 setDeleteDialog({ open: false, series: null });
             },
@@ -129,7 +129,7 @@ export default function Index({ series, filters }: Props) {
                         </p>
                     </div>
                     <Button asChild>
-                        <Link href="/admin/series/create">
+                        <Link href="/scm/series/create">
                             <Plus className="mr-2 h-4 w-4" />
                             Nova Série
                         </Link>
@@ -283,7 +283,7 @@ export default function Index({ series, filters }: Props) {
                                                     </DropdownMenuItem>
                                                     <DropdownMenuItem asChild>
                                                         <Link
-                                                            href={`/admin/series/${s.id}/edit`}
+                                                            href={`/scm/series/${s.id}/edit`}
                                                         >
                                                             <Edit className="mr-2 h-4 w-4" />
                                                             Editar

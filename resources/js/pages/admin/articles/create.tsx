@@ -173,7 +173,7 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
             }
         }
 
-        router.post('/admin/articles', data, {
+        router.post('/scm/articles', data, {
             onSuccess: () => {
                 form.reset();
                 setImageFile(null);
@@ -197,7 +197,7 @@ export default function Create({ categories, series = [], tags = [] }: Props) {
         <AdminLayout
             title="Novo Artigo"
             breadcrumbs={[
-                { label: 'Artigos', href: '/admin/articles' },
+                { label: 'Artigos', href: '/scm/articles' },
                 { label: 'Novo' },
             ]}
         >

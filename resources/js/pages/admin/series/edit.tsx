@@ -115,7 +115,7 @@ export default function Edit({ series }: Props) {
             }
         }
 
-        router.put(`/admin/series/${series.id}`, data, {
+        router.put(`/scm/series/${series.id}`, data, {
             onSuccess: () => {
                 setImageFile(null);
             },
@@ -123,7 +123,7 @@ export default function Edit({ series }: Props) {
     };
 
     const handleDelete = () => {
-        router.delete(`/admin/series/${series.id}`, {
+        router.delete(`/scm/series/${series.id}`, {
             onSuccess: () => {
                 setDeleteDialog(false);
             },
@@ -134,7 +134,7 @@ export default function Edit({ series }: Props) {
         <AdminLayout
             title={`Editar: ${series.title}`}
             breadcrumbs={[
-                { label: 'Séries', href: '/admin/series' },
+                { label: 'Séries', href: '/scm/series' },
                 { label: 'Editar' },
             ]}
         >

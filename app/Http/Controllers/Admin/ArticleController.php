@@ -116,6 +116,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article): Response
     {
+        // dd($article);
         $article->load(['category', 'series', 'tags']);
         
         $categories = Category::orderBy('name')->get();

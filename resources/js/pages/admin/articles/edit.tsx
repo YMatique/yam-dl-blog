@@ -167,7 +167,7 @@ export default function Edit({
         }
 
         // Atualizar artigo
-        router.put(`/admin/articles/${article.id}`, data, {
+        router.put(`/scm/articles/${article.id}`, data, {
             onSuccess: () => {
                 setImageFile(null);
             },
@@ -188,7 +188,7 @@ export default function Edit({
 
     // Deletar artigo
     const handleDelete = () => {
-        router.delete(`/admin/articles/${article.id}`, {
+        router.delete(`/scm/articles/${article.id}`, {
             onSuccess: () => {
                 setDeleteDialog(false);
             },
@@ -199,7 +199,7 @@ export default function Edit({
         <AdminLayout
             title={`Editar: ${article.title}`}
             breadcrumbs={[
-                { label: 'Artigos', href: '/admin/articles' },
+                { label: 'Artigos', href: '/scm/articles' },
                 { label: 'Editar' },
             ]}
         >
@@ -508,7 +508,7 @@ export default function Edit({
                             </Card>
 
                             {/* Série (Opcional) */}
-                            {series.length > 0 && (
+                            {/* {series.length > 0 && (
                                 <Card>
                                     <CardHeader>
                                         <CardTitle>Série (Opcional)</CardTitle>
@@ -550,7 +550,7 @@ export default function Edit({
                                         />
                                     </CardContent>
                                 </Card>
-                            )}
+                            )} */}
 
                             {/* Status */}
                             <Card>

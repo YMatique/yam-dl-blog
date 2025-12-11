@@ -103,7 +103,7 @@ export default function Index({ articles, categories, filters }: Props) {
     // Aplicar filtros
     const applyFilters = () => {
         router.get(
-            '/admin/articles',
+            '/scm/articles',
             {
                 search: search || undefined,
                 status: status !== 'all' ? status : undefined,
@@ -121,14 +121,14 @@ export default function Index({ articles, categories, filters }: Props) {
         setSearch('');
         setStatus('all');
         setCategory('all');
-        router.get('/admin/articles');
+        router.get('/scm/articles');
     };
 
     // Deletar artigo
     const handleDelete = () => {
         if (!deleteDialog.article) return;
 
-        router.delete(`/admin/articles/${deleteDialog.article.id}`, {
+        router.delete(`/scm/articles/${deleteDialog.article.id}`, {
             onSuccess: () => {
                 setDeleteDialog({ open: false, article: null });
             },
@@ -175,7 +175,7 @@ export default function Index({ articles, categories, filters }: Props) {
                         </p>
                     </div>
                     <Button asChild>
-                        <Link href="/admin/articles/create">
+                        <Link href="/scm/articles/create">
                             <Plus className="mr-2 h-4 w-4" />
                             Novo Artigo
                         </Link>
@@ -355,7 +355,7 @@ export default function Index({ articles, categories, filters }: Props) {
                                                     </DropdownMenuItem>
                                                     <DropdownMenuItem asChild>
                                                         <Link
-                                                            href={`/admin/articles/${article.id}/edit`}
+                                                            href={`/scm/articles/${article.id}/edit`}
                                                         >
                                                             <Edit className="mr-2 h-4 w-4" />
                                                             Editar

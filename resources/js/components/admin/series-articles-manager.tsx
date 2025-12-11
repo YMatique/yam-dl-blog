@@ -46,7 +46,7 @@ export default function SeriesArticlesManager({
     const fetchArticles = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`/admin/series/${seriesId}/articles`);
+            const response = await fetch(`/scm/series/${seriesId}/articles`);
             const data = await response.json();
             setSeriesArticles(data.seriesArticles || []);
             setAvailableArticles(data.availableArticles || []);
@@ -62,7 +62,7 @@ export default function SeriesArticlesManager({
         if (!selectedArticle) return;
 
         try {
-            const response = await fetch(`/admin/series/${seriesId}/articles`, {
+            const response = await fetch(`/scm/series/${seriesId}/articles`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export default function SeriesArticlesManager({
         if (!confirm('Remover este artigo da série?')) return;
 
         try {
-            await fetch(`/admin/series/${seriesId}/articles/${articleId}`, {
+            await fetch(`/scm/series/${seriesId}/articles/${articleId}`, {
                 method: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN':
@@ -140,7 +140,7 @@ export default function SeriesArticlesManager({
         }));
 
         try {
-            await fetch(`/admin/series/${seriesId}/articles/order`, {
+            await fetch(`/scm/series/${seriesId}/articles/order`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
