@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUTENGA ERP - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 fixed top-0 left-0 right-0 z-10">
+        <div class="flex items-center justify-between px-6 py-4">
+            <!-- Logo e Menu Toggle -->
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-500 hover:text-gray-700 lg:hidden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <h1 class="text-2xl font-bold text-blue-600">KUTENGA ERP</h1>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-xl mx-8">
+                <div class="relative w-full">
+                    <input 
+                        type="text" 
+                        placeholder="Pesquisar produtos, clientes..." 
+                        class="w-full px-4 py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Right Icons -->
+            <div class="flex items-center space-x-4">
+                <button class="relative text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-bell text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                </button>
+                <button class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-chart-line text-xl"></i>
+                </button>
+                <div class="flex items-center space-x-2 cursor-pointer">
+                    <img src="https://ui-avatars.com/api/?name=João+Silva&background=3B82F6&color=fff" 
+                         alt="Avatar" 
+                         class="h-10 w-10 rounded-full"
+                    >
+                    <div class="hidden md:block">
+                        <p class="text-sm font-medium text-gray-700">João Silva</p>
+                        <p class="text-xs text-gray-500">Admin</p>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-400 text-sm"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="bg-gray-900 text-white w-64 fixed left-0 top-16 bottom-0 overflow-y-auto hidden lg:block">
+        <nav class="p-4">
+            <!-- Dashboard -->
+            <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-gray-800 text-white mb-2">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <!-- Clientes -->
+            <div class="mb-2">
+                <button class="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-300 hover:text-white">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-users"></i>
+                        <span>Clientes</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-sm"></i>
+                </button>
+                <div class="ml-11 mt-1 space-y-1">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Lista</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Novo Cliente</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Categorias</a>
+                </div>
+            </div>
+
+            <!-- Catálogo -->
+            <div class="mb-2">
+                <button class="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-300 hover:text-white">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-book"></i>
+                        <span>Catálogo</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-sm"></i>
+                </button>
+                <div class="ml-11 mt-1 space-y-1">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Produtos</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Serviços</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Categorias</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Marcas</a>
+                </div>
+            </div>
+
+            <!-- Estoque -->
+            <div class="mb-2">
+                <button class="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-300 hover:text-white">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-boxes"></i>
+                        <span>Estoque</span>
+                        <span class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">3</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-sm"></i>
+                </button>
+                <div class="ml-11 mt-1 space-y-1">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Dashboard</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Saldos</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Movimentações</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Armazéns</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Inventário</a>
+                </div>
+            </div>
+
+            <!-- Vendas -->
+            <div class="mb-2">
+                <button class="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-300 hover:text-white">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Vendas</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-sm"></i>
+                </button>
+                <div class="ml-11 mt-1 space-y-1">
+                    <a href="#" class="flex items-center space-x-2 px-4 py-2 text-sm text-gray-400 hover:text-white">
+                        <i class="fas fa-cash-register"></i>
+                        <span>POS</span>
+                    </a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Vendas</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Cotações</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Caixa</a>
+                </div>
+            </div>
+
+            <!-- Faturação -->
+            <div class="mb-2">
+                <button class="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-300 hover:text-white">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Faturação</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Financeiro -->
+            <div class="mb-2">
+                <button class="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-300 hover:text-white">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Financeiro</span>
+                        <span class="bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full">8</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-sm"></i>
+                </button>
+                <div class="ml-11 mt-1 space-y-1">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Dashboard</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">A Receber</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">A Pagar</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:text-white">Fluxo de Caixa</a>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-700 my-4"></div>
+
+            <!-- Settings -->
+            <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-300 hover:text-white">
+                <i class="fas fa-cog"></i>
+                <span>Configurações</span>
+            </a>
+
+            <!-- Help -->
+            <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-300 hover:text-white">
+                <i class="fas fa-question-circle"></i>
+                <span>Ajuda</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64 mt-16 p-6">
+        <!-- Welcome Section -->
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">Bem-vindo, João!</h2>
+            <p class="text-gray-600">Quinta-feira, 12 de Dezembro de 2024</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            <!-- Card 1 - Vendas Hoje -->
+            <div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Vendas Hoje</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">125.450 MT</h3>
+                        <p class="text-green-600 text-sm mt-2 flex items-center">
+                            <i class="fas fa-arrow-up mr-1"></i>
+                            +12% vs ontem
+                        </p>
+                    </div>
+                    <div class="bg-green-100 p-4 rounded-full">
+                        <i class="fas fa-money-bill-wave text-green-600 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 - Produtos -->
+            <div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Produtos</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">1.247</h3>
+                        <p class="text-orange-600 text-sm mt-2 flex items-center">
+                            <i class="fas fa-exclamation-triangle mr-1"></i>
+                            12 críticos
+                        </p>
+                    </div>
+                    <div class="bg-blue-100 p-4 rounded-full">
+                        <i class="fas fa-boxes text-blue-600 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 - Clientes -->
+            <div class="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Clientes</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">384</h3>
+                        <p class="text-red-600 text-sm mt-2 flex items-center">
+                            <i class="fas fa-ban mr-1"></i>
+                            8 inadimplentes
+                        </p>
+                    </div>
+                    <div class="bg-purple-100 p-4 rounded-full">
+                        <i class="fas fa-users text-purple-600 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 - A Receber -->
+            <div class="bg-white rounded-lg shadow p-6 border-l-4 border-orange-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">A Receber</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-1">85.200 MT</h3>
+                        <p class="text-gray-600 text-sm mt-2">
+                            23 contas • 5 vencidas
+                        </p>
+                    </div>
+                    <div class="bg-orange-100 p-4 rounded-full">
+                        <i class="fas fa-file-invoice-dollar text-orange-600 text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <!-- Sales Chart -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Vendas - Últimos 30 Dias</h3>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                </div>
+                <div class="h-64 flex items-end justify-between space-x-2">
+                    <div class="flex-1 bg-blue-500 rounded-t" style="height: 60%"></div>
+                    <div class="flex-1 bg-blue-500 rounded-t" style="height: 45%"></div>
+                    <div class="flex-1 bg-blue-500 rounded-t" style="height: 75%"></div>
+                    <div class="flex-1 bg-blue-500 rounded-t" style="height: 55%"></div>
+                    <div class="flex-1 bg-blue-500 rounded-t" style="height: 85%"></div>
+                    <div class="flex-1 bg-blue-500 rounded-t" style="height: 70%"></div>
+                    <div class="flex-1 bg-blue-500 rounded-t" style="height: 90%"></div>
+                </div>
+                <div class="flex justify-between mt-2 text-xs text-gray-500">
+                    <span>5 Dez</span>
+                    <span>10 Dez</span>
+                    <span>15 Dez</span>
+                    <span>20 Dez</span>
+                    <span>25 Dez</span>
+                    <span>30 Dez</span>
+                </div>
+            </div>
+
+            <!-- Top Products -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Produtos Mais Vendidos</h3>
+                    <a href="#" class="text-blue-600 text-sm hover:underline">Ver tudo</a>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-800">Computador Dell</p>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <span class="ml-4 text-sm font-semibold text-gray-700">85</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-800">Mouse Logitech</p>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div class="bg-green-600 h-2 rounded-full" style="width: 62%"></div>
+                            </div>
+                        </div>
+                        <span class="ml-4 text-sm font-semibold text-gray-700">62</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-800">Teclado HP</p>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div class="bg-purple-600 h-2 rounded-full" style="width: 48%"></div>
+                            </div>
+                        </div>
+                        <span class="ml-4 text-sm font-semibold text-gray-700">48</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-800">Monitor Samsung</p>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div class="bg-orange-600 h-2 rounded-full" style="width: 35%"></div>
+                            </div>
+                        </div>
+                        <span class="ml-4 text-sm font-semibold text-gray-700">35</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-800">Webcam Logitech</p>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div class="bg-red-600 h-2 rounded-full" style="width: 28%"></div>
+                            </div>
+                        </div>
+                        <span class="ml-4 text-sm font-semibold text-gray-700">28</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Sales & Alerts -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Recent Sales -->
+            <div class="lg:col-span-2 bg-white rounded-lg shadow">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold text-gray-800">Vendas Recentes</h3>
+                        <a href="#" class="text-blue-600 text-sm hover:underline">Ver todas</a>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nº Venda</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cliente</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Data</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Valor</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">VD-00123</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">João Silva</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">12/12 10:30</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">12.500 MT</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
+                                        <i class="fas fa-check-circle mr-1"></i>Pago
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">VD-00122</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Maria Costa</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">12/12 09:15</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">8.400 MT</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 text-xs font-semibold text-orange-800 bg-orange-100 rounded-full">
+                                        <i class="fas fa-clock mr-1"></i>Pendente
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">VD-00121</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Pedro Moamba</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">11/12 17:45</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">45.200 MT</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
+                                        <i class="fas fa-check-circle mr-1"></i>Pago
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">VD-00120</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Ana Santos</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">11/12 15:20</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">3.800 MT</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
+                                        <i class="fas fa-check-circle mr-1"></i>Pago
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">VD-00119</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Carlos Nunes</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">11/12 14:10</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">18.900 MT</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full">
+                                        <i class="fas fa-exclamation-circle mr-1"></i>Parcial
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Alerts -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-800">Alertas</h3>
+                </div>
+                <div class="p-6 space-y-4">
+                    <!-- Alert 1 -->
+                    <div class="flex items-start space-x-3 p-4 bg-red-50 border-l-4 border-red-500 rounded">
+                        <i class="fas fa-exclamation-circle text-red-500 mt-1"></i>
+                        <div class="flex-1">
+                            <p class="text-sm font-semibold text-red-800">Mouse Logitech</p>
+                            <p class="text-xs text-red-600 mt-1">Estoque: 3 unidades</p>
+                            <p class="text-xs text-red-500 mt-1">Mínimo: 10 unidades</p>
+                        </div>
+                    </div>
+
+                    <!-- Alert 2 -->
+                    <div class="flex items-start space-x-3 p-4 bg-red-50 border-l-4 border-red-500 rounded">
+                        <i class="fas fa-times-circle text-red-500 mt-1"></i>
+                        <div class="flex-1">
+                            <p class="text-sm font-semibold text-red-800">Teclado Dell</p>
+                            <p class="text-xs text-red-600 mt-1">Estoque: 0 unidades</p>
+                            <p class="text-xs text-red-500 mt-1 font-semibold">Ruptura de stock!</p>
+                        </div>
+                    </div>
+
+                    <!-- Alert 3 -->
+                    <div class="flex items-start space-x-3 p-4 bg-orange-50 border-l-4 border-orange-500 rounded">
+                        <i class="fas fa-clock text-orange-500 mt-1"></i>
+                        <div class="flex-1">
+                            <p class="text-sm font-semibold text-orange-800">Fatura #FT-1245</p>
+                            <p class="text-xs text-orange-600 mt-1">Vencida há 3 dias</p>
+                            <p class="text-xs text-orange-700 mt-1">Cliente: João Silva</p>
+                            <p class="text-xs font-semibold text-orange-800 mt-1">Valor: 8.500 MT</p>
+                        </div>
+                    </div>
+
+                    <!-- Alert 4 -->
+                    <div class="flex items-start space-x-3 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                        <i class="fas fa-info-circle text-blue-500 mt-1"></i>
+                        <div class="flex-1">
+                            <p class="text-sm font-semibold text-blue-800">Backup Concluído</p>
+                            <p class="text-xs text-blue-600 mt-1">Realizado às 02:00</p>
+                            <p class="text-xs text-blue-500 mt-1">Próximo: Hoje às 02:00</p>
+                        </div>
+                    </div>
+
+                    <!-- View All -->
+                    <a href="#" class="block text-center text-sm text-blue-600 hover:underline pt-2">
+                        Ver todos os alertas (12)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript for mobile menu toggle -->
+    <script>
+        // Add interactivity here if needed
+        console.log('KUTENGA ERP Dashboard loaded');
+    </script>
+</body>
+</html>

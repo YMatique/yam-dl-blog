@@ -49,6 +49,7 @@ interface Article {
     title: string;
     slug: string;
     status: 'draft' | 'published' | 'scheduled';
+    featured_image: string | null;
     category: {
         id: number;
         name: string;
@@ -286,6 +287,9 @@ export default function Index({ articles, categories, filters }: Props) {
                     <Table>
                         <TableHeader>
                             <TableRow>
+                                <TableHead className="w-[80px]">
+                                    Imagem
+                                </TableHead>
                                 <TableHead>Título</TableHead>
                                 <TableHead>Categoria</TableHead>
                                 <TableHead>Status</TableHead>
@@ -299,7 +303,7 @@ export default function Index({ articles, categories, filters }: Props) {
                             {articles.data.length === 0 ? (
                                 <TableRow>
                                     <TableCell
-                                        colSpan={7}
+                                        colSpan={8}
                                         className="h-32 text-center"
                                     >
                                         <p className="text-muted-foreground">
@@ -310,6 +314,21 @@ export default function Index({ articles, categories, filters }: Props) {
                             ) : (
                                 articles.data.map((article) => (
                                     <TableRow key={article.id}>
+                                        <TableCell>
+                                            {article.featured_image ? (
+                                                <img
+                                                    src={article.featured_image}
+                                                    alt={article.title}
+                                                    className="h-10 w-16 rounded-md object-cover"
+                                                />
+                                            ) : (
+                                                <div className="flex h-10 w-16 items-center justify-center rounded-md bg-muted">
+                                                    <span className="text-xs text-muted-foreground">
+                                                        Sem img
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </TableCell>
                                         <TableCell className="font-medium">
                                             {article.title}
                                         </TableCell>

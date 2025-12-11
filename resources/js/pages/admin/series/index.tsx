@@ -210,6 +210,9 @@ export default function Index({ series, filters }: Props) {
                     <Table>
                         <TableHeader>
                             <TableRow>
+                                <TableHead className="w-[80px]">
+                                    Imagem
+                                </TableHead>
                                 <TableHead>Título</TableHead>
                                 <TableHead>Artigos</TableHead>
                                 <TableHead>Status</TableHead>
@@ -221,7 +224,7 @@ export default function Index({ series, filters }: Props) {
                             {series.data.length === 0 ? (
                                 <TableRow>
                                     <TableCell
-                                        colSpan={5}
+                                        colSpan={6}
                                         className="h-32 text-center"
                                     >
                                         <p className="text-muted-foreground">
@@ -232,6 +235,21 @@ export default function Index({ series, filters }: Props) {
                             ) : (
                                 series.data.map((s) => (
                                     <TableRow key={s.id}>
+                                        <TableCell>
+                                            {s.cover_image ? (
+                                                <img
+                                                    src={s.cover_image}
+                                                    alt={s.title}
+                                                    className="h-10 w-16 rounded-md object-cover"
+                                                />
+                                            ) : (
+                                                <div className="flex h-10 w-16 items-center justify-center rounded-md bg-muted">
+                                                    <span className="text-xs text-muted-foreground">
+                                                        Sem img
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </TableCell>
                                         <TableCell className="font-medium">
                                             {s.title}
                                         </TableCell>
