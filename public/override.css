@@ -92,3 +92,9 @@ a.active-link::before {
         box-shadow: 0 0 0 5px rgba(0, 0, 0, 0);
     }
 }
+
+@media (max-width: 991px) {
+    .desapear-small {
+        display: none;
+    }
+}

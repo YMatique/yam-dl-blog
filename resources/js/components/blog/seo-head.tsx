@@ -94,7 +94,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
             <link rel="stylesheet" href="/stories/assets/css/style.css" />
             <link rel="stylesheet" href="/stories/assets/css/widgets.css" />
             <link rel="stylesheet" href="/stories/assets/css/responsive.css" />
-            <link rel="stylesheet" href="/override.css?v=1.1" />
+            <link rel="stylesheet" href="/override.css?v=1" />
 
             {/* Básico */}
             <meta charSet="utf-8" />

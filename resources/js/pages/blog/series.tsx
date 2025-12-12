@@ -129,7 +129,74 @@ export default function Index({ featuredSeries, series }: SeriesIndexProps) {
                     {featuredSeries.length > 0 && (
                         <div className="row mb-30">
                             <SeriesHighlight series={featuredSeries} />
-                            <div className="col-lg-4 text-lg-right">asa</div>
+                            <div className="col-lg-4 text-lg-right- desapear-small">
+                                <div className="widget-area">
+                                    <div
+                                        className="sidebar-widget widget-about border-radius-5 has-border wow fadeInUp animated mb-50 bg-white pt-30 pr-30 pb-30 pl-30"
+                                        style={{
+                                            visibility: 'visible',
+                                            animationName: 'fadeInUp',
+                                        }}
+                                    >
+                                        <img
+                                            className="about-author-img mb-25"
+                                            src="/imgs/author.jpg"
+                                            alt=""
+                                        />
+                                        <h5 className="mb-20">
+                                            Shalom, Sou Yuvi
+                                        </h5>
+                                        <p className="font-medium text-muted">
+                                            {`Servo de Deus, apaixonado pela Palavra e pela tecnologia. Criador da YAMDL, unindo a tecnologia e a Palavra de Deus, dedico-me em criar recursos que edificam e transformam vidas através da Palavra de Deus.`}
+                                            {/* {`Com formação em Engenharia Informática e conhecimento da Palavra de Deus`} */}
+                                        </p>
+                                        <strong>Siga-me: </strong>
+                                        <ul className="header-social-network d-inline-block list-inline color-white mb-20">
+                                            <li className="list-inline-item">
+                                                <a
+                                                    className="fb"
+                                                    href="#"
+                                                    target="_blank"
+                                                    title="Facebook"
+                                                >
+                                                    <i className="elegant-icon social_facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li className="list-inline-item">
+                                                <a
+                                                    className="tw"
+                                                    href="#"
+                                                    target="_blank"
+                                                    title="Tweet now"
+                                                >
+                                                    <i className="elegant-icon social_twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li className="list-inline-item">
+                                                <a
+                                                    className="pt social-icon yt"
+                                                    href="https://www.youtube.com/@yuvimatique"
+                                                    target="_blank"
+                                                    title="Youtube"
+                                                >
+                                                    <i className="elegant-icon social_youtube"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                {/* <InfoCard
+                                    icon="icon_ribbon_alt"
+                                    title="Por que Séries?"
+                                    description="As séries permitem um estudo continuado e profundo sobre temas específicos, ajudando a construir uma base sólida de conhecimento bíblico."
+                                    color="primary"
+                                /> */}
+                                {/* <NewsletterWidget
+                                    title="Não perca nenhum episódio"
+                                    description="Seja notificado sempre que uma nova parte de uma série for publicada."
+                                    className="sidebar-widget widget_newsletter wow fadeInUp animated border-radius-10 mb-30 bg-white p-30"
+                                /> */}
+                            </div>
                         </div>
                     )}
 
