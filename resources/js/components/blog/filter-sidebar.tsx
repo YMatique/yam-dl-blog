@@ -70,7 +70,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     {popularTags.map((tag) => (
                         <Link
                             key={tag.id}
-                            href={`/blog/artigos?tag=${tag.slug}`}
+                            // href={`/blog/artigos?tag=${tag.slug}`}
                             className={`tag-cloud-link ${
                                 activeTag === tag.slug ? 'active' : ''
                             }`}

@@ -47,7 +47,7 @@ export default function Contact() {
                                 <div className="col-md-4 mb-md-0 mb-3 text-center">
                                     <div className="contact-info-card p-20">
                                         <div className="mb-10">
-                                            <i className="elegant-icon icon_pin_alt font-heading font-large text-primary"></i>
+                                            <i className="elegant-icon icon_pin_alt font-large text-primary"></i>
                                         </div>
                                         <h6 className="font-weight-bold mb-10">
                                             Localização
@@ -60,7 +60,10 @@ export default function Contact() {
                                 <div className="col-md-4 mb-md-0 mb-3 text-center">
                                     <div className="contact-info-card p-20">
                                         <div className="mb-10">
-                                            <i className="elegant-icon icon_mail_alt font-heading font-large text-primary"></i>
+                                            <i
+                                                className="elegant-icon icon_mail_alt font-large text-primary"
+                                                // style={{ fontSize: '1.5rem' }}
+                                            ></i>
                                         </div>
                                         <h6 className="font-weight-bold mb-10">
                                             Email
@@ -75,7 +78,7 @@ export default function Contact() {
                                 <div className="col-md-4 text-center">
                                     <div className="contact-info-card p-20">
                                         <div className="mb-10">
-                                            <i className="elegant-icon icon_link font-heading font-large text-primary"></i>
+                                            <i className="elegant-icon icon_link font-large text-primary"></i>
                                         </div>
                                         <h6 className="font-weight-bold mb-10">
                                             Suporte
@@ -235,7 +238,7 @@ export default function Contact() {
                                     💼 Interessado em parcerias ou deseja
                                     compartilhar seu testemunho?{' '}
                                     <a
-                                        href="/sobre"
+                                        href="/sobre-nos"
                                         className="font-weight-bold text-primary"
                                     >
                                         Conheça mais sobre nós
