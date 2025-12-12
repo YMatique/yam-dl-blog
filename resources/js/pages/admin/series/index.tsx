@@ -39,6 +39,7 @@ import {
     Edit,
     Eye,
     Filter,
+    Layers,
     MoreVertical,
     Plus,
     Search,
@@ -183,25 +184,51 @@ export default function Index({ series, filters }: Props) {
 
                 {/* Estatísticas */}
                 <div className="grid gap-4 md:grid-cols-3">
-                    <div className="rounded-lg border bg-card p-4">
-                        <p className="text-sm text-muted-foreground">Total</p>
-                        <p className="text-2xl font-bold">{series.total}</p>
+                    <div className="rounded-lg border bg-card p-4 shadow-xs">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">
+                                    Total
+                                </p>
+                                <p className="text-2xl font-bold">
+                                    {series.total}
+                                </p>
+                            </div>
+                            <Layers className="h-8 w-8 text-primary/70" />
+                        </div>
                     </div>
-                    <div className="rounded-lg border bg-card p-4">
-                        <p className="text-sm text-muted-foreground">
-                            Completas
-                        </p>
-                        <p className="text-2xl font-bold">
-                            {series.data.filter((s) => s.is_complete).length}
-                        </p>
+                    <div className="rounded-lg border bg-card p-4 shadow-xs">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">
+                                    Completas
+                                </p>
+                                <p className="text-2xl font-bold">
+                                    {
+                                        series.data.filter((s) => s.is_complete)
+                                            .length
+                                    }
+                                </p>
+                            </div>
+                            <CheckCircle2 className="h-8 w-8 text-green-500/70" />
+                        </div>
                     </div>
-                    <div className="rounded-lg border bg-card p-4">
-                        <p className="text-sm text-muted-foreground">
-                            Em Andamento
-                        </p>
-                        <p className="text-2xl font-bold">
-                            {series.data.filter((s) => !s.is_complete).length}
-                        </p>
+                    <div className="rounded-lg border bg-card p-4 shadow-xs">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">
+                                    Em Andamento
+                                </p>
+                                <p className="text-2xl font-bold">
+                                    {
+                                        series.data.filter(
+                                            (s) => !s.is_complete,
+                                        ).length
+                                    }
+                                </p>
+                            </div>
+                            <Circle className="h-8 w-8 text-orange-500/70" />
+                        </div>
                     </div>
                 </div>
 

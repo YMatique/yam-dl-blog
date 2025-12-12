@@ -26,7 +26,16 @@ import {
 } from '@/components/ui/table';
 import AdminLayout from '@/layouts/admin-layout';
 import { Head, Link, router } from '@inertiajs/react';
-import { Edit, Eye, MoreVertical, Plus, Search, Trash2 } from 'lucide-react';
+import {
+    Edit,
+    Eye,
+    FileText,
+    MoreVertical,
+    Plus,
+    Search,
+    Tags,
+    Trash2,
+} from 'lucide-react';
 import { useState } from 'react';
 
 interface Category {
@@ -137,23 +146,35 @@ export default function Index({ categories, filters }: Props) {
 
                 {/* Stats */}
                 <div className="grid gap-4 md:grid-cols-2">
-                    <div className="rounded-lg border bg-card p-4">
-                        <p className="text-sm text-muted-foreground">
-                            Total de Categorias
-                        </p>
-                        <p className="text-2xl font-bold">{categories.total}</p>
+                    <div className="rounded-lg border bg-card p-4 shadow-xs">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">
+                                    Total de Categorias
+                                </p>
+                                <p className="text-2xl font-bold">
+                                    {categories.total}
+                                </p>
+                            </div>
+                            <Tags className="h-8 w-8 text-primary/70" />
+                        </div>
                     </div>
-                    <div className="rounded-lg border bg-card p-4">
-                        <p className="text-sm text-muted-foreground">
-                            Com Artigos
-                        </p>
-                        <p className="text-2xl font-bold">
-                            {
-                                categories.data.filter(
-                                    (c) => c.articles_count > 0,
-                                ).length
-                            }
-                        </p>
+                    <div className="rounded-lg border bg-card p-4 shadow-xs">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">
+                                    Com Artigos
+                                </p>
+                                <p className="text-2xl font-bold">
+                                    {
+                                        categories.data.filter(
+                                            (c) => c.articles_count > 0,
+                                        ).length
+                                    }
+                                </p>
+                            </div>
+                            <FileText className="h-8 w-8 text-green-500/70" />
+                        </div>
                     </div>
                 </div>
 
