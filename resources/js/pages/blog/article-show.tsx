@@ -29,8 +29,27 @@ export default function ArticleShow({
     // Gerar SEO automaticamente
     // const seoProps = generateArticleSEO(article);
 
+    // Meta Keywords logic
+    const keywords: string[] = [];
+    if (article.meta_keywords && typeof article.meta_keywords === 'string') {
+        keywords.push(...article.meta_keywords.split(',').map((k) => k.trim()));
+    } else if (Array.isArray(article.tags)) {
+        keywords.push(...article.tags.map((tag) => String(tag.name)));
+    }
+
     return (
-        <BlogLayout title={article.title}>
+        <BlogLayout
+            title={article.meta_title || article.title}
+            description={article.meta_description || article.excerpt}
+            // keywords={keywords}
+            ogType="article"
+            ogImage={article.featured_image}
+            articlePublishedTime={article.published_at}
+            articleModifiedTime={article.updated_at}
+            articleAuthor={article.author.name}
+            articleSection={article.category.name}
+            articleTags={article.tags?.map((tag) => tag.name)}
+        >
             <div className="container pt-50">
                 <div className="row">
                     {/* Conteúdo Principal */}
@@ -52,16 +71,6 @@ export default function ArticleShow({
                             previousArticle={previousArticle}
                             nextArticle={nextArticle}
                         />
-
-                        {/* Comentários (placeholder) */}
-                        {/* <div className="comments-area border-radius-10 wow fadeInUp animated mb-30 bg-white p-30">
-                            <h5 className="font-weight-900 mb-30">
-                                Comentários
-                            </h5>
-                            <p className="py-30 text-center text-muted">
-                                Sistema de comentários em breve...
-                            </p>
-                        </div> */}
                     </div>
 
                     {/* Sidebar */}
@@ -126,32 +135,6 @@ export default function ArticleShow({
                                     </div>
                                 </div>
                             )}
-
-                            {/* Newsletter */}
-                            {/* <div className="sidebar-widget widget_newsletter wow fadeInUp animated">
-                                <div className="widget-header-2 position-relative mb-30">
-                                    <h5 className="mt-5 mb-30">Newsletter</h5>
-                                </div>
-                                <div className="newsletter">
-                                    <p className="font-medium">
-                                        Receba novos artigos diretamente no seu
-                                        email.
-                                    </p>
-                                    <form className="input-group form-subcriber mt-30">
-                                        <input
-                                            type="email"
-                                            className="form-control font-small bg-white"
-                                            placeholder="Seu email"
-                                        />
-                                        <button
-                                            className="btn bg-primary text-white"
-                                            type="submit"
-                                        >
-                                            Subscrever
-                                        </button>
-                                    </form>
-                                </div>
-                            </div> */}
                         </div>
                     </div>
                 </div>
