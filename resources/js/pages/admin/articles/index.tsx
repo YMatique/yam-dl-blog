@@ -34,8 +34,11 @@ import {
 import AdminLayout from '@/layouts/admin-layout';
 import { Head, Link, router } from '@inertiajs/react';
 import {
+    CheckCircle,
     Edit,
     Eye,
+    File,
+    FileText,
     Filter,
     MoreVertical,
     Plus,
@@ -252,33 +255,52 @@ export default function Index({ articles, categories, filters }: Props) {
 
                 {/* Estatísticas */}
                 <div className="grid gap-4 md:grid-cols-3">
-                    <div className="rounded-lg border bg-card p-4">
-                        <p className="text-sm text-muted-foreground">Total</p>
-                        <p className="text-2xl font-bold">{articles.total}</p>
+                    <div className="rounded-lg border bg-card p-4 shadow-xs">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">
+                                    Total
+                                </p>
+                                <p className="text-2xl font-bold">
+                                    {articles.total}
+                                </p>
+                            </div>
+                            <FileText className="h-8 w-8 text-primary/70" />
+                        </div>
                     </div>
-                    <div className="rounded-lg border bg-card p-4">
-                        <p className="text-sm text-muted-foreground">
-                            Publicados
-                        </p>
-                        <p className="text-2xl font-bold">
-                            {
-                                articles.data.filter(
-                                    (a) => a.status === 'published',
-                                ).length
-                            }
-                        </p>
+                    <div className="rounded-lg border bg-card p-4 shadow-xs">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">
+                                    Publicados
+                                </p>
+                                <p className="text-2xl font-bold">
+                                    {
+                                        articles.data.filter(
+                                            (a) => a.status === 'published',
+                                        ).length
+                                    }
+                                </p>
+                            </div>
+                            <CheckCircle className="h-8 w-8 text-green-500/70" />
+                        </div>
                     </div>
-                    <div className="rounded-lg border bg-card p-4">
-                        <p className="text-sm text-muted-foreground">
-                            Rascunhos
-                        </p>
-                        <p className="text-2xl font-bold">
-                            {
-                                articles.data.filter(
-                                    (a) => a.status === 'draft',
-                                ).length
-                            }
-                        </p>
+                    <div className="rounded-lg border bg-card p-4 shadow-xs">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">
+                                    Rascunhos
+                                </p>
+                                <p className="text-2xl font-bold">
+                                    {
+                                        articles.data.filter(
+                                            (a) => a.status === 'draft',
+                                        ).length
+                                    }
+                                </p>
+                            </div>
+                            <File className="h-8 w-8 text-orange-500/70" />
+                        </div>
                     </div>
                 </div>
 
