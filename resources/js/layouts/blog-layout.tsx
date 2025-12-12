@@ -2,7 +2,7 @@ import NewsletterWidget from '@/components/blog/newsletter-widget';
 import SEOHead from '@/components/blog/seo-head';
 import TemplateScripts from '@/components/blog/template-scripts';
 import { SEOProps } from '@/types/seo';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { ReactNode } from 'react';
 
 interface BlogLayoutProps extends SEOProps {
@@ -35,6 +35,10 @@ export default function BlogLayout({
     locale,
     alternateLocales,
 }: BlogLayoutProps) {
+    const { url } = usePage();
+    const isActive = (path: string) =>
+        path === '/' ? url === '/' : url.startsWith(path);
+
     return (
         <>
             {/* SEO Head - Todas as meta tags otimizadas */}
@@ -101,24 +105,77 @@ export default function BlogLayout({
                                 {/* DESKTOP MENU */}
                                 <ul className="main-menu d-none d-lg-inline font-small">
                                     <li>
-                                        <Link href="/">
+                                        <Link
+                                            href="/"
+                                            className={
+                                                isActive('/')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
                                             <i className="elegant-icon icon_house_alt mr-5"></i>{' '}
                                             Página Inicial
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/artigos">Artigos</Link>
+                                        <Link
+                                            href="/sobre-nos"
+                                            className={
+                                                isActive('/sobre-nos')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
+                                            Sobre
+                                        </Link>
                                     </li>
                                     <li>
-                                        <Link href="/categorias">
+                                        <Link
+                                            href="/artigos"
+                                            className={
+                                                isActive('/artigos')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
+                                            Artigos
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            href="/categorias"
+                                            className={
+                                                isActive('/categorias')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
                                             Categorias
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/series">Séries</Link>
+                                        <Link
+                                            href="/series"
+                                            className={
+                                                isActive('/series')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
+                                            Séries
+                                        </Link>
                                     </li>
                                     <li>
-                                        <Link href="/contacto">Contacto</Link>
+                                        <Link
+                                            href="/contacto"
+                                            className={
+                                                isActive('/contacto')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
+                                            Contacto
+                                        </Link>
                                     </li>
                                 </ul>
 
@@ -128,24 +185,65 @@ export default function BlogLayout({
                                     className="d-block d-lg-none text-muted"
                                 >
                                     <li>
-                                        <Link href="/">
+                                        <Link
+                                            href="/"
+                                            className={
+                                                isActive('/')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
                                             <i className="elegant-icon icon_house_alt mr-5"></i>{' '}
                                             Página Inicial
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/artigos">Artigos</Link>
+                                        <Link
+                                            href="/artigos"
+                                            className={
+                                                isActive('/artigos')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
+                                            Artigos
+                                        </Link>
                                     </li>
                                     <li>
-                                        <Link href="/categorias">
+                                        <Link
+                                            href="/categorias"
+                                            className={
+                                                isActive('/categorias')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
                                             Categorias
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/series">Séries</Link>
+                                        <Link
+                                            href="/series"
+                                            className={
+                                                isActive('/series')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
+                                            Séries
+                                        </Link>
                                     </li>
                                     <li>
-                                        <Link href="/contacto">Contacto</Link>
+                                        <Link
+                                            href="/contacto"
+                                            className={
+                                                isActive('/contacto')
+                                                    ? 'active-link'
+                                                    : ''
+                                            }
+                                        >
+                                            Contacto
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>

@@ -63,3 +63,32 @@
 .img-hover-slide {
     min-height: 100px;
 }
+
+a.active-link {
+    color: rgba(88, 108, 218) !important;
+}
+
+a.active-link::before {
+    content: "";
+    background-color: rgba(88, 108, 218);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    margin-top: -3px;
+    animation: shadow-pulse 1s infinite;
+}
+
+@keyframes shadow-pulse {
+    0% {
+        box-shadow: 0 0 0 0px rgba(88, 108, 218, 0.8);
+    }
+
+
+
+    100% {
+        box-shadow: 0 0 0 5px rgba(0, 0, 0, 0);
+    }
+}
