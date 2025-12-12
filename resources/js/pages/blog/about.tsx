@@ -49,95 +49,90 @@ export default function About() {
         >
             <DefaultPageHeader title="Sobre Nós" />
 
-            <div className="container">
-                {/* Introdução */}
-                {/* <div className="hot-tags font-small align-self-center pt-30 pb-30">
-                    <div className="widget-header-3">
-                        <div className="row align-self-center">
-                            <div className="col-12">
-                                <h2 className="widget-title mb-30">
-                                    Bem-vindo à YAMDL
-                                </h2>
+            {/* Quem Somos */}
+            <div className="row">
+                <div className="container">
+                    <div className="row mb-50 pt-30 pb-30">
+                        <div className="col-lg-7">
+                            <h3 className="font-weight-900 mb-30">
+                                Quem Somos
+                            </h3>
+                            <p className="font-large mb-20">
+                                <strong>YAM DL</strong> (Yuvi Albino Matique -
+                                Digital Library) é uma plataforma dedicada a
+                                fornecer recursos digitais de alta qualidade
+                                para o crescimento e edificação espiritual.
+                            </p>
+                            <p className="mb-20">
+                                Nossa missão é disponibilizar estudos bíblicos
+                                aprofundados, artigos teológicos e ferramentas
+                                práticas para uma jornada cristã empolgante.
+                                Acreditamos no poder da Palavra para transformar
+                                vidas e trabalhamos com paixão, buscando a
+                                excelência em cada recurso que oferecemos.
+                            </p>
+                            <p>
+                                Seja você um pastor, líder de célula, estudante
+                                de teologia ou simplesmente alguém que deseja
+                                crescer na fé, a YAMDL é o lugar certo para
+                                encontrar conteúdo de qualidade.
+                            </p>
+                        </div>
+                        <div className="col-lg-5">
+                            <div className="border-radius-10 overflow-hidden">
+                                <img
+                                    src="/imgs/author.jpg"
+                                    alt="YAMDL"
+                                    className=""
+                                />
                             </div>
                         </div>
                     </div>
-                </div> */}
+                </div>
+            </div>
+            {/* Missão, Visão e Valores */}
+            <div className="row bg-grey mb-50 pt-30 pb-50">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 mb-30 pt-30 pb-30">
+                            <h3 className="font-weight-900 text-center">
+                                Nossa Essência
+                            </h3>
+                        </div>
 
-                {/* Quem Somos */}
-                <div className="row mb-50 pt-30 pb-30">
-                    <div className="col-lg-7">
-                        <h3 className="font-weight-900 mb-30">Quem Somos</h3>
-                        <p className="font-large mb-20">
-                            <strong>YAM DL</strong> (Yuvi Albino Matique -
-                            Digital Library) é uma plataforma dedicada a
-                            fornecer recursos digitais de alta qualidade para o
-                            crescimento e edificação espiritual.
-                        </p>
-                        <p className="mb-20">
-                            Nossa missão é disponibilizar estudos bíblicos
-                            aprofundados, artigos teológicos e ferramentas
-                            práticas para uma jornada cristã empolgante.
-                            Acreditamos no poder da Palavra para transformar
-                            vidas e trabalhamos com paixão, buscando a
-                            excelência em cada recurso que oferecemos.
-                        </p>
-                        <p>
-                            Seja você um pastor, líder de célula, estudante de
-                            teologia ou simplesmente alguém que deseja crescer
-                            na fé, a YAMDL é o lugar certo para encontrar
-                            conteúdo de qualidade.
-                        </p>
-                    </div>
-                    <div className="col-lg-5">
-                        <div className="border-radius-10 overflow-hidden">
-                            <img
-                                src="/stories/assets/imgs/authors/author.jpg"
-                                alt="YAMDL"
-                                className=""
+                        {/* Missão */}
+                        <div className="col-md-4 col-sm-6 col-12">
+                            <InfoCard
+                                icon="icon_compass"
+                                title="Missão"
+                                description="Disponibilizar recursos digitais de alta qualidade que promovam o crescimento espiritual e o aprofundamento no conhecimento da Palavra de Deus."
+                                color="primary"
+                            />
+                        </div>
+
+                        {/* Visão */}
+                        <div className="col-md-4 col-sm-6 col-12">
+                            <InfoCard
+                                icon="icon_lightbulb_alt"
+                                title="Visão"
+                                description="Ser a principal referência em recursos digitais cristãos na língua portuguesa, impactando milhares de vidas através do ensino bíblico sólido."
+                                color="success"
+                            />
+                        </div>
+
+                        {/* Valores */}
+                        <div className="col-md-4 col-sm-6 col-12">
+                            <InfoCard
+                                icon="icon_heart_alt"
+                                title="Valores"
+                                description="Fidelidade bíblica, excelência no conteúdo, acessibilidade para todos, compromisso com a verdade e amor pela igreja de Cristo."
+                                color="warning"
                             />
                         </div>
                     </div>
                 </div>
-
-                {/* Missão, Visão e Valores */}
-                <div className="row mb-50">
-                    <div className="col-12 mb-30 pt-30 pb-30">
-                        <h3 className="font-weight-900 text-center">
-                            Nossa Essência
-                        </h3>
-                    </div>
-
-                    {/* Missão */}
-                    <div className="col-md-4 col-sm-6 col-12">
-                        <InfoCard
-                            icon="icon_compass"
-                            title="Missão"
-                            description="Disponibilizar recursos digitais de alta qualidade que promovam o crescimento espiritual e o aprofundamento no conhecimento da Palavra de Deus."
-                            color="primary"
-                        />
-                    </div>
-
-                    {/* Visão */}
-                    <div className="col-md-4 col-sm-6 col-12">
-                        <InfoCard
-                            icon="icon_lightbulb_alt"
-                            title="Visão"
-                            description="Ser a principal referência em recursos digitais cristãos na língua portuguesa, impactando milhares de vidas através do ensino bíblico sólido."
-                            color="success"
-                        />
-                    </div>
-
-                    {/* Valores */}
-                    <div className="col-md-4 col-sm-6 col-12">
-                        <InfoCard
-                            icon="icon_heart_alt"
-                            title="Valores"
-                            description="Fidelidade bíblica, excelência no conteúdo, acessibilidade para todos, compromisso com a verdade e amor pela igreja de Cristo."
-                            color="warning"
-                        />
-                    </div>
-                </div>
             </div>
+            {/* <div className="container"></div> */}
 
             {/* Fundador */}
             <div className="row border-radius-10 mb-50 bg-white pt-50 pb-50">
@@ -150,7 +145,7 @@ export default function About() {
                         <div className="col-md-5 mb-30">
                             <div className="border-radius-50 overflow-hidden">
                                 <img
-                                    src="/stories/assets/imgs/authors/author.jpg"
+                                    src="/imgs/author.jpg"
                                     alt="Yuvi Albino Matique"
                                     className="w-50"
                                 />
