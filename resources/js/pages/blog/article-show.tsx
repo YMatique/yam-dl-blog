@@ -39,10 +39,10 @@ export default function ArticleShow({
 
     return (
         <BlogLayout
-            title={article.meta_title || article.title}
+            title={article.title}
             description={article.meta_description || article.excerpt}
-            // keywords={keywords}
-            ogType="article"
+            keywords={keywords}
+            // ogType="article"
             ogImage={article.featured_image}
             articlePublishedTime={article.published_at}
             articleModifiedTime={article.updated_at}
