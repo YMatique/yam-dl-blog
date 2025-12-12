@@ -1,11 +1,11 @@
+import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
+import { login, register } from '@/routes';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
-import InputError from '@/components/input-error';
-import { login, register } from '@/routes';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -25,9 +25,9 @@ export default function Register() {
     return (
         <div className="flex min-h-screen w-full">
             <Head title="Register" />
-            
+
             {/* Left Side - Hero/Branding */}
-            <div className="hidden w-1/2 flex-col justify-between bg-zinc-900 p-10 text-white lg:flex">
+            <div className="hidden w-1/2 flex-col justify-between bg-gradient-to-br from-[#5869DA] to-[#2d3d8b] p-10 text-white lg:flex">
                 <div className="flex items-center gap-2 font-medium">
                     <div className="flex h-8 w-8 items-center justify-center rounded-md bg-white/10 backdrop-blur-sm">
                         <svg
@@ -45,20 +45,31 @@ export default function Register() {
                     </div>
                     <span>Yam DL Blog</span>
                 </div>
-                
+
                 <div className="space-y-6">
                     <h1 className="text-4xl font-bold tracking-tight">
                         Join our community today.
                     </h1>
-                    <p className="text-lg text-zinc-400">
-                        Create an account to start writing, sharing, and connecting with other developers.
+                    <p className="text-lg text-white/80">
+                        Create an account to start writing, sharing, and
+                        connecting with other developers.
                     </p>
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-zinc-500">
+                <div className="flex items-center gap-4 text-sm text-white/60">
                     <span>© 2025 Yam DL Blog</span>
-                    <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
-                    <Link href="#" className="hover:text-white transition-colors">Terms</Link>
+                    <Link
+                        href="#"
+                        className="transition-colors hover:text-white"
+                    >
+                        Privacy
+                    </Link>
+                    <Link
+                        href="#"
+                        className="transition-colors hover:text-white"
+                    >
+                        Terms
+                    </Link>
                 </div>
             </div>
 
@@ -83,7 +94,9 @@ export default function Register() {
                                     type="text"
                                     placeholder="John Doe"
                                     value={data.name}
-                                    onChange={(e) => setData('name', e.target.value)}
+                                    onChange={(e) =>
+                                        setData('name', e.target.value)
+                                    }
                                     required
                                     autoFocus
                                     autoComplete="name"
@@ -98,20 +111,24 @@ export default function Register() {
                                     type="email"
                                     placeholder="name@example.com"
                                     value={data.email}
-                                    onChange={(e) => setData('email', e.target.value)}
+                                    onChange={(e) =>
+                                        setData('email', e.target.value)
+                                    }
                                     required
                                     autoComplete="username"
                                 />
                                 <InputError message={errors.email} />
                             </div>
-                            
+
                             <div className="space-y-2">
                                 <Label htmlFor="password">Password</Label>
                                 <Input
                                     id="password"
                                     type="password"
                                     value={data.password}
-                                    onChange={(e) => setData('password', e.target.value)}
+                                    onChange={(e) =>
+                                        setData('password', e.target.value)
+                                    }
                                     required
                                     autoComplete="new-password"
                                 />
@@ -119,21 +136,36 @@ export default function Register() {
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="password_confirmation">Confirm Password</Label>
+                                <Label htmlFor="password_confirmation">
+                                    Confirm Password
+                                </Label>
                                 <Input
                                     id="password_confirmation"
                                     type="password"
                                     value={data.password_confirmation}
-                                    onChange={(e) => setData('password_confirmation', e.target.value)}
+                                    onChange={(e) =>
+                                        setData(
+                                            'password_confirmation',
+                                            e.target.value,
+                                        )
+                                    }
                                     required
                                     autoComplete="new-password"
                                 />
-                                <InputError message={errors.password_confirmation} />
+                                <InputError
+                                    message={errors.password_confirmation}
+                                />
                             </div>
                         </div>
 
-                        <Button className="w-full" type="submit" disabled={processing}>
-                            {processing && <Spinner className="mr-2 h-4 w-4 animate-spin" />}
+                        <Button
+                            className="w-full"
+                            type="submit"
+                            disabled={processing}
+                        >
+                            {processing && (
+                                <Spinner className="mr-2 h-4 w-4 animate-spin" />
+                            )}
                             Create Account
                         </Button>
                     </form>

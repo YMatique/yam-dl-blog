@@ -143,7 +143,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article }) => {
                             {article.tags.map((tag) => (
                                 <Link
                                     key={tag.id}
-                                    href={`/blog/artigos?tag=${tag.slug}`}
+                                    // href={`/blog/artigos?tag=${tag.slug}`}
                                     rel="tag"
                                 >
                                     {tag.name}

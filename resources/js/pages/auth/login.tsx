@@ -1,15 +1,21 @@
+import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
-import { Head, Link, useForm } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
-import InputError from '@/components/input-error';
 import { login, register } from '@/routes';
 import { request } from '@/routes/password';
+import { Head, Link, useForm } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
 
-export default function Login({ status, canResetPassword }: { status?: string; canResetPassword: boolean }) {
+export default function Login({
+    status,
+    canResetPassword,
+}: {
+    status?: string;
+    canResetPassword: boolean;
+}) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
@@ -26,9 +32,9 @@ export default function Login({ status, canResetPassword }: { status?: string; c
     return (
         <div className="flex min-h-screen w-full">
             <Head title="Log in" />
-            
+
             {/* Left Side - Hero/Branding */}
-            <div className="hidden w-1/2 flex-col justify-between bg-zinc-900 p-10 text-white lg:flex">
+            <div className="hidden w-1/2 flex-col justify-between bg-gradient-to-br from-[#5869DA] to-[#2d3d8b] p-10 text-white lg:flex">
                 <div className="flex items-center gap-2 font-medium">
                     <div className="flex h-8 w-8 items-center justify-center rounded-md bg-white/10 backdrop-blur-sm">
                         <svg
@@ -46,20 +52,31 @@ export default function Login({ status, canResetPassword }: { status?: string; c
                     </div>
                     <span>Yam DL Blog</span>
                 </div>
-                
+
                 <div className="space-y-6">
                     <h1 className="text-4xl font-bold tracking-tight">
                         Welcome back to the community.
                     </h1>
-                    <p className="text-lg text-zinc-400">
-                        Discover the latest articles, tutorials, and resources to level up your development skills.
+                    <p className="text-lg text-white/80">
+                        Discover the latest articles, tutorials, and resources
+                        to level up your development skills.
                     </p>
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-zinc-500">
+                <div className="flex items-center gap-4 text-sm text-white/60">
                     <span>© 2025 Yam DL Blog</span>
-                    <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
-                    <Link href="#" className="hover:text-white transition-colors">Terms</Link>
+                    <Link
+                        href="#"
+                        className="transition-colors hover:text-white"
+                    >
+                        Privacy
+                    </Link>
+                    <Link
+                        href="#"
+                        className="transition-colors hover:text-white"
+                    >
+                        Terms
+                    </Link>
                 </div>
             </div>
 
@@ -90,21 +107,23 @@ export default function Login({ status, canResetPassword }: { status?: string; c
                                     type="email"
                                     placeholder="name@example.com"
                                     value={data.email}
-                                    onChange={(e) => setData('email', e.target.value)}
+                                    onChange={(e) =>
+                                        setData('email', e.target.value)
+                                    }
                                     required
                                     autoFocus
                                     autoComplete="username"
                                 />
                                 <InputError message={errors.email} />
                             </div>
-                            
+
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
                                     <Label htmlFor="password">Password</Label>
                                     {canResetPassword && (
                                         <Link
                                             href={request()}
-                                            className="text-sm font-medium text-primary hover:underline"
+                                            className="text-sm font-medium text-[#5869DA] hover:underline"
                                         >
                                             Forgot password?
                                         </Link>
@@ -114,7 +133,9 @@ export default function Login({ status, canResetPassword }: { status?: string; c
                                     id="password"
                                     type="password"
                                     value={data.password}
-                                    onChange={(e) => setData('password', e.target.value)}
+                                    onChange={(e) =>
+                                        setData('password', e.target.value)
+                                    }
                                     required
                                     autoComplete="current-password"
                                 />
@@ -125,19 +146,27 @@ export default function Login({ status, canResetPassword }: { status?: string; c
                                 <Checkbox
                                     id="remember"
                                     checked={data.remember}
-                                    onCheckedChange={(checked) => setData('remember', !!checked)}
+                                    onCheckedChange={(checked) =>
+                                        setData('remember', !!checked)
+                                    }
                                 />
                                 <Label
                                     htmlFor="remember"
-                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                 >
                                     Remember me
                                 </Label>
                             </div>
                         </div>
 
-                        <Button className="w-full" type="submit" disabled={processing}>
-                            {processing && <Spinner className="mr-2 h-4 w-4 animate-spin" />}
+                        <Button
+                            className="w-full"
+                            type="submit"
+                            disabled={processing}
+                        >
+                            {processing && (
+                                <Spinner className="mr-2 h-4 w-4 animate-spin" />
+                            )}
                             Sign In
                         </Button>
                     </form>
