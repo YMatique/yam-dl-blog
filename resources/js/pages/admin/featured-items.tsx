@@ -105,11 +105,11 @@ export default function FeaturedItems({ items, articles, series }: Props) {
             position,
         };
         if (editing) {
-            router.put(`/admin/featured-items/${editing.id}`, payload, {
+            router.put(`/scm/featured-items/${editing.id}`, payload, {
                 onSuccess: () => setOpen(false),
             });
         } else {
-            router.post('/admin/featured-items', payload, {
+            router.post('/scm/featured-items', payload, {
                 onSuccess: () => setOpen(false),
             });
         }
@@ -117,7 +117,7 @@ export default function FeaturedItems({ items, articles, series }: Props) {
 
     const handleDelete = (id: number) => {
         if (confirm('Excluir este item em destaque?')) {
-            router.delete(`/admin/featured-items/${id}`);
+            router.delete(`/scm/featured-items/${id}`);
         }
     };
 
@@ -130,7 +130,7 @@ export default function FeaturedItems({ items, articles, series }: Props) {
             id: it.id,
             position: idx,
         }));
-        router.post('/admin/featured-items/reorder', { items: payload });
+        router.post('/scm/featured-items/reorder', { items: payload });
     };
 
     const renderFeaturedableSelect = () => {

@@ -85,6 +85,10 @@ Route::middleware(['auth', 'verified'])->prefix('scm')->name('admin.')
         
         Route::put('series/{series}/articles/order', [SeriesController::class, 'updateArticlesOrder'])
             ->name('series.articles.order');
+
+
+        Route::post('settings', [SettingsController::class, 'update'])
+            ->name('settings.update');
     });
 
 require __DIR__.'/upload-routes.php';

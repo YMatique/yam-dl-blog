@@ -65,7 +65,7 @@ export default function Settings({ settings }: Props) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/admin/settings', {
+        post('/scm/settings', {
             preserveScroll: true,
         });
     };
@@ -82,7 +82,7 @@ export default function Settings({ settings }: Props) {
         formData.append('image', file);
 
         try {
-            const response = await fetch('/admin/upload/image', {
+            const response = await fetch('/scm/upload/image', {
                 method: 'POST',
                 body: formData,
                 headers: {
