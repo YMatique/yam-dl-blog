@@ -21,7 +21,19 @@ export default function Home({
     featuredSeries,
 }: BlogIndexProps) {
     return (
-        <BlogLayout title="YAMDL - Yuvi Matique Digital Library">
+        <BlogLayout
+            title="YAMDL - Yuvi Matique Digital Library"
+            ogTitle="YAMDL - Yuvi Matique Digital Library"
+            keywords={[
+                'YAMDL',
+                'Yuvi Matique Digital Library',
+                'Yuvi Matique',
+                'Artigos',
+                'Estudos',
+                'Crescimento Espiritual',
+                'Revelação',
+            ]}
+        >
             <div className="bg-white">
                 <div className="container pt-30">
                     {/* ========== SLIDER DE ARTIGOS EM DESTAQUE ========== */}

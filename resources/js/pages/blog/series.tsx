@@ -3,7 +3,7 @@ import SeriesCard from '@/components/blog/series-card';
 import SeriesHighlight from '@/components/blog/series-highlight';
 import BlogLayout from '@/layouts/blog-layout';
 import { Series } from '@/types/blog';
-import { Head, Link } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
 interface SeriesIndexProps {
@@ -48,9 +48,15 @@ export default function Index({ featuredSeries, series }: SeriesIndexProps) {
     });
 
     return (
-        <BlogLayout title="Séries de Estudos - YMDL Blog">
+        <BlogLayout
+            title="Séries de Estudos - Yuvi Matique Digital Library"
+            description="Explore nossos estudos organizados em séries temáticas. Cada série oferece um mergulho profundo em tópicos específicos da Palavra de Deus."
+            ogTitle="Séries de Estudos - Yuvi Matique Digital Library"
+            ogDescription="Explore nossos estudos organizados em séries temáticas. Cada série oferece um mergulho profundo em tópicos específicos da Palavra de Deus."
+            keywords={['Séries de Estudos', 'Estudos Bíblicos']}
+        >
             <DefaultPageHeader title="Séries de Artigos" />
-            <Head title="Séries de Estudos - YMDL Blog" />
+            {/* <Head title="Séries de Estudos - YMDL Blog" /> */}
 
             <main className="bg-white pb-30">
                 <div className="container">
@@ -123,6 +129,7 @@ export default function Index({ featuredSeries, series }: SeriesIndexProps) {
                     {featuredSeries.length > 0 && (
                         <div className="row mb-30">
                             <SeriesHighlight series={featuredSeries} />
+                            <div className="col-lg-4 text-lg-right">asa</div>
                         </div>
                     )}
 

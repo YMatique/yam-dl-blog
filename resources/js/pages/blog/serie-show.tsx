@@ -36,7 +36,13 @@ export default function Show({ series, relatedSeries = [] }: SeriesShowProps) {
     const publishedCount = series.articles?.length || 0;
 
     return (
-        <BlogLayout title={`${series.title} - Série de Estudos - YMDL Blog`}>
+        <BlogLayout
+            title={` Série - ${series.title}`}
+            description={`Série - ${series.description}`}
+            ogTitle={` Série - ${series.title}`}
+            ogDescription={`Série - ${series.description}`}
+            // keywords={[`Série - ${series.title}`]}
+        >
             {/* <Head title={`${series.title} - Série de Estudos - YMDL Blog`} /> */}
             <DefaultPageHeader
                 className="bg-grey"
