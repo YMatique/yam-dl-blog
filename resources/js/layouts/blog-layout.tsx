@@ -66,160 +66,6 @@ export default function BlogLayout({
 
             <div className="scroll-progress primary-bg"></div>
 
-            {/* OFFCANVAS SIDEBAR */}
-            {/* <aside
-                id="sidebar-wrapper"
-                className="custom-scrollbar offcanvas-sidebar"
-            >
-                <button className="off-canvas-close">
-                    <i className="elegant-icon icon_close"></i>
-                </button>
-                <div className="sidebar-inner">
-                    <div className="sidebar-widget widget_categories mt-30 mb-50">
-                        <div className="widget-header-2 position-relative">
-                            <h5 className="mt-5 mb-15">Mais Populares</h5>
-                        </div>
-                        <div className="widget_nav_menu">
-                            <ul>
-                                <li className="cat-item cat-item-2">
-                                    <Link href="/blog/categoria/dons-espirituais">
-                                        Dons Espirituais
-                                    </Link>
-                                    <span className="post-count">30</span>
-                                </li>
-                                <li className="cat-item cat-item-3">
-                                    <Link href="/blog/categoria/pensamentos">
-                                        Pensamentos Soltos
-                                    </Link>
-                                    <span className="post-count">30</span>
-                                </li>
-                                <li className="cat-item cat-item-4">
-                                    <Link href="/blog/categoria/profecia">
-                                        Profecia
-                                    </Link>
-                                    <span className="post-count">30</span>
-                                </li>
-                                <li className="cat-item cat-item-5">
-                                    <Link href="/blog/categoria/ministros">
-                                        Ministros do Evangelho
-                                    </Link>
-                                    <span className="post-count">30</span>
-                                </li>
-                                <li className="cat-item cat-item-6">
-                                    <Link href="/blog/categoria/seminarios">
-                                        Seminários
-                                    </Link>
-                                    <span className="post-count">30</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="sidebar-widget widget-latest-posts mb-50">
-                        <div className="widget-header-2 position-relative mb-30">
-                            <h5 className="mt-5 mb-30">Não perca</h5>
-                        </div>
-                        <div className="post-block-list post-module-1 post-module-5">
-                            <ul className="list-post">
-                                <li className="mb-30">
-                                    <div className="d-flex hover-up-2 transition-normal">
-                                        <div className="post-thumb post-thumb-80 d-flex border-radius-5 img-hover-scale mr-15 overflow-hidden">
-                                            <Link
-                                                className="color-white"
-                                                href="#"
-                                            >
-                                                <img
-                                                    src="stories/assets/imgs/news/thumb-1.jpg"
-                                                    alt=""
-                                                />
-                                            </Link>
-                                        </div>
-                                        <div className="post-content media-body">
-                                            <h6 className="post-title text-limit-2-row mb-15 font-medium">
-                                                <Link href="#">
-                                                    The Life of a Travel Writer
-                                                    with David Farley
-                                                </Link>
-                                            </h6>
-                                            <div className="entry-meta meta-1 font-x-small text-uppercase float-left">
-                                                <span className="post-on">
-                                                    05 August
-                                                </span>
-                                                <span className="post-by has-dot">
-                                                    300 views
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className="mb-30">
-                                    <div className="d-flex hover-up-2 transition-normal">
-                                        <div className="post-thumb post-thumb-80 d-flex border-radius-5 img-hover-scale mr-15 overflow-hidden">
-                                            <Link
-                                                className="color-white"
-                                                href="#"
-                                            >
-                                                <img
-                                                    src="stories/assets/imgs/news/thumb-2.jpg"
-                                                    alt=""
-                                                />
-                                            </Link>
-                                        </div>
-                                        <div className="post-content media-body">
-                                            <h6 className="post-title text-limit-2-row mb-15 font-medium">
-                                                <Link href="#">
-                                                    Why Don't More Black
-                                                    American Women Travel Solo?
-                                                </Link>
-                                            </h6>
-                                            <div className="entry-meta meta-1 font-x-small text-uppercase float-left">
-                                                <span className="post-on">
-                                                    12 August
-                                                </span>
-                                                <span className="post-by has-dot">
-                                                    23k views
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className="mb-30">
-                                    <div className="d-flex hover-up-2 transition-normal">
-                                        <div className="post-thumb post-thumb-80 d-flex border-radius-5 img-hover-scale mr-15 overflow-hidden">
-                                            <Link
-                                                className="color-white"
-                                                href="#"
-                                            >
-                                                <img
-                                                    src="stories/assets/imgs/news/thumb-3.jpg"
-                                                    alt=""
-                                                />
-                                            </Link>
-                                        </div>
-                                        <div className="post-content media-body">
-                                            <h6 className="post-title text-limit-2-row mb-15 font-medium">
-                                                <Link href="#">
-                                                    The 22 Best Things to See
-                                                    and Do in Bangkok
-                                                </Link>
-                                            </h6>
-                                            <div className="entry-meta meta-1 font-x-small text-uppercase float-left">
-                                                <span className="post-on">
-                                                    27 August
-                                                </span>
-                                                <span className="post-by has-dot">
-                                                    23k views
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </aside> */}
-
             {/* HEADER */}
             <header className="main-header header-style-1 font-heading">
                 <div className="header-top">
@@ -356,58 +202,8 @@ export default function BlogLayout({
                                 <div className="textwidget">
                                     <p>
                                         YAMDL sua biblioteca digital para
-                                        aprofundamento bíblico.
+                                        aprofundamento na Palavra de Deus.
                                     </p>
-                                    <p>
-                                        <strong className="color-black">
-                                            Endereço
-                                        </strong>
-                                        <br />
-                                        Av 24 Julho
-                                        <br />
-                                        Beira, Moçambique
-                                    </p>
-                                    <p>
-                                        <strong className="color-black">
-                                            Siga-me
-                                        </strong>
-                                        <br />
-                                    </p>
-                                    <ul className="header-social-network d-inline-block list-inline color-white mb-20">
-                                        <li className="list-inline-item">
-                                            <a
-                                                className="fb"
-                                                href="#"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                title="Facebook"
-                                            >
-                                                <i className="elegant-icon social_facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li className="list-inline-item">
-                                            <a
-                                                className="tw"
-                                                href="#"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                title="Tweet now"
-                                            >
-                                                <i className="elegant-icon social_twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li className="list-inline-item">
-                                            <a
-                                                className="pt"
-                                                href="#"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                title="YouTube"
-                                            >
-                                                <i className="elegant-icon social_youtube"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -422,20 +218,20 @@ export default function BlogLayout({
                                     <li className="cat-item">
                                         <Link href="/">Página Inicial</Link>
                                     </li>
-                                    <li className="cat-item">
+                                    {/* <li className="cat-item">
                                         <Link href="/sobre-nos">Sobre</Link>
-                                    </li>
+                                    </li> */}
                                     <li className="cat-item">
                                         <Link href="/artigos">Artigos</Link>
                                     </li>
                                     <li className="cat-item">
                                         <Link href="/series">Séries</Link>
                                     </li>
-                                    <li className="cat-item">
+                                    {/* <li className="cat-item">
                                         <Link href="/categorias">
                                             Categorias
                                         </Link>
-                                    </li>
+                                    </li> */}
                                     <li className="cat-item">
                                         <Link href="/contacto">Contacto</Link>
                                     </li>
@@ -445,9 +241,26 @@ export default function BlogLayout({
                         <div className="col-lg-3 col-md-6">
                             <div className="sidebar-widget widget_tagcloud wow fadeInUp animated mb-30">
                                 <div className="widget-header-2 position-relative mb-30">
-                                    <h5 className="mt-5 mb-30">Tags</h5>
+                                    <h5 className="mt-5 mb-30">Adicional</h5>
                                 </div>
-                                <div className="tagcloud mt-50">
+                                <div className="textwidget">
+                                    <p>
+                                        <strong className="color-black">
+                                            Endereço
+                                        </strong>
+                                        : Av 24 Julho
+                                        <br />
+                                        Beira, Moçambique
+                                    </p>
+                                    <p>
+                                        <strong>Email</strong>: info@yamdl.com
+                                    </p>
+                                    <p>
+                                        <strong>Contactos:</strong> +258 84 123
+                                        4567
+                                    </p>
+                                </div>
+                                {/* <div className="tagcloud mt-50">
                                     <Link
                                         className="tag-cloud-link"
                                         href="/blog/tag/fe"
@@ -472,46 +285,10 @@ export default function BlogLayout({
                                     >
                                         Igreja
                                     </Link>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-6">
-                            {/* <div className="sidebar-widget widget_newsletter wow fadeInUp animated mb-30">
-                                <div className="widget-header-2 position-relative mb-30">
-                                    <h5 className="mt-5 mb-30">Newsletter</h5>
-                                </div>
-                                <div className="newsletter">
-                                    <p className="font-medium">
-                                        Subscreva-se ao newsletter e receba
-                                        notificações de novos artigos no seu
-                                        email.
-                                    </p>
-                                    <form className="input-group form-subcriber d-flex mt-30">
-                                        <input
-                                            type="email"
-                                            className="form-control font-small bg-white"
-                                            placeholder="Seu email"
-                                        />
-                                        <button
-                                            className="btn bg-primary text-white"
-                                            type="submit"
-                                        >
-                                            Subscrever
-                                        </button>
-                                        <label className="mt-20">
-                                            <input
-                                                className="mr-5"
-                                                name="terms"
-                                                type="checkbox"
-                                                value="1"
-                                                required
-                                            />{' '}
-                                            Concordo com os termos e
-                                            condições{' '}
-                                        </label>
-                                    </form>
-                                </div>
-                            </div> */}
                             <NewsletterWidget />
                         </div>
                     </div>

@@ -104,83 +104,87 @@ export default function Home({
                 )} */}
                 </div>
             </div>
-            <div className="container">
-                {/* ========== SEÇÃO DE SÉRIES E SIDEBAR ========== */}
-                <div className="bg-grey pt-50 pb-50">
-                    <div className="container">
-                        <div className="row">
-                            {/* Últimas Séries */}
-                            <div className="col-lg-8">
-                                <div className="post-module-2">
-                                    <div className="widget-header-1 position-relative wow fadeInUp animated mb-30">
-                                        <h5 className="mt-5 mb-30">
-                                            Últimas Séries de Estudos
-                                        </h5>
-                                    </div>
-                                    <div className="loop-list loop-list-style-1">
-                                        <div className="row">
-                                            <SeriesHighlight
-                                                className="col-12"
-                                                series={featuredSeries}
-                                            />
+            <div className="row bg-grey">
+                <div className="container">
+                    {/* ========== SEÇÃO DE SÉRIES E SIDEBAR ========== */}
+                    <div className="pt-50 pb-50">
+                        <div className="container">
+                            <div className="row">
+                                {/* Últimas Séries */}
+                                <div className="col-lg-8">
+                                    <div className="post-module-2">
+                                        <div className="widget-header-1 position-relative wow fadeInUp animated mb-30">
+                                            <h5 className="mt-5 mb-30">
+                                                Últimas Séries de Estudos
+                                            </h5>
+                                        </div>
+                                        <div className="loop-list loop-list-style-1">
+                                            <div className="row">
+                                                <SeriesHighlight
+                                                    className="col-12"
+                                                    series={featuredSeries}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Sidebar - Categorias Populares */}
-                            <div className="col-lg-4">
-                                <div className="widget-area">
-                                    <div className="sidebar-widget widget-latest-posts wow fadeInUp animated mb-50">
-                                        <div className="widget-header-1 position-relative mb-30">
-                                            <h5 className="mt-5 mb-30">
-                                                Categorias Populares
-                                            </h5>
-                                        </div>
-                                        <div className="post-block-list post-module-1">
-                                            <ul className="list-post">
-                                                {categories
-                                                    ?.slice(0, 5)
-                                                    .map((category) => (
-                                                        <li
-                                                            key={category.id}
-                                                            className="wow fadeInUp mb-30"
-                                                        >
-                                                            <div className="d-flex has-border hover-up border-radius-5 bg-white p-25 transition-normal">
-                                                                <div className="post-content media-body">
-                                                                    <h6 className="post-title mb-15 font-medium">
-                                                                        <Link
-                                                                            href={`/categorias/${category.slug}`}
-                                                                        >
-                                                                            {
-                                                                                category.name
-                                                                            }
-                                                                        </Link>
-                                                                    </h6>
-                                                                    {category.description && (
-                                                                        <p className="font-small mb-10 text-muted">
-                                                                            {
-                                                                                category.description
-                                                                            }
-                                                                        </p>
-                                                                    )}
-                                                                    <div className="entry-meta meta-1 font-x-small text-uppercase">
-                                                                        <span className="post-by">
-                                                                            {category.articles_count ||
-                                                                                0}{' '}
-                                                                            artigo
-                                                                            {(category.articles_count ||
-                                                                                0) !==
-                                                                            1
-                                                                                ? 's'
-                                                                                : ''}
-                                                                        </span>
+                                {/* Sidebar - Categorias Populares */}
+                                <div className="col-lg-4">
+                                    <div className="widget-area">
+                                        <div className="sidebar-widget widget-latest-posts wow fadeInUp animated mb-50">
+                                            <div className="widget-header-1 position-relative mb-30">
+                                                <h5 className="mt-5 mb-30">
+                                                    Categorias Populares
+                                                </h5>
+                                            </div>
+                                            <div className="post-block-list post-module-1">
+                                                <ul className="list-post">
+                                                    {categories
+                                                        ?.slice(0, 5)
+                                                        .map((category) => (
+                                                            <li
+                                                                key={
+                                                                    category.id
+                                                                }
+                                                                className="wow fadeInUp mb-30"
+                                                            >
+                                                                <div className="d-flex has-border hover-up border-radius-5 bg-white p-25 transition-normal">
+                                                                    <div className="post-content media-body">
+                                                                        <h6 className="post-title mb-15 font-medium">
+                                                                            <Link
+                                                                                href={`/categorias/${category.slug}`}
+                                                                            >
+                                                                                {
+                                                                                    category.name
+                                                                                }
+                                                                            </Link>
+                                                                        </h6>
+                                                                        {category.description && (
+                                                                            <p className="font-small mb-10 text-muted">
+                                                                                {
+                                                                                    category.description
+                                                                                }
+                                                                            </p>
+                                                                        )}
+                                                                        <div className="entry-meta meta-1 font-x-small text-uppercase">
+                                                                            <span className="post-by">
+                                                                                {category.articles_count ||
+                                                                                    0}{' '}
+                                                                                artigo
+                                                                                {(category.articles_count ||
+                                                                                    0) !==
+                                                                                1
+                                                                                    ? 's'
+                                                                                    : ''}
+                                                                            </span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </li>
-                                                    ))}
-                                            </ul>
+                                                            </li>
+                                                        ))}
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
