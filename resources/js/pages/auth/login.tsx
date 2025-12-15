@@ -50,7 +50,7 @@ export default function Login({
                             <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
                         </svg>
                     </div>
-                    <span>Yam DL Blog</span>
+                    <span>YAMDL</span>
                 </div>
 
                 <div className="space-y-6">
@@ -64,7 +64,7 @@ export default function Login({
                 </div>
 
                 <div className="flex items-center gap-4 text-sm text-white/60">
-                    <span>© 2025 Yam DL Blog</span>
+                    <span>© 2025 Yam DL Admin</span>
                     <Link
                         href="#"
                         className="transition-colors hover:text-white"
