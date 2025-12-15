@@ -11,7 +11,7 @@ const SITE_CONFIG = {
     description:
         'Biblioteca digital de estudos bíblicos, artigos e recursos cristãos',
     url: 'https://yamdl.com',
-    logo: '/images/logo.png',
+    logo: '/logo.png',
     twitterHandle: '@yamdl',
     locale: 'pt_BR',
     type: 'website',
@@ -85,8 +85,28 @@ const SEOHead: React.FC<SEOHeadProps> = ({
 
     return (
         <Head>
+            {/* Favicons */}
+            <link rel="icon" href="/favicon.ico" />
+            <link
+                rel="icon"
+                type="image/png"
+                sizes="32x32"
+                href="/favicon-32x32.png"
+            />
+            <link
+                rel="icon"
+                type="image/png"
+                sizes="16x16"
+                href="/favicon-16x16.png"
+            />
+            <link
+                rel="apple-touch-icon"
+                sizes="180x180"
+                href="/apple-touch-icon.png"
+            />
+            <link rel="manifest" href="/site.webmanifest" />
             {/* ========== CSS e JS do Template ========== */}
-            <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+            {/* <link rel="icon" type="image/x-icon" href="/favicon.ico" /> */}
             <link rel="stylesheet" href="/stories/assets/css/style.css" />
             <link rel="stylesheet" href="/stories/assets/css/widgets.css" />
             <link rel="stylesheet" href="/stories/assets/css/responsive.css" />
