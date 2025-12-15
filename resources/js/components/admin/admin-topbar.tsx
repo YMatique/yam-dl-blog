@@ -241,9 +241,7 @@ export default function AdminTopbar({ sidebarCollapsed }: AdminTopbarProps) {
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
                             <DropdownMenuItem
-                                onClick={() =>
-                                    router.visit(route('admin.profile.edit'))
-                                }
+                                onClick={() => router.visit('/scm/profile')}
                             >
                                 <UserCircle className="mr-2 h-4 w-4" />
                                 <span>Meu Perfil</span>
