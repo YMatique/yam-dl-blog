@@ -86,11 +86,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     return (
         <Head>
             {/* ========== CSS e JS do Template ========== */}
-            <link
-                rel="shortcut icon"
-                type="image/x-icon"
-                href="/stories/assets/imgs/theme/favicon.png"
-            />
+            <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
             <link rel="stylesheet" href="/stories/assets/css/style.css" />
             <link rel="stylesheet" href="/stories/assets/css/widgets.css" />
             <link rel="stylesheet" href="/stories/assets/css/responsive.css" />
