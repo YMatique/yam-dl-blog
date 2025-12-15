@@ -68,7 +68,7 @@ export default function AdminTopbar({ sidebarCollapsed }: AdminTopbarProps) {
     const unreadCount = notifications.filter((n) => !n.read).length;
 
     const handleLogout = () => {
-        router.post('/logout');
+        router.post('/yamdl-auth/logout');
     };
 
     // Iniciais do usuário para o avatar

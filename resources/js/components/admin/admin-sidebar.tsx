@@ -8,10 +8,10 @@ import {
     Home,
     Mail,
     MessageSquare,
+    Package,
     Settings,
     Tags,
     Users,
-    Package
 } from 'lucide-react';
 
 interface AdminSidebarProps {
@@ -48,10 +48,20 @@ export default function AdminSidebar({
             {/* Logo */}
             <div className="flex h-16 items-center justify-between border-b px-4">
                 {!collapsed && (
-                    <Link href="/admin" className="flex items-center gap-2">
-                        <span className="text-xl font-bold text-primary">
+                    <Link
+                        href="/scm/dashboard"
+                        className="flex items-center gap-2"
+                    >
+                        {/* <span className="text-xl font-bold text-primary">
                             YAM DL
-                        </span>
+                        </span> */}
+                        <img
+                            src="/logo.png"
+                            alt="YAMDL Logo"
+                            // className="mb-10"
+                            width={100}
+                            height={100}
+                        />
                     </Link>
                 )}
                 <button

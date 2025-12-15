@@ -79,7 +79,7 @@ export default function BlogLayout({
                                 <Link href="/">
                                     <img
                                         className="logo"
-                                        src="/stories/assets/imgs/theme/logo.png"
+                                        src="/logo.png"
                                         alt="YAMDL Logo"
                                     />
                                 </Link>
@@ -297,6 +297,13 @@ export default function BlogLayout({
                                 <div className="widget-header-2 position-relative mb-30">
                                     <h5 className="mt-5 mb-30">Sobre nós</h5>
                                 </div>
+                                <img
+                                    src="/logo.png"
+                                    alt="YAMDL Logo"
+                                    className="mb-10"
+                                    width={100}
+                                    height={100}
+                                />
                                 <div className="textwidget">
                                     <p>
                                         YAMDL sua biblioteca digital para
