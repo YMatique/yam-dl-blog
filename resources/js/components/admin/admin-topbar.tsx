@@ -241,13 +241,15 @@ export default function AdminTopbar({ sidebarCollapsed }: AdminTopbarProps) {
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
                             <DropdownMenuItem
-                                onClick={() => router.visit('/admin/profile')}
+                                onClick={() =>
+                                    router.visit(route('admin.profile.edit'))
+                                }
                             >
                                 <UserCircle className="mr-2 h-4 w-4" />
                                 <span>Meu Perfil</span>
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                                onClick={() => router.visit('/admin/settings')}
+                                onClick={() => router.visit('/settings')}
                             >
                                 <Settings className="mr-2 h-4 w-4" />
                                 <span>Configurações</span>

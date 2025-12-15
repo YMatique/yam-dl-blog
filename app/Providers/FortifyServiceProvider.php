@@ -18,7 +18,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        Fortify::ignoreRoutes();
     }
 
     /**
@@ -36,7 +36,7 @@ class FortifyServiceProvider extends ServiceProvider
     private function configureViews(): void
     {
         Fortify::loginView(fn (Request $request) => Inertia::render('auth/login', [
-            'canResetPassword' => Features::enabled(Features::resetPasswords()),
+            'canResetPassword' => \Illuminate\Support\Facades\Route::has('password.request'),
             'status' => $request->session()->get('status'),
         ]));
 

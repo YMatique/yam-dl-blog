@@ -87,6 +87,10 @@ Route::middleware(['auth', 'verified'])->prefix('scm')->name('admin.')
             ->name('series.articles.order');
 
 
+        Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'destroy'])->name('profile.destroy');
+
         Route::post('settings', [SettingsController::class, 'update'])
             ->name('settings.update');
     });
@@ -140,4 +144,90 @@ Route::get('/test-newsletter', function () {
     } catch (\Exception $e) {
         return ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()];
     }
+});
+
+// Fortify 2FA Routes (Manually registered to replace Fortify::ignoreRoutes())
+Route::group(['prefix' => 'yamdl-auth', 'middleware' => ['web']], function () {
+    $guard = 'web';
+
+    // Authentication...
+    Route::get('/login', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'create'])
+        ->middleware(['guest:'.$guard])
+        ->name('login');
+
+    $limiter = config('fortify.limiters.login');
+
+    Route::post('/login', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'store'])
+        ->middleware(array_filter([
+            'guest:'.$guard,
+            $limiter ? 'throttle:'.$limiter : null,
+        ]))
+        ->name('login.store');
+
+    Route::post('/logout', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
+
+    // Password Update...
+    Route::put('/user/password', [\Laravel\Fortify\Http\Controllers\PasswordController::class, 'update'])
+        ->middleware(['auth:'.$guard])
+        ->name('user-password.update');
+
+    // Password Confirmation...
+    Route::get('/user/confirm-password', [\Laravel\Fortify\Http\Controllers\ConfirmablePasswordController::class, 'show'])
+        ->middleware(['auth:'.$guard])
+        ->name('password.confirm');
+
+    Route::post('/user/confirm-password', [\Laravel\Fortify\Http\Controllers\ConfirmablePasswordController::class, 'store'])
+        ->middleware(['auth:'.$guard])
+        ->name('password.confirm.store');
+
+    Route::get('/user/confirmed-password-status', [\Laravel\Fortify\Http\Controllers\ConfirmedPasswordStatusController::class, 'show'])
+        ->middleware(['auth:'.$guard])
+        ->name('password.confirmation');
+
+    // Email Verification...
+    Route::get('/email/verify', [\Laravel\Fortify\Http\Controllers\EmailVerificationPromptController::class, '__invoke'])
+        ->middleware(['auth:'.$guard])
+        ->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', [\Laravel\Fortify\Http\Controllers\VerifyEmailController::class, '__invoke'])
+        ->middleware(['auth:'.$guard, 'signed', 'throttle:6,1'])
+        ->name('verification.verify');
+
+    Route::post('/email/verification-notification', [\Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController::class, 'store'])
+        ->middleware(['auth:'.$guard, 'throttle:6,1'])
+        ->name('verification.send');
+
+    // Two Factor Authentication...
+    Route::middleware(['auth:'.$guard, 'password.confirm'])->group(function () {
+        Route::get('/user/two-factor-qr-code', [\Laravel\Fortify\Http\Controllers\TwoFactorQrCodeController::class, 'show'])
+            ->name('two-factor.qr-code');
+
+        Route::get('/user/two-factor-secret-key', [\Laravel\Fortify\Http\Controllers\TwoFactorSecretKeyController::class, 'show'])
+             ->name('two-factor.secret-key');
+
+        Route::get('/user/two-factor-recovery-codes', [\Laravel\Fortify\Http\Controllers\RecoveryCodeController::class, 'index'])
+            ->name('two-factor.recovery-codes');
+
+        Route::post('/user/two-factor-recovery-codes', [\Laravel\Fortify\Http\Controllers\RecoveryCodeController::class, 'store'])
+            ->name('two-factor.regenerate-recovery-codes');
+
+        Route::post('/user/two-factor-authentication', [\Laravel\Fortify\Http\Controllers\TwoFactorAuthenticationController::class, 'store'])
+            ->name('two-factor.enable');
+
+        Route::delete('/user/two-factor-authentication', [\Laravel\Fortify\Http\Controllers\TwoFactorAuthenticationController::class, 'destroy'])
+            ->name('two-factor.disable');
+
+        Route::post('/user/confirmed-two-factor-authentication', [\Laravel\Fortify\Http\Controllers\ConfirmedTwoFactorAuthenticationController::class, 'store'])
+            ->name('two-factor.confirm');
+    });
+
+    Route::middleware(['guest:'.$guard])->group(function () {
+        Route::get('/two-factor-challenge', [\Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::class, 'create'])
+            ->name('two-factor.login');
+
+        Route::post('/two-factor-challenge', [\Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::class, 'store'])
+            ->middleware(['throttle:two-factor'])
+            ->name('two-factor.login.store');
+    });
 });
