@@ -81,7 +81,7 @@ export default function About() {
                         <div className="col-lg-5">
                             <div className="border-radius-10 overflow-hidden">
                                 <img
-                                    src="/imgs/author.jpg"
+                                    src="/imgs/about-2.png"
                                     alt="YAMDL"
                                     className=""
                                 />
